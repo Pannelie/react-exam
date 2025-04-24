@@ -1,5 +1,10 @@
 # Indivuduell Examination - Where It's @
 
+Dags att rocka koden! Din mission är att bygga frontenden till Where it’s @ – en app där lokala musikevent får stå i rampljuset.
+Med React som ditt instrument ska du komponera en upplevelse som får användarna att klicka vidare till nästa spelning med ett leende.
+Komponenter, props och state – tänk modulärt, tänk snyggt, tänk “det här skulle jag själv vilja använda”.
+Du bygger alltså inte bara ett gränssnitt – du bygger pulsen i stadens musikscen.
+
 ## Uppdrag
 
 Ditt uppdrag är att koda ihop en frontend till biljettjänsten _Where its @_. Den ska se ut enligt nedan mockup. Du har också tillgång till [Figma-länk](https://www.figma.com/file/vcgWPPy2q44oZZ2eORL1wB/Where-its-light?node-id=0%3A1) för exportering av assets, färger, kika fonter etc.
