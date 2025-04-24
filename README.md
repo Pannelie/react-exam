@@ -1,4 +1,4 @@
-# Indivuduell Examination Frontendramverk - Where It's @
+# Indivuduell Examination - Where It's @
 
 ## Uppdrag
 
