@@ -1,4 +1,4 @@
-# Indivuduell Examination Frontendramverk - Where It's @
+# Indivuduell Examination - Where It's @
 
 ## Uppdrag
 Ditt uppdrag är att koda ihop en frontend till biljettjänsten *Where its @*. Den ska se ut enligt nedan mockup. Du har också tillgång till [Figma-länk](https://www.figma.com/file/vcgWPPy2q44oZZ2eORL1wB/Where-its-light?node-id=0%3A1) för exportering av assets, färger, kika fonter etc.
@@ -15,7 +15,7 @@ Du skall i denna uppgift för att få godkänt visa att du behärskar följande 
 - Avancerad statehantering med externt bibliotek (ex Zustand)
 
 ## Krav för väl godkänt
-Du skall välja ut ytterligare 2 st React Hooks, alt. 2 st externa bibliotek (eller en av varje), som vi inte gått igenom i klassen och som du läser på om och implementerar i din applikation. Utöver detta så beskriver du i din *README.md*-fil, hur dessa hookar/bibliotek fungerar, samt varför du tycker att de passar just din applikation. För VG måste du även ha en god struktur på din applikation, med god uppdelning i Pages och Komponenter.
+Du skall välja ut ytterligare minst 3 st externa bibliotek, som vi inte gått igenom i kursen och som du läser på om och implementerar i din applikation. Utöver detta så beskriver du i din *README.md*-fil, hur dessa hookar/bibliotek fungerar, samt varför du tycker att de passar just din applikation. För VG måste du även ha en god struktur på din applikation, med god uppdelning i Pages och Components.
 
 ## Övriga krav
 - Er app måste inte vara pixel-perfekt mot skissen, men ni måste ha en enhetlig, responsiv design
