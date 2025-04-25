@@ -64,6 +64,12 @@ Figma-skissen ger inte en fullständig överblick över hur projektet bör bygga
 GET https://santosnr6.github.io/Data/events.json
 ```
 
+## Halvtidsuppföljning
+
+Nästa fredag den 2/5 kör vi halvtidsuppföljning igen. Jag och Jacob kommer samla er i mindre grupper om 4-5 studerande, där ni får visa upp vad ni hunnit med så långt, vad ni har störst problem med, insikter ni slagits av etc. Dessa möten kommer vara ca 20-25 minuter långa, så se till att komma väl förberedda där ni redan på förhand skrivit upp era eventuella funderingar. Detta gör vi för er skull, så vi kan säkerställa att ni får kontinuerlig feedback, inte bygger fel och inte halkar efter.
+
+Ni bokar in er [via denna länk](https://docs.google.com/spreadsheets/d/1RDqNrn4iVknkT4vJwDWULNPqm8e2bsgHynRPu6JIk4k/edit?usp=sharing) där ni även hittar länk till korrekt Teams-rum.
+
 ## Inlämning
 
 Inlämning sker som vanligt i form av att en länk till ditt gitrepo laddas up på Azomo, senast kl 23:59 den 9/5.
