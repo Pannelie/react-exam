@@ -37,6 +37,7 @@ Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom 
 - Redux (kan användas istället för Zutand)
 - TanStack React Query
 - react-confetti
+- UUID
 
 React-router-dom, axios osv som vi gått igenom under lektioner räknas inte. Om ni väljer lite "tyngre" bibliotek (alltså inte ikonbibliotek) så kan ni höra av er till mig för då kanske 2 st räcker. 
 
