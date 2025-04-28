@@ -1,17 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./navItems.css";
 
 function NavItems() {
   return (
     <>
-      <li>
-        <Link to="/">Home</Link>
+      <li className="nav__list-item">
+        <Link to="/" className="nav__link">
+          Home
+        </Link>
       </li>
-      <li>
-        <Link to="/events">Events</Link>
+      <li className="nav__list-item">
+        <Link to="/events" className="nav__link">
+          Events
+        </Link>
       </li>
-      <li>
-        <Link to="/orders">Orders</Link>
+      <li className="nav__list-item">
+        <Link to="/orders" className="nav__link">
+          Orders
+        </Link>
       </li>
     </>
   );

@@ -4,7 +4,7 @@ import NavItems from "../navitems/NavItems";
 
 function NavList() {
   return (
-    <ul>
+    <ul className="nav__list">
       <NavItems />
     </ul>
   );

@@ -5,7 +5,7 @@ import Footer from "../../components/footer/Footer";
 function orderPage() {
   return (
     <>
-      <h1>orders</h1>;
+      <h1>Orders</h1>;
       <Footer />
     </>
   );

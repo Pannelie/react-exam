@@ -8,9 +8,10 @@
   --main-bg-color: #231f42;
   --main-font-color: #ffffff;
   --highlight-color: #f56b9a;
+  --dark-pink: #89324f;
   --btn-color: #37aeab;
 
-  --font-family: "Sansita One", sans-serif;
+  --font-family-sansita: "Sansita One", sans-serif;
   --font-family-fira-sans: "Fira Sans", sans-serif;
 
   --heading-one: 2rem;
@@ -26,7 +27,7 @@ body {
 
 h1 {
   color: var(--highlight-color);
-  font-family: var(--font-family);
+  font-family: var(--font-family-sansita);
   font-size: var(--heading-one);
 
   padding-top: 2rem;

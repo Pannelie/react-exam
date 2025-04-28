@@ -4,5 +4,6 @@ footer {
 
   width: 100%;
   z-index: 100;
-  background-color: white;
+  background-color: var(--highlight-color);
+  padding: 1.5rem;
 }
