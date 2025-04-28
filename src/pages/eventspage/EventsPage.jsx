@@ -1,8 +1,17 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import "./eventsPage.css";
+import Footer from "../../components/footer/Footer";
 
 function EventsPage() {
-  return <div>Events</div>;
+  const { id } = useParams();
+
+  return (
+    <>
+      <h1>Events</h1>;
+      <Footer />
+    </>
+  );
 }
 
 export default EventsPage;

@@ -1,8 +1,14 @@
 import React from "react";
 import "./orderPage.css";
+import Footer from "../../components/footer/Footer";
 
 function orderPage() {
-  return <div>Orders</div>;
+  return (
+    <>
+      <h1>orders</h1>;
+      <Footer />
+    </>
+  );
 }
 
 export default orderPage;
