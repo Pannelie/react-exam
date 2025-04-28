@@ -15,7 +15,7 @@ function EventItem({ id, name, price, where, when }) {
           <p className="event__when">
             {from} - {to}
           </p>
-          <p className="event__price">{price}</p>{" "}
+          <p className="event__price">{price} sek</p>
         </section>
       </li>
     </Link>
