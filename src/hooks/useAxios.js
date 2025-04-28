@@ -11,7 +11,7 @@ function useAxios(url) {
     // t.ex. försöker uppdatera ett state i en komponent som demountats.
     const controller = new AbortController();
 
-    //lyssnar efter eventuell signal från min controller.
+    //signalen finns alltid med (tyst). Aktiveras bara om vi avbryter. Händer inget så påverkar signalen inte anropet alls.
     axios
       .get(url, { signal: controller.signal })
       .then((response) => {
