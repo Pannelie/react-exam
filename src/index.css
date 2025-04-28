@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-bg-color: #231f42;
+  --main-font-color: #ffffff;
+  --highlight-color: #f56b9a;
+  --dark-pink: #89324f;
+  --btn-color: #37aeab;
+
+  --font-family-sansita: "Sansita One", sans-serif;
+  --font-family-fira-sans: "Fira Sans", sans-serif;
+
+  --heading-one: 2rem;
+
+  /* skapa en RGBA färg för grå effekt på färdiga tickets */
+  /* där ökas opacityn med 3% per ny section inuti */
+  /* skapa en gradient bg */
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+h1 {
+  color: var(--highlight-color);
+  font-family: var(--font-family-sansita);
+  font-size: var(--heading-one);
+
+  padding-top: 2rem;
+  text-align: center;
+}

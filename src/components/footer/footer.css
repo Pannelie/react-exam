@@ -1,0 +1,9 @@
+footer {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  z-index: 100;
+  background-color: var(--highlight-color);
+  padding: 1.5rem;
+}
