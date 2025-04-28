@@ -10,13 +10,13 @@ function EventItem({ id, name, price, where, when }) {
       <li className="event__list-item">
         <section className="event__date-box">{formatDate(date)}</section>
         <section className="event__info-box">
-          <h2>{name}</h2>
-          <p>{where}</p>
-          <p>
+          <h2 className="event__title">{name}</h2>
+          <p className="event__where">{where}</p>
+          <p className="event__when">
             {from} - {to}
           </p>
+          <p className="event__price">{price}</p>{" "}
         </section>
-        <p className="event__price">{price}</p>
       </li>
     </Link>
   );
