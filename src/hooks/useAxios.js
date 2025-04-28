@@ -15,7 +15,7 @@ function useAxios(url) {
     axios
       .get(url, { signal: controller.signal })
       .then((response) => {
-        setData(response.data);
+        setData(response.data.events);
       })
       .catch((error) => {
         if (axios.isCancel(error)) {

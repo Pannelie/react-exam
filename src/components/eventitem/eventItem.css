@@ -1,0 +1,36 @@
+.event__link {
+  text-decoration: none;
+  color: var(--main-font-color);
+  list-style: none;
+  width: 90%;
+}
+
+.event__list-item {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.event__date-box {
+  display: flex;
+  place-items: center;
+  border-radius: 3px;
+  padding: 0.7rem;
+
+  border: 1px var(--main-font-color) solid;
+  text-align: center;
+  width: 3.4rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.event__info-box {
+}
+
+.date-format .month {
+  display: block; /* Detta skapar radbrytning */
+}
+
+.event__price {
+  color: var(--blue-color);
+}
