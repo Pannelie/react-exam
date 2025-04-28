@@ -10,5 +10,24 @@
   --highlight-color: #f56b9a;
   --btn-color: #37aeab;
 
+  --font-family: "Sansita One", sans-serif;
+
+  --heading-one: 2rem;
+
   /* skapa en RGBA färg för grå effekt på färdiga tickets */
+  /* där ökas opacityn med 3% per ny section inuti */
+  /* skapa en gradient bg */
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+h1 {
+  color: var(--highlight-color);
+  font-family: var(--font-family);
+  font-size: var(--heading-one);
+
+  padding-top: 2rem;
+  text-align: center;
 }
