@@ -2,7 +2,7 @@ import React from "react";
 import "./orderPage.css";
 
 function orderPage() {
-  return <div></div>;
+  return <div>Orders</div>;
 }
 
 export default orderPage;

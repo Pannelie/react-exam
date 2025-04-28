@@ -2,7 +2,7 @@ import React from "react";
 import "./eventsPage.css";
 
 function EventsPage() {
-  return <div></div>;
+  return <div>Events</div>;
 }
 
 export default EventsPage;
