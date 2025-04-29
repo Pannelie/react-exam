@@ -1,10 +1,8 @@
 import "./eventList.css";
-import useAxios from "../../hooks/useAxios";
 import useFetchEvents from "../../hooks/useFetchEvents";
 import EventItem from "../eventitem/EventItem";
 
 function EventList() {
-  //   const { data, loading, error } = useAxios("https://santosnr6.github.io/Data/events.json");
   const { events, loading, error } = useFetchEvents();
 
   if (loading) return <p>Laddar events...</p>;
