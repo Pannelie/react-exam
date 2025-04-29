@@ -6,10 +6,22 @@ function EventDetailsPage() {
   const event = useEventStore((state) => state.getEventById(id));
 
   if (!event) {
-    return <p>Eventet hittades inte.</p>;
+    return (
+      <section className="detailed-event__section">
+        <p>Laddar event...</p>
+      </section>
+    );
   }
 
-  return <div></div>;
+  return (
+    <section className="detailed-event__section">
+      <h1>{event.name}</h1>
+      <p>
+        {event.when.date} kl {event.when.from} - {event.when.to}
+      </p>
+      <p>@ {event.where}</p>
+    </section>
+  );
 }
 
 export default EventDetailsPage;

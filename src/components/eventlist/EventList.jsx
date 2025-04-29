@@ -1,30 +1,31 @@
-import React, { useEffect } from "react";
 import "./eventList.css";
 import useAxios from "../../hooks/useAxios";
-import useEventstore from "../../stores/useEventStore";
+import useFetchEvents from "../../hooks/useFetchEvents";
 import EventItem from "../eventitem/EventItem";
 
 function EventList() {
-  const { data, loading, error } = useAxios("https://santosnr6.github.io/Data/events.json");
-  const setEvents = useEventstore((state) => state.setEvents);
+  //   const { data, loading, error } = useAxios("https://santosnr6.github.io/Data/events.json");
+  const { events } = useFetchEvents();
 
-  useEffect(() => {
-    if (Array.isArray(data)) {
-      setEvents(data);
-    }
-  }, [data, setEvents]);
+  if (!events || !Array.isArray(events)) return <p>Ingen data tillgänglig</p>;
 
-  if (loading) return <p>Laddar events...</p>;
-  if (error) return <p>Fel: {error}</p>;
+  //   useEffect(() => {
+  //     if (Array.isArray(data)) {
+  //       setEvents(data);
+  //     }
+  //   }, [data, setEvents]);
 
-  // Säkerställ att data är en array innan vi försöker map:a
-  if (!data || !Array.isArray(data)) {
-    return <p>Ingen data tillgänglig.</p>;
-  }
+  //   if (loading) return <p>Laddar events...</p>;
+  //   if (error) return <p>Fel: {error}</p>;
+
+  //   // Säkerställ att data är en array innan vi försöker map:a
+  //   if (!data || !Array.isArray(data)) {
+  //     return <p>Ingen data tillgänglig.</p>;
+  //   }
 
   return (
     <ul className="event__list">
-      {data.map((event) => (
+      {events.map((event) => (
         <EventItem key={event.id} id={event.id} name={event.name} price={event.price} where={event.where} when={event.when} />
       ))}
     </ul>
