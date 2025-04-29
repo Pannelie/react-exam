@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetchEvents from "../../hooks/useFetchEvents";
 import Footer from "../../components/footer/Footer";
 
-function EventDetailsPage() {
+function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
   //   const event = useEventStore((state) => state.getEventById(id)); //hämtar specifikt.
@@ -37,7 +37,7 @@ function EventDetailsPage() {
   );
 }
 
-export default EventDetailsPage;
+export default SingleEventPage;
 
 {
   /*     
