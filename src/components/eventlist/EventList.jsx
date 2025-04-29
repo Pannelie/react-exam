@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./eventList.css";
 import useAxios from "../../hooks/useAxios";
+import useEventstore from "../../stores/useEventStore";
 import EventItem from "../eventitem/EventItem";
 
 function EventList() {
   const { data, loading, error } = useAxios("https://santosnr6.github.io/Data/events.json");
+  const setEvents = useEventstore((state) => state.setEvents);
+
+  useEffect(() => {
+    if (Array.isArray(data)) {
+      setEvents(data);
+    }
+  }, [data, setEvents]);
 
   if (loading) return <p>Laddar events...</p>;
   if (error) return <p>Fel: {error}</p>;
