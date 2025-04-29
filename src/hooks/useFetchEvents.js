@@ -1,32 +1,121 @@
-import { useEffect } from "react";
+// hooks/useFetchEvents.js
+import { useEffect, useState } from "react";
 import axios from "axios";
 import useEventStore from "../stores/useEventStore";
 
-const useFetchEvents = () => {
-  const setEvents = useEventStore((state) => state.setEvents);
+const useFetchEvents = (id = null) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const events = useEventStore((state) => state.events);
+  const setEvents = useEventStore((state) => state.setEvents);
+  const getEventById = useEventStore((state) => state.getEventById);
+  const event = id ? getEventById(id) : null;
 
   useEffect(() => {
-    if (events.length > 0) return;
-
     const controller = new AbortController();
     const url = "https://santosnr6.github.io/Data/events.json";
 
-    axios
-      .get(url, { signal: controller.signal })
-      .then((response) => {
-        setEvents(response.data.events);
-      })
-      .catch((error) => {
-        if (!axios.isCancel(error)) {
-          console.error(`Error fetching events:`, error);
-        }
-      });
+    // ✅ Hämta alla events om vi inte har några
+    if (!id && events.length === 0) {
+      setLoading(true);
+      axios
+        .get(url, { signal: controller.signal })
+        .then((response) => {
+          if (Array.isArray(response.data.events)) {
+            setEvents(response.data.events);
+          }
+        })
+        .catch((error) => {
+          if (!axios.isCancel(error)) {
+            setError(error.message || "Något gick fel vid hämtning av events");
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+
+    // ✅ Hämta enskilt event om det inte finns i store
+    if (id && !event) {
+      setLoading(true);
+      axios
+        .get(url, { signal: controller.signal })
+        .then((response) => {
+          if (Array.isArray(response.data.events)) {
+            const fetchedEvent = response.data.events.find((e) => String(e.id) === String(id));
+            if (fetchedEvent) {
+              const alreadyExists = events.some((e) => e.id === fetchedEvent.id);
+              if (!alreadyExists) {
+                setEvents([...events, fetchedEvent]);
+              }
+            }
+          }
+        })
+        .catch((error) => {
+          if (!axios.isCancel(error)) {
+            setError(error.message || "Något gick fel vid hämtning av event");
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
 
     return () => controller.abort();
-  }, [events.length, setEvents]);
+  }, [id, event, events, setEvents]);
 
-  return { events };
+  return { events, event, loading, error };
 };
 
 export default useFetchEvents;
+
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import useEventStore from "../stores/useEventStore";
+
+// const useFetchEvents = (id= null) => {
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
+
+//   const events = useEventStore((state) => state.events);
+//   const setEvents = useEventStore((state) => state.setEvents);
+//   const getEventById = useEventStore((state) => state.getEventById);
+//   const event = id ? getEventById(id) : null;
+// //   const setEvents = useEventStore((state) => state.setEvents);
+// //   const getEventById = useEventStore((state) => state.getEventById);
+// //   const event = getEventById(id);
+
+//   useEffect(() => {
+//     const controller = new AbortController();
+//     const url = "https://santosnr6.github.io/Data/events.json";
+
+//     if (!id && events.length === 0) {
+//         setLoading(true);
+
+//       axios
+//         .get(url, { signal: controller.signal })
+//         .then((response) => {
+//           const fetchedEvent = response.data.events.find((e) => e.id === id);
+//           if (fetchedEvent) {
+//             setEvents([fetchedEvent]); // Lägg till eventet i store
+//           }
+//         })
+//         .catch((error) => {
+//           if (!axios.isCancel(error)) {
+//             setError(error.message || `Något gick fel`);
+//             console.error(`Error fetching events:`, error);
+//           })
+//           .finally(() => {
+//             setLoading(false);
+//           });
+//         }, [events, setEvents]);
+
+//       return () => controller.abort();
+//     }
+//   }, [event, id, setEvents]);
+
+//   return { event };
+// };
+
+// export default useFetchEvents;

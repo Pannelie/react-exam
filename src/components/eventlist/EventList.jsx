@@ -5,8 +5,10 @@ import EventItem from "../eventitem/EventItem";
 
 function EventList() {
   //   const { data, loading, error } = useAxios("https://santosnr6.github.io/Data/events.json");
-  const { events } = useFetchEvents();
+  const { events, loading, error } = useFetchEvents();
 
+  if (loading) return <p>Laddar events...</p>;
+  if (error) return <p>Fel: {error}</p>;
   if (!events || !Array.isArray(events)) return <p>Ingen data tillgänglig</p>;
 
   //   useEffect(() => {
