@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetchEvents from "../../hooks/useFetchEvents";
+import Footer from "../../components/footer/Footer";
 
 function EventDetailsPage() {
   const { id } = useParams();
@@ -9,27 +10,30 @@ function EventDetailsPage() {
   if (error) return <p>Fel: {error}</p>;
 
   return (
-    <section className="detailed-event__section">
-      <h1>Event</h1>
-      <p>You are about to score som tickets to</p>
-      {loading ? (
-        <p>Laddar event...</p>
-      ) : error ? (
-        <p>Fel: {error}</p>
-      ) : event ? (
-        <>
-          <h1>{event.name}</h1>
-          <p>
-            {event.when.date} kl {event.when.from} - {event.when.to}
-          </p>
-          <p>@ {event.where}</p>
+    <main className="detailed-event-page">
+      <section className="detailed-event__section">
+        <h1>Event</h1>
+        <p>You are about to score som tickets to</p>
+        {loading ? (
+          <p>Laddar event...</p>
+        ) : error ? (
+          <p>Fel: {error}</p>
+        ) : event ? (
+          <>
+            <h2>{event.name}</h2>
+            <p>
+              {event.when.date} kl {event.when.from} - {event.when.to}
+            </p>
+            <p>@ {event.where}</p>
 
-          <button>Lägg i varukorgen</button>
-        </>
-      ) : (
-        <p>Eventet hittades inte.</p>
-      )}
-    </section>
+            <button>Lägg i varukorgen</button>
+          </>
+        ) : (
+          <p>Eventet hittades inte.</p>
+        )}
+      </section>
+      <Footer />
+    </main>
   );
 }
 
