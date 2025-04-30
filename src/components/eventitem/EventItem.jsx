@@ -6,7 +6,7 @@ import { formatDate } from "../../utils/utils";
 function EventItem({ id, name, price, where, when }) {
   const { date, from, to } = when;
   return (
-    <Link to={`/event/${id}`} className="event__link">
+    <Link to={`/events/${id}`} className="event__link">
       <li className="event__list-item">
         <section className="event__date-box">{formatDate(date)}</section>
         <section className="event__info-box">

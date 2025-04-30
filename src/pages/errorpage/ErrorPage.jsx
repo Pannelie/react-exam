@@ -5,7 +5,7 @@ import Footer from "../../components/footer/Footer";
 function ErrorPage() {
   return (
     <>
-      <h1>Error</h1>;
+      <h1 className="headingOne">Error</h1>;
       <Footer />
     </>
   );

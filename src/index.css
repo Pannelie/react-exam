@@ -10,11 +10,15 @@
   --highlight-color: #f56b9a;
   --dark-pink: #89324f;
   --blue-color: #37aeab;
+  --dark-blue: #298a86;
+
+  --font-white-opacity: rgba(255, 255, 255, 0.7);
 
   --font-family-sansita: "Sansita One", sans-serif;
   --font-family-fira-sans: "Fira Sans", sans-serif;
 
   --heading-one: 2rem;
+  --heading-two: 2.1rem;
 
   /* skapa en RGBA färg för grå effekt på färdiga tickets */
   /* där ökas opacityn med 3% per ny section inuti */
@@ -25,11 +29,45 @@ body {
   background-color: var(--main-bg-color);
 }
 
-h1 {
+.headingOne {
   color: var(--highlight-color);
   font-family: var(--font-family-sansita);
   font-size: var(--heading-one);
+  font-weight: 400;
 
+  text-align: center;
+}
+
+.headingOne--padding {
   padding-top: 2rem;
+}
+
+.headingTwo {
+  color: var(--highlight-color);
+  font-family: var(--font-family-sansita);
+  font-size: var(--heading-two);
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--main-font-color);
+  font-family: var(--font-family-fira-sans);
+  font-style: italic;
+  font-size: 1.37rem;
+  font-weight: 300;
+
+  margin: 1.5rem 0 1.6rem;
+  text-align: center;
+}
+
+.paragraph {
+  color: var(--main-font-color);
+}
+
+.message {
+  color: var(--main-font-color);
+  font-family: var(--font-family-fira-sans);
+  font-size: 1.4rem;
+  font-style: italic;
   text-align: center;
 }
