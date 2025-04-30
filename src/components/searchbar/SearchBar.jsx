@@ -2,6 +2,7 @@ import { useState } from "react";
 import useFetchEvents from "../../hooks/useFetchEvents";
 import useSearchEvents from "../../hooks/useSearchEvents";
 import SearchList from "../searchlist/SearchList";
+import "./searchBar.css";
 
 function SearchBar() {
   const [query, setQuery] = useState(``);
@@ -10,7 +11,7 @@ function SearchBar() {
 
   return (
     <>
-      <input type="text" placeholder="Sök event..." value={query} onChange={(e) => setQuery(e.target.value)} />
+      <input type="text" placeholder="Sök event..." className="search-bar" value={query} onChange={(e) => setQuery(e.target.value)} />
 
       {loading && <p>Laddar events...</p>}
       {error && <p>Något gick fel: {error}</p>}
