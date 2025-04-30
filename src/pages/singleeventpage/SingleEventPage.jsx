@@ -1,8 +1,13 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import useFetchEvents from "../../hooks/useFetchEvents";
+
 import Footer from "../../components/footer/Footer";
-import "./singleEventPage.css";
 import Button from "../../components/button/Button";
+import CounterBox from "../../components/counterbox/CounterBox";
+
+import useCounterStore from "../../stores/useCounterStore";
+import "./singleEventPage.css";
 
 function SingleEventPage() {
   const { id } = useParams();
@@ -10,6 +15,8 @@ function SingleEventPage() {
   //   const event = useEventStore((state) => state.getEventById(id)); //hämtar specifikt.
   if (loading) return <p className="message">Laddar event...</p>;
   if (error) return <p className="message">Fel: {error}</p>;
+
+  const addTicket = useCounterStore((state) => state.addTicket);
 
   return (
     <main className="single-event-page">
@@ -27,8 +34,8 @@ function SingleEventPage() {
               {event.when.date} kl {event.when.from} - {event.when.to}
             </p>
             <p className="event__paragraph-where">@ {event.where}</p>
-
-            <Button text="Lägg i varukorgen" />
+            <CounterBox event={event} />
+            <Button text="Lägg i varukorgen" onClick={() => addTicket(event)} />
           </>
         ) : (
           <p className="message">Eventet hittades inte.</p>
