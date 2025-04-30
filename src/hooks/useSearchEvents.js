@@ -11,7 +11,7 @@ const useSearchEvents = (query) => {
       return;
     }
 
-    const results = allEvents.filter((event) => event.title.toLowerCase().includes(query.toLowerCase()));
+    const results = allEvents.filter((event) => event.name.toLowerCase().includes(query.toLowerCase()));
 
     setFiltered(results);
   }, [query, allEvents]);
