@@ -10,6 +10,7 @@
   display: grid;
   grid-template-columns: auto 1fr 2rem;
   grid-template-rows: 1fr;
+  width: 100%;
 }
 
 .event__date-box {
