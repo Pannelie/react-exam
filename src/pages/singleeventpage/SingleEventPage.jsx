@@ -16,7 +16,12 @@ function SingleEventPage() {
   if (loading) return <p className="message">Laddar event...</p>;
   if (error) return <p className="message">Fel: {error}</p>;
 
-  const addTicket = useCounterStore((state) => state.addTicket);
+  const count = useCounterStore((state) => state.counts[id] || 1);
+  const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
+
+  const handleAddToCart = () => {
+    addTicketToCart(event, count); // Lägg till biljetterna i varukorgen
+  };
 
   return (
     <main className="single-event-page">
@@ -35,7 +40,13 @@ function SingleEventPage() {
             </p>
             <p className="event__paragraph-where">@ {event.where}</p>
             <CounterBox event={event} />
-            <Button text="Lägg i varukorgen" onClick={() => addTicket(event)} />
+            <Button
+              text="Lägg i varukorgen"
+              onClick={() => {
+                console.log(`klick på ${event.name} och ${count}`);
+                handleAddToCart();
+              }}
+            />
           </>
         ) : (
           <p className="message">Eventet hittades inte.</p>

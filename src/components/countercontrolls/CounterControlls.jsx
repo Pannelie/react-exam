@@ -4,18 +4,18 @@ import "./counterControlls.css";
 import useCounterStore from "../../stores/useCounterStore";
 
 function CounterControlls({ event }) {
-  const { counts, addTicket, removeTicket } = useCounterStore();
+  const { counts, setTicketCount } = useCounterStore();
   const count = counts[event.id] || 0;
 
   const handleDecrease = () => {
     if (count > 0) {
-      removeTicket(event.id); // Ta bort en biljett med det specifika event-id:t
+      setTicketCount(event.id, count - 1); // Ta bort en biljett med det specifika event-id:t
     }
   };
 
   // Hantera klick på plus-knappen
   const handleIncrease = () => {
-    addTicket(event); // Lägg till en biljett med hela event-objektet
+    setTicketCount(event, count + 1); // Lägg till en biljett med hela event-objektet
   };
 
   return (

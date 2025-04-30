@@ -7,18 +7,39 @@ const useCounterStore = create(
       counts: {},
       cartItems: [],
 
-      addTicket: (event) => {
-        const { id, name, price } = event;
+      setTicketCount: (event, quantity) => {
+        const { id } = event;
         const counts = get().counts;
-        const cartItems = get().cartItems;
+        const updatedCounts = {
+          ...counts,
+          [id]: quantity, // Uppdatera till valt antal
+        };
 
         set({
-          counts: {
-            ...counts,
-            [id]: (counts[id] || 0) + 1,
-          },
-          cartItems: cartItems.some((item) => item.id === id) ? cartItems : [cartItems, { id, name, price }],
+          counts: updatedCounts,
         });
+      },
+
+      // Lägg till event till varukorgen med den bekräftade mängden
+      addTicketToCart: (event) => {
+        const { id, name, price } = event;
+        const quantity = get().counts[id] || 0;
+        const cartItems = get().cartItems;
+
+        if (quantity > 0) {
+          // Kolla om eventet redan finns i varukorgen
+          const updatedCartItems = cartItems.some((item) => item.id === id)
+            ? cartItems.map((item) =>
+                item.id === id
+                  ? { ...item, quantity: item.quantity + quantity } // Uppdatera mängd i varukorgen
+                  : item
+              )
+            : [...cartItems, { id, name, price, quantity }];
+
+          set({
+            cartItems: updatedCartItems,
+          });
+        }
       },
 
       removeTicket: (eventId) => {
