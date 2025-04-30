@@ -4,4 +4,6 @@
   align-items: center;
 
   overflow-y: auto;
+
+  width: 100%;
 }
