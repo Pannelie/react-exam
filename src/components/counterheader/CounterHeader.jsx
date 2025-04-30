@@ -8,12 +8,7 @@ function CounterHeader({ header }) {
   // Kollar om header är en funktion och om count är ett tal
   const totalPrice = typeof header === "function" ? header(count) : 0;
 
-  return <div className="counter__header">{isNaN(totalPrice) ? "Felaktigt pris" : totalPrice}</div>;
+  return <div className="counter__header">{isNaN(totalPrice) ? "Felaktigt pris" : `${totalPrice} SEK`}</div>;
 }
 
 export default CounterHeader;
-
-//   return <div className="counter__header">{typeof header === "function" ? header(count) : header}</div>;
-// }
-
-// export default CounterHeader;

@@ -1,2 +1,10 @@
 .counter__header {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid var(--highlight-color);
+  width: 100%;
+  padding: 1rem 2rem;
+
+  font-size: 2rem;
+  font-weight: 700;
 }
