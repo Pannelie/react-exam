@@ -9,20 +9,6 @@ function EventList() {
   if (error) return <p>Fel: {error}</p>;
   if (!events || !Array.isArray(events)) return <p>Ingen data tillgänglig</p>;
 
-  //   useEffect(() => {
-  //     if (Array.isArray(data)) {
-  //       setEvents(data);
-  //     }
-  //   }, [data, setEvents]);
-
-  //   if (loading) return <p>Laddar events...</p>;
-  //   if (error) return <p>Fel: {error}</p>;
-
-  //   // Säkerställ att data är en array innan vi försöker map:a
-  //   if (!data || !Array.isArray(data)) {
-  //     return <p>Ingen data tillgänglig.</p>;
-  //   }
-
   return (
     <ul className="event__list">
       {events.map((event) => (

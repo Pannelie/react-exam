@@ -1,11 +1,11 @@
 import React from "react";
-import SearchItem from "../searchitem/SearchItem";
+import EventItem from "../eventitem/EventItem";
 
 function SearchList({ results }) {
   return (
     <ul>
       {results.map((event) => (
-        <SearchItem key={event.id} event={event} />
+        <EventItem key={event.id} id={event.id} name={event.name} price={event.price} where={event.where} when={event.when} />
       ))}
     </ul>
   );
