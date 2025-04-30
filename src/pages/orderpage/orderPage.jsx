@@ -5,7 +5,9 @@ import Footer from "../../components/footer/Footer";
 function orderPage() {
   return (
     <>
-      <h1 className="headingOne">Orders</h1>;
+      <main className="order-page">
+        <h1 className="headingOne">Orders</h1>
+      </main>
       <Footer />
     </>
   );

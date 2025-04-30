@@ -2,35 +2,36 @@ import { useParams } from "react-router-dom";
 import useFetchEvents from "../../hooks/useFetchEvents";
 import Footer from "../../components/footer/Footer";
 import "./singleEventPage.css";
+import Button from "../../components/button/Button";
 
 function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
   //   const event = useEventStore((state) => state.getEventById(id)); //hämtar specifikt.
-  if (loading) return <p>Laddar event...</p>;
-  if (error) return <p>Fel: {error}</p>;
+  if (loading) return <p className="message">Laddar event...</p>;
+  if (error) return <p className="message">Fel: {error}</p>;
 
   return (
-    <main className="detailed-event-page">
-      <section className="detailed-event__section">
-        <h1 className="headingOne">Event</h1>
-        <p className="subtitle">You are about to score som tickets to</p>
+    <main className="single-event-page">
+      <h1 className="headingOne">Event</h1>
+      <p className="subtitle">You are about to score some tickets to</p>
+      <section className="event__info">
         {loading ? (
-          <p>Laddar event...</p>
+          <p className="message">Laddar event...</p>
         ) : error ? (
-          <p>Fel: {error}</p>
+          <p className="message">Fel: {error}</p>
         ) : event ? (
           <>
-            <h2>{event.name}</h2>
-            <p>
+            <h2 className="headingTwo">{event.name}</h2>
+            <p className="event__paragraph-when">
               {event.when.date} kl {event.when.from} - {event.when.to}
             </p>
-            <p>@ {event.where}</p>
+            <p className="event__paragraph-where">@ {event.where}</p>
 
-            <button>Lägg i varukorgen</button>
+            <Button text="Lägg i varukorgen" />
           </>
         ) : (
-          <p>Eventet hittades inte.</p>
+          <p className="message">Eventet hittades inte.</p>
         )}
       </section>
       <Footer />

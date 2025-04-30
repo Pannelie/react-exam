@@ -1,10 +1,36 @@
-.detailed-event-page {
+.single-event-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
+
+  padding: 2rem;
 }
 
-.detailed-event__section {
-  padding: 2rem;
+.event__info {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  margin-top: 2rem;
+}
+
+.event__paragraph-when {
+  color: var(--blue-color);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.event__paragraph-where {
+  color: var(--font-white-opacity);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
 }
