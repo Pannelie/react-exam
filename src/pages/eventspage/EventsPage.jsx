@@ -6,12 +6,12 @@ import SearchBar from "../../components/searchbar/SearchBar";
 
 function EventsPage() {
   return (
-    <>
-      <h1>Events</h1>
+    <main className="event-page">
+      <h1 className="headingOne">Events</h1>
       <SearchBar />
       <EventList />
       <Footer />
-    </>
+    </main>
   );
 }
 

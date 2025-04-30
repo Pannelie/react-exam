@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useFetchEvents from "../../hooks/useFetchEvents";
 import Footer from "../../components/footer/Footer";
+import "./singleEventPage.css";
 
 function SingleEventPage() {
   const { id } = useParams();
@@ -12,8 +13,8 @@ function SingleEventPage() {
   return (
     <main className="detailed-event-page">
       <section className="detailed-event__section">
-        <h1>Event</h1>
-        <p>You are about to score som tickets to</p>
+        <h1 className="headingOne">Event</h1>
+        <p className="subtitle">You are about to score som tickets to</p>
         {loading ? (
           <p>Laddar event...</p>
         ) : error ? (

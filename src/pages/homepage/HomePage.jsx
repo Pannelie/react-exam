@@ -8,8 +8,8 @@ function HomePage() {
     <>
       <main className="home-page">
         <Logo />
-        <h1>Home</h1>
-        <p className="home__subtitle">Ticketing made easy</p>
+        <h1 className="headingOne headingOne--padding">Where It´s @</h1>
+        <p className="subtitle">Ticketing made easy</p>
       </main>
       <Footer />
     </>

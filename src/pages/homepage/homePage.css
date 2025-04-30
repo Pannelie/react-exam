@@ -6,12 +6,3 @@
 
   margin-top: 8rem;
 }
-
-.home__subtitle {
-  color: var(--main-font-color);
-  font-family: var(--font-family-fira-sans);
-  font-style: italic;
-  font-size: 1.37rem;
-
-  margin-top: 0.7rem;
-}
