@@ -20,9 +20,9 @@ function orderPage() {
             cartItems.map((event) => <CounterBox key={event.id} event={event} header={<EventHeader event={event} />} />)
           )}
         </section>
-        <section className="order-summary">
-          <p>Totalt värde på order</p>
-          <p>{totalPrice}sek</p>
+        <section className="order__summary">
+          <p className="message">Totalt värde på order</p>
+          <p className="order__price">{totalPrice}sek</p>
         </section>
       </main>
       <Footer />
