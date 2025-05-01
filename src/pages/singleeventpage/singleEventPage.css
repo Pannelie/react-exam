@@ -10,10 +10,11 @@
 .event__info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100vh;
   width: 100%;
 
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .event__paragraph-when {

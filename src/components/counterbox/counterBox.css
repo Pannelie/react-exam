@@ -1,0 +1,12 @@
+.counter__container {
+  display: grid;
+  grid-template-rows: auto auto;
+
+  color: var(--main-font-color);
+  text-align: center;
+  border: 2px solid var(--highlight-color); /* Tjock yttre ram */
+  border-radius: 3px;
+
+  width: 80%;
+  margin-top: 3.5rem;
+}

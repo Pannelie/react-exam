@@ -1,0 +1,35 @@
+.counter__controlls {
+  display: flex;
+  flex-direction: row;
+  gap: 2px; /* Smalt avstånd mellan rutorna */
+
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.counter__controll {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform-origin: center;
+
+  &:hover {
+    transform: scale(1.4);
+    color: var(--highlight-color);
+  }
+}
+
+.counter__number {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-left: 1px solid var(--highlight-color); /* Smal linje mellan rutorna */
+  border-right: 1px solid var(--highlight-color); /* Smal linje mellan rutorna */
+}
