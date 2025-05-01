@@ -5,6 +5,7 @@
 
   font-size: 1.8rem;
   font-weight: 400;
+  overflow: hidden;
 }
 
 .counter__controll {
@@ -12,15 +13,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   transform-origin: center;
+  overflow: hidden;
 
   &:hover {
     transform: scale(1.4);
     color: var(--highlight-color);
   }
+}
+
+.counter__controll--event-page {
+  padding: 1rem 0;
+}
+
+.counter__controll--order-page {
 }
 
 .counter__number {

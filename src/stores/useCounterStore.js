@@ -66,10 +66,6 @@ const useCounterStore = create(
       },
       clearCart: () => set({ counts: {}, cartItems: [] }),
 
-      get totalTickets() {
-        return Object.values(get().counts).reduce((sum, n) => sum + n, 0);
-      },
-
       totalPrice: () => {
         const { cartItems, counts } = get();
         return cartItems.reduce((sum, item) => {

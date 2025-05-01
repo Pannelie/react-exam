@@ -6,7 +6,15 @@
   text-align: center;
   border: 2px solid var(--highlight-color); /* Tjock yttre ram */
   border-radius: 3px;
+}
 
+.counter__box--event-page {
+  width: 80%;
+  margin-top: 2rem;
+}
+
+.counter__box--order-page {
   width: 100%;
+
   margin-bottom: 1rem;
 }

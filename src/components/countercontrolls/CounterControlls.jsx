@@ -3,7 +3,7 @@ import "./counterControlls.css";
 
 import useCounterStore from "../../stores/useCounterStore";
 
-function CounterControlls({ event }) {
+function CounterControlls({ event, sizeModifier }) {
   const { counts, setTicketCount } = useCounterStore();
   const count = counts[event.id] || 0;
 
@@ -20,11 +20,11 @@ function CounterControlls({ event }) {
 
   return (
     <div className="counter__controlls">
-      <div className="counter__controll" onClick={handleDecrease}>
+      <div className={`counter__controll counter__controll--${sizeModifier}`} onClick={handleDecrease}>
         -
       </div>
       <div className="counter__number">{count}</div>
-      <div className="counter__controll" onClick={handleIncrease}>
+      <div className={`counter__controll counter__controll--${sizeModifier}`} onClick={handleIncrease}>
         +
       </div>
     </div>

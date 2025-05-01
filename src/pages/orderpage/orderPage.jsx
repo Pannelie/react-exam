@@ -4,6 +4,7 @@ import Footer from "../../components/footer/Footer";
 import CounterBox from "../../components/counterbox/CounterBox";
 import useCounterStore from "../../stores/useCounterStore";
 import EventHeader from "../../components/button/eventheader/EventHeader";
+import Button from "../../components/button/Button";
 
 function orderPage() {
   const cartItems = useCounterStore((state) => state.cartItems);
@@ -24,6 +25,7 @@ function orderPage() {
           <p className="message">Totalt värde på order</p>
           <p className="order__price">{totalPrice} sek</p>
         </section>
+        <Button text="Lägg order" />
       </main>
       <Footer />
     </>
