@@ -9,7 +9,7 @@ function CounterBox({ event, header }) {
   const count = counts[event.id] || 0;
 
   return (
-    <div className="counter__container">
+    <div className="counter__box">
       <CounterHeader header={header} event={event} count={count} />
       <CounterControlls event={event} />
     </div>

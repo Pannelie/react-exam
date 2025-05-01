@@ -1,10 +1,19 @@
 import "./counterHeader.css";
 
-function CounterHeader({ header }) {
-  return <div className="counter__header">{header}</div>;
-}
+function CounterHeader({ header, event, count }) {
+  const headerContent = typeof header === "function" ? header({ event, count }) : header;
 
+  return <div className="counter__header">{headerContent}</div>;
+}
 export default CounterHeader;
+
+// import "./counterHeader.css";
+
+// function CounterHeader({ header }) {
+//   return <div className="counter__header">{header}</div>;
+// }
+
+// export default CounterHeader;
 
 // import "./counterHeader.css";
 

@@ -1,14 +1,14 @@
 import React from "react";
-import "./counterHeader.css";
+import "./eventHeader.css";
 
 function EventHeader({ event }) {
   return (
-    <div className="counter__header">
-      <span className="counter__header-name">{event.name}</span>
-      <span className="counter__header-time">
+    <>
+      <p className="counter__header-name">{event.name}</p>
+      <p className="counter__header-time">
         {event.when.date} kl {event.when.from} - {event.when.to}
-      </span>
-    </div>
+      </p>
+    </>
   );
 }
 

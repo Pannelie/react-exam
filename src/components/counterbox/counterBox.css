@@ -1,4 +1,4 @@
-.counter__container {
+.counter__box {
   display: grid;
   grid-template-rows: auto auto;
 
@@ -7,6 +7,6 @@
   border: 2px solid var(--highlight-color); /* Tjock yttre ram */
   border-radius: 3px;
 
-  width: 80%;
-  margin-top: 3.5rem;
+  width: 100%;
+  margin-top: 1rem;
 }
