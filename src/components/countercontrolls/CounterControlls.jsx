@@ -15,7 +15,7 @@ function CounterControlls({ event }) {
 
   // Hantera klick på plus-knappen
   const handleIncrease = () => {
-    setTicketCount(event, count + 1); // Lägg till en biljett med hela event-objektet
+    setTicketCount(event.id, count + 1); // Lägg till en biljett med hela event-objektet
   };
 
   return (

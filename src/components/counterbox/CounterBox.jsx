@@ -4,14 +4,13 @@ import useCounterStore from "../../stores/useCounterStore";
 
 import "./counterBox.css";
 
-function CounterBox({ event }) {
+function CounterBox({ event, header }) {
   const { counts } = useCounterStore();
-  console.log(event.id);
   const count = counts[event.id] || 0;
 
   return (
     <div className="counter__container">
-      <CounterHeader header={() => event.price * count} />
+      <CounterHeader header={header} event={event} count={count} />
       <CounterControlls event={event} />
     </div>
   );

@@ -7,8 +7,8 @@ const useCounterStore = create(
       counts: {},
       cartItems: [],
 
-      setTicketCount: (event, quantity) => {
-        const { id } = event;
+      setTicketCount: (id, quantity) => {
+        // const { id } = event;
         const counts = get().counts;
         const updatedCounts = {
           ...counts,
@@ -22,7 +22,7 @@ const useCounterStore = create(
 
       // Lägg till event till varukorgen med den bekräftade mängden
       addTicketToCart: (event) => {
-        const { id, name, price } = event;
+        const { id } = event;
         const quantity = get().counts[id] || 0;
         const cartItems = get().cartItems;
 
@@ -34,7 +34,7 @@ const useCounterStore = create(
                   ? { ...item, quantity: item.quantity + quantity } // Uppdatera mängd i varukorgen
                   : item
               )
-            : [...cartItems, { id, name, price, quantity }];
+            : [...cartItems, { ...event, quantity }];
 
           set({
             cartItems: updatedCartItems,

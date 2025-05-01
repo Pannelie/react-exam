@@ -39,7 +39,7 @@ function SingleEventPage() {
               {event.when.date} kl {event.when.from} - {event.when.to}
             </p>
             <p className="event__paragraph-where">@ {event.where}</p>
-            <CounterBox event={event} />
+            <CounterBox event={event} header={({ event, count }) => `${event.price * count} SEK`} />
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
