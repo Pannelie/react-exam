@@ -7,7 +7,7 @@ import EventHeader from "../../components/button/eventheader/EventHeader";
 
 function orderPage() {
   const cartItems = useCounterStore((state) => state.cartItems);
-  const totalPrice = useCounterStore((state) => state.totalPrice);
+  const totalPrice = useCounterStore((state) => state.totalPrice());
 
   return (
     <>
@@ -22,7 +22,7 @@ function orderPage() {
         </section>
         <section className="order__summary">
           <p className="message">Totalt värde på order</p>
-          <p className="order__price">{totalPrice}sek</p>
+          <p className="order__price">{totalPrice} sek</p>
         </section>
       </main>
       <Footer />

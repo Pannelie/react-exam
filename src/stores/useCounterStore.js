@@ -70,9 +70,10 @@ const useCounterStore = create(
         return Object.values(get().counts).reduce((sum, n) => sum + n, 0);
       },
 
-      get totalPrice() {
-        return get().cartItems.reduce((sum, item) => {
-          const count = get().counts[item.id] || 0;
+      totalPrice: () => {
+        const { cartItems, counts } = get();
+        return cartItems.reduce((sum, item) => {
+          const count = counts[item.id] || 0;
           return sum + item.price * count;
         }, 0);
       },
