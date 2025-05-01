@@ -6,6 +6,10 @@
   width: 100%;
   margin-bottom: 0;
   color: var(--main-font-color);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 22px;
+  font-weight: 600;
 
   transition: background-color 0.3s ease-in-out;
   cursor: pointer;

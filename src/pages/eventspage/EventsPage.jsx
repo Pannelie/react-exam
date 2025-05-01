@@ -8,6 +8,7 @@ import SearchList from "../../components/searchlist/SearchList";
 
 import useSearchEvents from "../../hooks/useSearchEvents";
 import useFetchEvents from "../../hooks/useFetchEvents";
+import Button from "../../components/button/Button";
 
 function EventsPage() {
   const [query, setQuery] = useState(``);
@@ -28,6 +29,7 @@ function EventsPage() {
         {query.trim() && results.length === 0 && <p className="message">Inga träffar</p>}
 
         {query.trim() ? results.length > 0 ? <SearchList results={results} /> : null : <EventList />}
+        <Button text="Din varukorg" />
       </main>
       <Footer />
     </>
