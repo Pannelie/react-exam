@@ -49,7 +49,7 @@
 
 .event__title {
   color: #fff;
-  text-shadow: 1px 1px 0px #f56b9a;
+  text-shadow: var(--font-shadow);
   font-family: var(--font-family-fira-sans);
   font-size: 22px;
   font-style: normal;

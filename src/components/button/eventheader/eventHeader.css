@@ -1,0 +1,15 @@
+.counter__header-name {
+  color: var(--highlight-color);
+  font-family: var(--font-family-sansita);
+  text-align: left;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.counter__header-time {
+  color: var(--blue-color);
+  font-family: var(--font-family-fira-sans);
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+}

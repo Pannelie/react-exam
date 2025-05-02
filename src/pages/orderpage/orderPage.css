@@ -1,8 +1,29 @@
 .order-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 90vh;
 
   padding: 2rem;
+}
+
+.order__section {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.order__summary {
+  padding: 1rem 0;
+}
+
+.order__price {
+  color: var(--main-font-color);
+  text-align: center;
+  text-shadow: var(--font-shadow);
+  font-family: "Fira Sans";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
