@@ -16,6 +16,8 @@ function EventsPage() {
   const { events, loading, error } = useFetchEvents();
   const results = useSearchEvents(query);
 
+  console.log(`det här är`, events);
+
   const showSearchResults = query.trim() !== "" && results.length > 0;
 
   return (

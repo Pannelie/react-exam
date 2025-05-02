@@ -20,7 +20,7 @@ function SingleEventPage() {
   const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
 
   const handleAddToCart = () => {
-    addTicketToCart(event, count); // Lägg till biljetterna i varukorgen
+    addTicketToCart(event); // Lägg till biljetterna i varukorgen
   };
 
   return (

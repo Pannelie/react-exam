@@ -31,12 +31,12 @@ const useCounterStore = create(
         const existingItem = cartItems.find((item) => item.id === id);
 
         const updatedCartItems = existingItem
-          ? cartItems.map((item) => (item.id === id ? { ...item, count: item.count + 1 } : item))
+          ? cartItems.map((item) => (item.id === id ? { ...item, count: count } : item))
           : [...cartItems, { ...event, count }];
 
         const newCounts = {
           ...get().counts,
-          [id]: count + 1,
+          [id]: count,
         };
 
         // if (count > 0) {
