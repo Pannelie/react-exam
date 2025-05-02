@@ -4,15 +4,14 @@ import { persist } from "zustand/middleware";
 const useCounterStore = create(
   persist(
     (set, get) => ({
-      counts: {},
-      cartItems: [],
+      counts: {}, // Håller koll på antalet biljetter för varje event
+      cartItems: [], // Håller koll på eventen i varukorgen
 
       setTicketCount: (id, quantity) => {
-        // const { id } = event;
         const counts = get().counts;
         const updatedCounts = {
           ...counts,
-          [id]: quantity, // Uppdatera till valt antal
+          [id]: quantity, // Uppdatera antalet biljetter för ett event
         };
 
         set({
@@ -20,21 +19,21 @@ const useCounterStore = create(
         });
       },
 
-      // Lägg till event till varukorgen med den bekräftade mängden
+      // Lägg till event till varukorgen med den aktuella mängden från counts
       addTicketToCart: (event) => {
         const { id } = event;
-        const quantity = get().counts[id] || 0;
+        const count = get().counts[id] || 0;
         const cartItems = get().cartItems;
 
-        if (quantity > 0) {
+        if (count > 0) {
           // Kolla om eventet redan finns i varukorgen
           const updatedCartItems = cartItems.some((item) => item.id === id)
             ? cartItems.map((item) =>
                 item.id === id
-                  ? { ...item, quantity: item.quantity + quantity } // Uppdatera mängd i varukorgen
+                  ? { ...item, count: item.count + count } // Uppdatera mängd i varukorgen
                   : item
               )
-            : [...cartItems, { ...event, quantity }];
+            : [...cartItems, { ...event, count }]; // Lägg till med rätt mängd
 
           set({
             cartItems: updatedCartItems,
@@ -42,6 +41,7 @@ const useCounterStore = create(
         }
       },
 
+      // Ta bort ett event från varukorgen när count är 0 eller mindre
       removeTicket: (eventId) => {
         const counts = get().counts;
         const cartItems = get().cartItems;
@@ -51,9 +51,12 @@ const useCounterStore = create(
           const newCounts = { ...counts };
           delete newCounts[eventId];
 
+          // Ta bort från cartItems när count är 0
+          const updatedCartItems = cartItems.filter((item) => item.id !== eventId);
+
           set({
             counts: newCounts,
-            cartItems: cartItems.filter((item) => item.id !== eventId),
+            cartItems: updatedCartItems,
           });
         } else {
           set({
@@ -64,12 +67,15 @@ const useCounterStore = create(
           });
         }
       },
+
+      // Rensa varukorgen
       clearCart: () => set({ counts: {}, cartItems: [] }),
 
+      // Beräkna totalpris baserat på antalet och priset för varje item
       totalPrice: () => {
         const { cartItems, counts } = get();
         return cartItems.reduce((sum, item) => {
-          const count = counts[item.id] || 0;
+          const count = counts[item.id] || 0; // Använd count för att få antal biljetter
           return sum + item.price * count;
         }, 0);
       },
