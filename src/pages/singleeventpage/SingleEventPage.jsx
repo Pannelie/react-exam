@@ -20,7 +20,7 @@ function SingleEventPage() {
   const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
 
   const handleAddToCart = () => {
-    addTicketToCart(event, count); // Lägg till biljetterna i varukorgen
+    addTicketToCart(event); // Lägg till biljetterna i varukorgen
   };
 
   return (
@@ -43,7 +43,7 @@ function SingleEventPage() {
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
-                console.log(`klick på ${event.name} och ${count}`);
+                console.log(`Valde ${count} biljett/-er till ${event.name}`);
                 handleAddToCart();
               }}
             />

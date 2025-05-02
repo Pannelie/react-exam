@@ -4,6 +4,7 @@ import EventsPage from "./pages/eventspage/EventsPage";
 import SingleEventPage from "./pages/singleeventpage/SingleEventPage";
 import OrderPage from "./pages/orderpage/orderPage";
 import ErrorPage from "./pages/errorpage/ErrorPage";
+import TicketsPage from "./pages/ticketspage/TicketsPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:id" element={<SingleEventPage />} />
         <Route path="/orders" element={<OrderPage />} />
+        <Route path="/tickets" element={<TicketsPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

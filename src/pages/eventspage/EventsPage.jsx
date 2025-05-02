@@ -16,6 +16,8 @@ function EventsPage() {
   const { events, loading, error } = useFetchEvents();
   const results = useSearchEvents(query);
 
+  console.log(`det här är`, events);
+
   const showSearchResults = query.trim() !== "" && results.length > 0;
 
   return (
@@ -29,7 +31,7 @@ function EventsPage() {
 
         {query.trim() && results.length === 0 && <p className="message">Inga träffar</p>}
 
-        {query.trim() ? results.length > 0 ? <SearchList results={results} /> : null : <EventList />}
+        {query.trim() ? results.length > 0 ? <SearchList results={results} /> : null : <EventList events={events} />}
         <Button text="Din varukorg" to="/orders" />
       </main>
       <Footer />

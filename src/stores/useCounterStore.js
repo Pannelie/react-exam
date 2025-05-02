@@ -6,6 +6,7 @@ const useCounterStore = create(
     (set, get) => ({
       counts: {}, // Håller koll på antalet biljetter för varje event
       cartItems: [], // Håller koll på eventen i varukorgen
+      purchasedTickets: [],
 
       setTicketCount: (id, quantity) => {
         const counts = get().counts;
@@ -23,22 +24,35 @@ const useCounterStore = create(
       addTicketToCart: (event) => {
         const { id } = event;
         const count = get().counts[id] || 0;
+
+        if (count === 0) return;
+
         const cartItems = get().cartItems;
+        const existingItem = cartItems.find((item) => item.id === id);
 
-        if (count > 0) {
-          // Kolla om eventet redan finns i varukorgen
-          const updatedCartItems = cartItems.some((item) => item.id === id)
-            ? cartItems.map((item) =>
-                item.id === id
-                  ? { ...item, count: item.count + count } // Uppdatera mängd i varukorgen
-                  : item
-              )
-            : [...cartItems, { ...event, count }]; // Lägg till med rätt mängd
+        const updatedCartItems = existingItem
+          ? cartItems.map((item) => (item.id === id ? { ...item, count: count } : item))
+          : [...cartItems, { ...event, count }];
 
-          set({
-            cartItems: updatedCartItems,
-          });
-        }
+        const newCounts = {
+          ...get().counts,
+          [id]: count,
+        };
+
+        // if (count > 0) {
+        //   // Kolla om eventet redan finns i varukorgen
+        //   const updatedCartItems = cartItems.some((item) => item.id === id)
+        //     ? cartItems.map((item) =>
+        //         item.id === id
+        //           ? { ...item, count: item.count + count } // Uppdatera mängd i varukorgen
+        //           : item
+        //       )
+        //     : [...cartItems, { ...event, count }]; // Lägg till med rätt mängd
+
+        set({
+          cartItems: updatedCartItems,
+          counts: newCounts,
+        });
       },
 
       // Ta bort ett event från varukorgen när count är 0 eller mindre
@@ -78,6 +92,14 @@ const useCounterStore = create(
           const count = counts[item.id] || 0; // Använd count för att få antal biljetter
           return sum + item.price * count;
         }, 0);
+      },
+      completePurchase: () => {
+        const { cartItems } = get();
+        set((state) => ({
+          purchasedTickets: [...state.purchasedTickets, ...cartItems],
+          cartItems: [],
+          counts: {},
+        }));
       },
     }),
     {

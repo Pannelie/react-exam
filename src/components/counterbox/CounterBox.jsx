@@ -12,11 +12,18 @@ function CounterBox({ event, header }) {
 
   const sizeModifier = isOnSingleEventPage ? "event-page" : isOnOrdersPage ? "order-page" : "";
 
-  const { counts } = useCounterStore();
+  const { counts, cartItems } = useCounterStore();
   const count = counts[event.id] || 0;
 
+  const cartItem = cartItems.find((item) => item.id === event.id);
+  const isMatch = cartItem && cartItem.count === count;
+
+  const boxClassName = ["counter__box", sizeModifier && `counter__box--${sizeModifier}`, isMatch && "counter__box--match"]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className={`counter__box ${sizeModifier && `counter__box--${sizeModifier}`}`}>
+    <div className={boxClassName}>
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
       <CounterControlls event={event} sizeModifier={sizeModifier} />
     </div>
