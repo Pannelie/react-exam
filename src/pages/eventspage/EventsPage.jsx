@@ -29,7 +29,7 @@ function EventsPage() {
 
         {query.trim() && results.length === 0 && <p className="message">Inga träffar</p>}
 
-        {query.trim() ? results.length > 0 ? <SearchList results={results} /> : null : <EventList />}
+        {query.trim() ? results.length > 0 ? <SearchList results={results} /> : null : <EventList events={events} />}
         <Button text="Din varukorg" to="/orders" />
       </main>
       <Footer />

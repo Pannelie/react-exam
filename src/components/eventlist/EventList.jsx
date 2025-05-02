@@ -2,11 +2,7 @@ import "./eventList.css";
 import useFetchEvents from "../../hooks/useFetchEvents";
 import EventItem from "../eventitem/EventItem";
 
-function EventList() {
-  const { events, loading, error } = useFetchEvents();
-
-  if (loading) return <p>Laddar events...</p>;
-  if (error) return <p>Fel: {error}</p>;
+function EventList({ events }) {
   if (!events || !Array.isArray(events)) return <p>Ingen data tillgänglig</p>;
 
   return (

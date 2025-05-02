@@ -16,7 +16,7 @@ const useFetchEvents = (id = null) => {
     const url = "https://santosnr6.github.io/Data/events.json";
 
     // När vi är på eventspage.jsx, hämta alla events om de inte finns
-    if (!id && events.length === 0) {
+    if (!id && events.length === 0 && !loading) {
       setLoading(true);
       axios
         .get(url, { signal: controller.signal })
