@@ -24,22 +24,34 @@ const useCounterStore = create(
       addTicketToCart: (event) => {
         const { id } = event;
         const count = get().counts[id] || 0;
+
+        if (count === 0) return;
+
         const cartItems = get().cartItems;
+        const existingItem = cartItems.find((item) => item.id === id);
+        const updatedCartItems = existingItem
+          ? cartItems.map((item) => (item.id === id ? { ...item, count: item.count + count } : item))
+          : [...cartItems, { ...event, count }];
 
-        if (count > 0) {
-          // Kolla om eventet redan finns i varukorgen
-          const updatedCartItems = cartItems.some((item) => item.id === id)
-            ? cartItems.map((item) =>
-                item.id === id
-                  ? { ...item, count: item.count + count } // Uppdatera mängd i varukorgen
-                  : item
-              )
-            : [...cartItems, { ...event, count }]; // Lägg till med rätt mängd
+        const newCounts = {
+          ...get().counts,
+          [id]: existingItem ? existingItem.count + count : count,
+        };
 
-          set({
-            cartItems: updatedCartItems,
-          });
-        }
+        // if (count > 0) {
+        //   // Kolla om eventet redan finns i varukorgen
+        //   const updatedCartItems = cartItems.some((item) => item.id === id)
+        //     ? cartItems.map((item) =>
+        //         item.id === id
+        //           ? { ...item, count: item.count + count } // Uppdatera mängd i varukorgen
+        //           : item
+        //       )
+        //     : [...cartItems, { ...event, count }]; // Lägg till med rätt mängd
+
+        set({
+          cartItems: updatedCartItems,
+          counts: newCounts,
+        });
       },
 
       // Ta bort ett event från varukorgen när count är 0 eller mindre

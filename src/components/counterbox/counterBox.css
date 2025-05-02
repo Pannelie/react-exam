@@ -18,3 +18,7 @@
 
   margin-bottom: 1rem;
 }
+
+.counter__box--match {
+  background-color: rgba(255, 176, 241, 0.3);
+}
