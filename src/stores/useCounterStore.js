@@ -6,6 +6,7 @@ const useCounterStore = create(
     (set, get) => ({
       counts: {}, // Håller koll på antalet biljetter för varje event
       cartItems: [], // Håller koll på eventen i varukorgen
+      purchasedTickets: [],
 
       setTicketCount: (id, quantity) => {
         const counts = get().counts;
@@ -79,6 +80,10 @@ const useCounterStore = create(
           return sum + item.price * count;
         }, 0);
       },
+      addPurchasedTickets: (tickets) =>
+        set((state) => ({
+          purchasedTickets: [...state.purchasedTickets, ...tickets],
+        })),
     }),
     {
       name: "cart-store", // localStorage-nyckel

@@ -4,7 +4,7 @@ import "./eventHeader.css";
 function EventHeader({ event }) {
   return (
     <>
-      <p className="counter__header-name">{event.name}</p>
+      <h2 className="counter__header-name">{event.name}</h2>
       <p className="counter__header-time">
         {event.when.date} kl {event.when.from} - {event.when.to}
       </p>

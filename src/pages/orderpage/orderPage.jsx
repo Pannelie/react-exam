@@ -9,6 +9,11 @@ import Button from "../../components/button/Button";
 function orderPage() {
   const cartItems = useCounterStore((state) => state.cartItems);
   const totalPrice = useCounterStore((state) => state.totalPrice());
+  // const addPurchasedTickets = useCounterStore((state) => state.addPurchasedTickets());
+
+  // const handlePlaceOrder = () => {
+  //   addPurchasedTickets(cartItems); // Flytta biljetterna från cart till purchased
+  // };
 
   return (
     <>
