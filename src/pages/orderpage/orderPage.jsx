@@ -5,15 +5,13 @@ import CounterBox from "../../components/counterbox/CounterBox";
 import useCounterStore from "../../stores/useCounterStore";
 import EventHeader from "../../components/button/eventheader/EventHeader";
 import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 function orderPage() {
+  const navigate = useNavigate();
   const cartItems = useCounterStore((state) => state.cartItems);
   const totalPrice = useCounterStore((state) => state.totalPrice());
-  // const addPurchasedTickets = useCounterStore((state) => state.addPurchasedTickets());
-
-  // const handlePlaceOrder = () => {
-  //   addPurchasedTickets(cartItems); // Flytta biljetterna från cart till purchased
-  // };
+  const completePurchase = useCounterStore((state) => state.completePurchase);
 
   return (
     <>
@@ -30,7 +28,13 @@ function orderPage() {
           <p className="message">Totalt värde på order</p>
           <p className="order__price">{totalPrice} sek</p>
         </section>
-        <Button text="Lägg order" />
+        <Button
+          text="Lägg order"
+          onClick={() => {
+            completePurchase();
+            navigate("/tickets");
+          }}
+        />
       </main>
       <Footer />
     </>

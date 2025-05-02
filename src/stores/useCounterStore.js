@@ -80,10 +80,14 @@ const useCounterStore = create(
           return sum + item.price * count;
         }, 0);
       },
-      addPurchasedTickets: (tickets) =>
+      completePurchase: () => {
+        const { cartItems } = get();
         set((state) => ({
-          purchasedTickets: [...state.purchasedTickets, ...tickets],
-        })),
+          purchasedTickets: [...state.purchasedTickets, ...cartItems],
+          cartItems: [],
+          counts: {},
+        }));
+      },
     }),
     {
       name: "cart-store", // localStorage-nyckel
