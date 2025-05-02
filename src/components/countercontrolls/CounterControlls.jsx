@@ -7,6 +7,7 @@ function CounterControlls({ event, sizeModifier }) {
   const { counts, setTicketCount } = useCounterStore();
   const count = counts[event.id] || 0;
 
+  // Hantera klick på minus-knappen
   const handleDecrease = () => {
     if (count > 0) {
       console.log(`Minskade biljettantal till ${count - 1}`);
