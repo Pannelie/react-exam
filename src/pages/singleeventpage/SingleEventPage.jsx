@@ -43,7 +43,7 @@ function SingleEventPage() {
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
-                console.log(`klick på ${event.name} och ${count}`);
+                console.log(`Valde ${count} biljett/-er till ${event.name}`);
                 handleAddToCart();
               }}
             />

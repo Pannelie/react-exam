@@ -9,12 +9,14 @@ function CounterControlls({ event, sizeModifier }) {
 
   const handleDecrease = () => {
     if (count > 0) {
+      console.log(`Minskade biljettantal till ${count - 1}`);
       setTicketCount(event.id, count - 1); // Ta bort en biljett med det specifika event-id:t
     }
   };
 
   // Hantera klick på plus-knappen
   const handleIncrease = () => {
+    console.log(`Ökade biljettantal till ${count + 1}`);
     setTicketCount(event.id, count + 1); // Lägg till en biljett med hela event-objektet
   };
 
