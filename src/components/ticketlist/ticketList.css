@@ -1,114 +1,119 @@
 .ticket__swiper-wrapper {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Centrerar horisontellt */
-  align-items: center; /* Centrerar vertikalt */
+  /* justify-content: space-between; Centrerar horisontellt */
+  /* align-items: center; Centrerar vertikalt */
 
-  width: 100%;
+  /* width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden; */
   position: relative;
-
-  padding-bottom: 3rem;
-  /* flex: 1;
   width: 100%;
   max-width: 400px;
-  /* padding: 2rem; */
-  /* margin: 2rem auto; */
-  /* overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* För att centrera swiper och pagination */
-  /* justify-content: center;
-  position: relative;
-  padding-bottom: 3rem; Ger plats för pagination */
+  margin: auto;
 }
+
+/*Min swiper komponent*/
 
 .ticket__swiper {
-  width: 100%;
+  /* width: 100%;
   max-width: 360px;
-  height: 100%;
+  height: 440px;
   margin: 0 auto;
+  position: relative; */
+
+  width: 100%;
+  height: 400px;
+  position: relative;
+  z-index: 1;
+  /* overflow: visible;
+  position: relative; */
+  /* margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  /* max-width: 400px; */
-
-  /* margin-bottom: 50px; */
-  /* position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; */
+  justify-content: flex-start; */
 }
 
+/*Varje slide*/
 .ticket__swiper-slide {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
-  /* height: 100%; */
-  /* margin: 0 auto 50px; */
+  transition: transform 0.3s ease-in-out;
 }
-
-/* Styling för min Swiper pagination (punkterna) */
-.swiper-pagination {
-  position: relative;
-  /* margin-top: 20px; */
-  /* bottom: -40px; */
-  /* padding: 10px 0; */
-  /* left: 50%;
-  transform: translateX(-50%); */
-  /* text-align: center; */
-  z-index: 10; /* Gör att prickarna syns ovanpå */
+.ticket__swiper-buttons {
+  position: absolute;
+  top: 50%;
   width: 100%;
-  text-align: center;
+
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 100;
+  pointer-events: none;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--highlight-color) !important;
+  border: none;
+  font-size: 1rem;
+  padding: 1.6rem 1.2rem;
+  cursor: pointer;
+  pointer-events: all; /* Återaktivera klick bara på knapparna */
+  z-index: 101;
+}
+
+/* Styling för min Swiper pagination (punkterna) .swiper-pagination {
+  position: relative;
+  z-index: 10; /* Gör att prickarna syns ovanpå */
+/* width: 100%;
+  text-align: center;
+} */
+/* 
 .swiper-pagination-bullet {
-  background-color: #ccc;
-  /* opacity: 1; */
-  margin: 0 4px;
+  background-color: #ccc; */
+/* opacity: 1; */
+/* margin: 0 4px;
   transition: background-color 0.3s ease-in-out;
   width: 1rem !important; /* större prickar än original */
-  height: 1rem !important; /* större prickar än original */
-  /* border-radius: 50% !important; För att behålla rund form, finns väl redan? */
-}
+/* height: 1rem !important; större prickar än original */
 
-.swiper-pagination-bullet-active {
-  background-color: var(--highlight-color) !important ; /* ersätter originalfärg med min egen variabel */
-}
-
-/* ta bort överdriven skuggeffekt, skapar egen i ticketItem*/
+/* .swiper-pagination-bullet-active {
+  background-color: var(--highlight-color) !important ; ersätter originalfärg med min egen variabel
+} */
+/* 
+ta bort överdriven skuggeffekt,
+skapar egen i ticketItem  */
 .swiper-slide-shadow,
 .swiper-slide-shadow-left,
 .swiper-slide-shadow-right {
   display: none !important;
 }
 
-/*------------ onödig kod härnere?-------------/*
+/*
+.ticket__swiper-slide:not(.swiper-slide-active) .ticket__list-item {
+  opacity: 0.5;
+  transform: scale(0.95);
+  filter: brightness(0.95);
+} */
 
-/* .swiper-button-next,
-.swiper-button-prev {
+/* .ticket__swiper-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
   background-color: var(--highlight-color);
   color: white;
   border: none;
   border-radius: 50%;
-  padding: 12px;
-  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   cursor: pointer;
-  z-index: 10;
 } */
-
-/* .swiper-button-next {
-  right: 10px;
-}
-
-.swiper-button-prev {
-  left: 10px;
-} */
-.ticket__swiper-slide:not(.swiper-slide-active) .ticket__list-item {
-  opacity: 0.5;
-  transform: scale(0.92);
-  filter: brightness(0.95);
-}
