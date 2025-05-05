@@ -10,7 +10,6 @@
   position: relative;
   width: 100%;
   max-width: 400px;
-  margin: auto;
 }
 
 /*Min swiper komponent*/
@@ -48,6 +47,7 @@
 
   display: flex;
   justify-content: space-between;
+  padding: 0 5rem;
   transform: translateY(-50%);
   z-index: 100;
   pointer-events: none;
@@ -55,14 +55,23 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0) !important;
   color: var(--highlight-color) !important;
   border: none;
-  font-size: 1rem;
-  padding: 1.6rem 1.2rem;
+  font-size: 1rem !important;
+  /* padding: 1.6rem 1.2rem; */
   cursor: pointer;
   pointer-events: all; /* Återaktivera klick bara på knapparna */
   z-index: 101;
+}
+.swiper-button-prev {
+  position: absolute;
+  left: 0px !important;
+}
+
+.swiper-button-next {
+  position: absolute;
+  right: 0px !important;
 }
 
 /* Styling för min Swiper pagination (punkterna) .swiper-pagination {
