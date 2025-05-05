@@ -5,3 +5,23 @@
   overflow-y: auto;
   width: 100%;
 }
+
+.ticket__swiper-wrapper {
+  width: 320px;
+  height: 300px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+/* .ticket__swiper-vertical {
+  height: 100%;
+} */
+
+/* Om du vill centrera innehållet i varje kort */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: start; /* viktigt så de staplas från toppen */
+  transition: transform 0.3s ease;
+}
