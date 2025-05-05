@@ -33,7 +33,7 @@ function TicketList() {
             className="ticket__swiper"
           >
             {purchasedTickets.map((ticket) => (
-              <SwiperSlide key={ticket.id} className="ticket__swiper-slide">
+              <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
                 <TicketItem ticket={ticket} />
               </SwiperSlide>
             ))}

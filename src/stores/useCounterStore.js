@@ -7,6 +7,7 @@ const useCounterStore = create(
       counts: {}, // Håller koll på antalet biljetter för varje event
       cartItems: [], // Håller koll på eventen i varukorgen
       purchasedTickets: [],
+      usedSeats: {},
 
       setTicketCount: (id, quantity) => {
         const counts = get().counts;
@@ -94,11 +95,57 @@ const useCounterStore = create(
         }, 0);
       },
       completePurchase: () => {
-        const { cartItems } = get();
+        const { cartItems, usedSeats } = get();
+        const newTickets = [];
+        const purchased = [];
+
+        // const allTickets = cartItems.flatMap((item) => {
+        cartItems.forEach((item) => {
+          const section = String.fromCharCode(65 + Math.floor(Math.random() * 26)); //bokstäver mellan A-Z
+          const existingSeats = usedSeats[item.id] || [];
+
+          let startNumber;
+          let maxAttempts = 1000;
+
+          while (maxAttempts--) {
+            const potentialStart = Math.floor(Math.random() * 100) + 1;
+            const proposedSeats = Array.from({ length: item.count }, (_, i) => `${section}-${potentialStart + i}`);
+
+            const hasConflict = proposedSeats.some((seat) => existingSeats.includes(seat));
+            if (!hasConflict) {
+              startNumber = potentialStart;
+              break;
+            }
+          }
+          if (startNumber === undefined) {
+            console.error("Kunde inte hitta lediga platser.");
+            return;
+          }
+          const newUsed = [...existingSeats];
+
+          const tickets = Array.from({ length: item.count }, (_, i) => {
+            const seat = `section ${section} - seat ${startNumber + i}`;
+            newUsed.push(seat);
+            return {
+              ...item,
+              ticketId: `${item.id}-${Date.now()}-${i}`,
+              section,
+              seat,
+            };
+          });
+
+          newTickets[item.id] = newUsed;
+          purchased.push(...tickets);
+        });
+
         set((state) => ({
-          purchasedTickets: [...state.purchasedTickets, ...cartItems],
+          purchasedTickets: [...state.purchasedTickets, ...purchased],
           cartItems: [],
           counts: {},
+          usedSeats: {
+            ...state.usedSeats,
+            ...newTickets,
+          },
         }));
       },
     }),
