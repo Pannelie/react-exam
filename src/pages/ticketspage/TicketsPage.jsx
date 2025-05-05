@@ -7,8 +7,10 @@ function TicketsPage() {
   return (
     <>
       <main className="tickets-page">
-        <h1 className="headingOne">Tickets</h1>
-        <TicketList />
+        <section className="tickets__section">
+          <h1 className="headingOne">Tickets</h1>
+          <TicketList />
+        </section>
       </main>
       <Footer />
     </>
