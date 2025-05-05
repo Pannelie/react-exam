@@ -4,27 +4,26 @@ import useCounterStore from "../../stores/useCounterStore";
 import TicketItem from "../ticketitem/TicketItem";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { EffectCards, Pagination } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/effect-cards";
+import "swiper/css/pagination";
 
 function TicketList() {
   const purchasedTickets = useCounterStore((state) => state.purchasedTickets);
+  console.log(purchasedTickets);
 
   return (
     <div className="ticket__swiper-wrapper">
       <Swiper
-        direction="vertical"
-        spaceBetween={-140} // överlappningen?
-        slidesPerView={1.2} // hur mycket jag visar nästa kort
-        centeredSlides={false}
-        allowTouchMove={true}
-        modules={[Navigation]}
-        navigation
-        className="ticket__swiper-vertical"
+        effect="cards"
+        grabCursor={true}
+        modules={[EffectCards, Pagination]}
+        pagination={{ clickable: true }}
+        className="ticket__swiper"
       >
         {purchasedTickets.map((ticket) => (
-          <SwiperSlide key={ticket.id}>
+          <SwiperSlide key={ticket.id} className="ticket__swiper-slide">
             <TicketItem ticket={ticket} />
           </SwiperSlide>
         ))}
