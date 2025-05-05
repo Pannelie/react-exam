@@ -1,14 +1,21 @@
 .ticket__swiper-wrapper {
-  width: 320px;
-  height: 500px;
-  margin: 0 auto;
+  width: auto;
+  padding: 2rem;
+  /* margin: 2rem auto; */
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* För att centrera swiper och pagination */
   position: relative;
 }
 
 .ticket__swiper {
   width: 100%;
-  height: 100%;
-  padding-bottom: 50px;
+  max-width: 400px;
+  flex: 1;
+
+  margin-bottom: 50px;
   position: relative;
 }
 
@@ -16,14 +23,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto; /* Anpassa höjden för att passa innehållet */
+  height: 100%; /* Anpassa höjden för att passa innehållet */
 }
 
 /* Styling för min Swiper pagination (punkterna) */
 .swiper-pagination {
-  bottom: 10px !important;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   z-index: 10; /* Gör att prickarna syns ovanpå */
+  width: 100%;
 }
 
 .swiper-pagination-bullet {
@@ -31,8 +42,8 @@
   opacity: 1;
   margin: 0 4px;
   transition: background-color 0.3s ease-in-out;
-  width: 1.3rem !important; /* större prickar än original */
-  height: 1.3rem !important; /* större prickar än original */
+  width: 1rem !important; /* större prickar än original */
+  height: 1rem !important; /* större prickar än original */
   /* border-radius: 50% !important; För att behålla rund form, finns väl redan? */
 }
 
