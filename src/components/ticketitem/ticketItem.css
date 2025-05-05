@@ -24,11 +24,9 @@
 .ticket__category {
   grid-column: 1 /-1;
   color: rgba(0, 0, 0, 0.4);
-  font-family: "Fira Sans";
+  font-family: var(--font-family-fira-sans);
   font-size: 10px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
 .ticket__category--margin {
   margin: 0.5rem 0;
@@ -40,7 +38,7 @@
 
 .ticket__paragraph-when {
   color: rgba(0, 0, 0, 0.6);
-  font-family: "Fira Sans";
+  font-family: var(--font-family-fira-sans);
   font-size: 18px;
   font-weight: 500;
   /* padding-left: 0.4rem; */
@@ -71,6 +69,10 @@
 .ticket__seat {
   grid-column: 1/-1;
   padding-left: 0.4rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: var(--font-family-fira-sans);
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .ticket__stroke {
@@ -78,4 +80,26 @@
   border-top: 1px dashed rgba(0, 0, 0, 0.4);
   grid-column: 1/-1;
   width: 100%;
+}
+
+.ticket__code {
+  grid-column: 1/-1;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3.6px;
+  margin-top: 2rem;
+}
+
+.ticket__barcode-label {
+  grid-column: 1/-1;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3.6px;
 }

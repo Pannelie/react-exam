@@ -1,8 +1,10 @@
 import React from "react";
 import "./ticketItem.css";
 import { formatDate } from "../../utils/utils";
+import Barcode from "react-barcode";
 
 function TicketItem({ ticket }) {
+  console.log(`här är id`, ticket.ticketID);
   return (
     <li className="ticket__list-item">
       <p className="ticket__category ticket__category--margin ticket__category--padding-left">WHAT</p>
@@ -25,6 +27,8 @@ function TicketItem({ ticket }) {
       </section>
       <p className="ticket__category ticket__category--margin ticket__category--padding-left">INFO</p>
       <p className="ticket__seat">{ticket.seat}</p>
+      <Barcode value={ticket.ticketId} width={2} height={50} displayValue={false} className="ticket__code" />
+      <p className="ticket__barcode-label">#{ticket.ticketId || "Kunde inte läsa in barcode."}</p>
     </li>
   );
 }

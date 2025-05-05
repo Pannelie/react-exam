@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { generateTicketID } from "../utils/utils";
 
 const useCounterStore = create(
   persist(
@@ -128,7 +129,7 @@ const useCounterStore = create(
             newUsed.push(seat);
             return {
               ...item,
-              ticketId: `${item.id}-${Date.now()}-${i}`,
+              ticketId: generateTicketID(),
               section,
               seat,
             };
