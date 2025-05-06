@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./counterControlls.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleMinus, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import useCounterStore from "../../stores/useCounterStore";
 
@@ -24,11 +26,11 @@ function CounterControlls({ event, sizeModifier }) {
   return (
     <div className="counter__controlls">
       <div className={`counter__controll counter__controll--${sizeModifier}`} onClick={handleDecrease}>
-        -
+        <FontAwesomeIcon icon={faCircleMinus} />
       </div>
       <div className="counter__number">{count}</div>
       <div className={`counter__controll counter__controll--${sizeModifier}`} onClick={handleIncrease}>
-        +
+        <FontAwesomeIcon icon={faCirclePlus} />
       </div>
     </div>
   );

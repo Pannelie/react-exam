@@ -19,7 +19,7 @@
   overflow: hidden;
 
   &:hover {
-    transform: scale(1.4);
+    transform: scale(1.2);
     color: var(--highlight-color);
   }
 }
