@@ -6,4 +6,29 @@
   overflow-y: auto;
 
   width: 100%;
+  margin-bottom: 1.5rem;
+  position: relative;
+  scrollbar-width: none;
+}
+.event__list::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+.event__list::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+/* Scrollbar visas endast när komponenten har klassen "scrolling" */
+.event__list.scrolling {
+  scrollbar-width: thin;
+}
+
+.event__list.scrolling::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.event__list.scrolling::-webkit-scrollbar {
+  background-color: rgba(0, 0, 0, 0.05);
 }

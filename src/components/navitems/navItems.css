@@ -14,4 +14,10 @@
   &:hover {
     color: var(--dark-pink);
   }
+  &.active {
+    color: var(--dark-pink);
+    svg {
+      color: var(--dark-pink);
+    }
+  }
 }
