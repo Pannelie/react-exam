@@ -7,6 +7,7 @@
   text-align: center;
   border: 2px solid var(--highlight-color); /* Tjock yttre ram */
   border-radius: 3px;
+  position: relative;
 }
 
 .counter__box--event-page {
@@ -42,6 +43,27 @@
 
 .counter__match-message {
   position: absolute;
-  top: -25px;
-  right: -25px;
+  width: 100%;
+  bottom: -40px; /* Justera avståndet från botten */
+  left: 50%; /* Centrerar meddelandet horisontellt */
+  transform: translateX(-50%); /* Finjustera centrerandet */
+  font-size: 1rem; /* Justera textstorlek om det behövs */
+  color: var(--highlight-color); /* Eller en annan färg för meddelandet */
+  opacity: 0; /* Gör den osynlig till en början */
+  animation: fadeInOut 4s forwards; /* Lägg till fade-in och fade-out effekt */
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

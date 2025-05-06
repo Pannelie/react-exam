@@ -28,14 +28,15 @@ function CounterBox({ event, header, showMessage }) {
   return (
     <div className={boxClassName}>
       {isMatch && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />}
+
+      <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
+
+      <CounterControlls event={event} sizeModifier={sizeModifier} />
       {showMessage && (
         <span className="counter__match-message">
           {count} {count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!
         </span>
       )}
-      <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
-
-      <CounterControlls event={event} sizeModifier={sizeModifier} />
     </div>
   );
 }
