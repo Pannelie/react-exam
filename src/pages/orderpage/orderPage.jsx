@@ -12,6 +12,7 @@ function orderPage() {
   const cartItems = useCounterStore((state) => state.cartItems);
   const totalPrice = useCounterStore((state) => state.totalPrice());
   const completePurchase = useCounterStore((state) => state.completePurchase);
+  const { setTicketCount } = useCounterStore();
 
   return (
     <>
@@ -21,7 +22,7 @@ function orderPage() {
           {cartItems.length === 0 ? (
             <p className="message">Varukorgen är tom</p>
           ) : (
-            cartItems.map((event) => <CounterBox key={event.id} event={event} header={<EventHeader event={event} />} />)
+            cartItems.map((event) => <CounterBox key={event.id} event={event} header={<EventHeader event={event} showMessage={false} />} />)
           )}
         </section>
         <section className="order__summary">

@@ -14,12 +14,15 @@ function SingleEventPage() {
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
 
   const count = useCounterStore((state) => state.counts[id] || 1);
+  const setTicketCount = useCounterStore((state) => state.setTicketCount);
   const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
+  const [selectedCount, setSelectedCount] = useState(0);
 
   const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = () => {
     addTicketToCart(event); // Lägg till biljetterna i varukorgen
+    setTicketCount(event.id, selectedCount);
     setShowMessage(true);
   };
 
@@ -51,11 +54,16 @@ function SingleEventPage() {
               {event.when.date} kl {event.when.from} - {event.when.to}
             </p>
             <p className="event__paragraph-where">@ {event.where}</p>
-            <CounterBox event={event} header={({ event, count }) => `${event.price * count} SEK`} showMessage={showMessage} />
+            <CounterBox
+              event={event}
+              header={({ event, count }) => `${event.price * count} SEK`}
+              showMessage={showMessage}
+              onCountChange={(_eventId, count) => setSelectedCount(count)}
+            />
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
-                console.log(`Valde ${count} biljett/-er till ${event.name}`);
+                console.log(`Valde ${selectedCount} biljett/-er till ${event.name}`);
                 handleAddToCart();
               }}
             />

@@ -1,13 +1,15 @@
-import CounterHeader from "../counterheader/CounterHeader";
-import CounterControlls from "../countercontrolls/CounterControlls";
 import useCounterStore from "../../stores/useCounterStore";
 import { useLocation } from "react-router-dom";
+
+import CounterHeader from "../counterheader/CounterHeader";
+import CounterControlls from "../countercontrolls/CounterControlls";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 import "./counterBox.css";
 
-function CounterBox({ event, header, showMessage }) {
+function CounterBox({ event, header, showMessage, onCountChange }) {
   const location = useLocation();
   const isOnSingleEventPage = location.pathname === `/events/${event.id}`;
   const isOnOrdersPage = location.pathname === `/orders`;
@@ -25,13 +27,23 @@ function CounterBox({ event, header, showMessage }) {
     .filter(Boolean)
     .join(" ");
 
+  const handleAddToCart = () => {
+    if (isOnOrdersPage) {
+      // Lägg till biljetterna direkt till purchased om vi är på ordersidan
+      addTicketToCart(event, true);
+    } else {
+      // Annars lägg till biljetterna till varukorgen (med bekräftelse på SingleEventPage)
+      addTicketToCart(event);
+    }
+  };
+
   return (
     <div className={boxClassName}>
       {isMatch && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />}
 
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
 
-      <CounterControlls event={event} sizeModifier={sizeModifier} />
+      <CounterControlls event={event} sizeModifier={sizeModifier} initialCount={count} onCountChange={onCountChange} />
       {showMessage && (
         <span className="counter__match-message">
           {count} {count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!
