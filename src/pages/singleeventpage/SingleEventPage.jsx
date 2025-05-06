@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useFetchEvents from "../../hooks/useFetchEvents";
 
 import Footer from "../../components/footer/Footer";
@@ -12,16 +12,28 @@ import "./singleEventPage.css";
 function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
-  //   const event = useEventStore((state) => state.getEventById(id)); //hämtar specifikt.
-  if (loading) return <p className="message">Laddar event...</p>;
-  if (error) return <p className="message">Fel: {error}</p>;
 
   const count = useCounterStore((state) => state.counts[id] || 1);
   const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
 
+  const [showMessage, setShowMessage] = useState(false);
+
   const handleAddToCart = () => {
     addTicketToCart(event); // Lägg till biljetterna i varukorgen
+    setShowMessage(true);
   };
+
+  useEffect(() => {
+    if (showMessage) {
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showMessage]);
+
+  if (loading) return <p className="message">Laddar event...</p>;
+  if (error) return <p className="message">Fel: {error}</p>;
 
   return (
     <main className="single-event-page">
@@ -39,7 +51,7 @@ function SingleEventPage() {
               {event.when.date} kl {event.when.from} - {event.when.to}
             </p>
             <p className="event__paragraph-where">@ {event.where}</p>
-            <CounterBox event={event} header={({ event, count }) => `${event.price * count} SEK`} />
+            <CounterBox event={event} header={({ event, count }) => `${event.price * count} SEK`} showMessage={showMessage} />
             <Button
               text="Lägg i varukorgen"
               onClick={() => {

@@ -7,7 +7,7 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 import "./counterBox.css";
 
-function CounterBox({ event, header }) {
+function CounterBox({ event, header, showMessage }) {
   const location = useLocation();
   const isOnSingleEventPage = location.pathname === `/events/${event.id}`;
   const isOnOrdersPage = location.pathname === `/orders`;
@@ -27,7 +27,12 @@ function CounterBox({ event, header }) {
 
   return (
     <div className={boxClassName}>
-      {isMatch && <FontAwesomeIcon icon={faCircleCheck} color="#37aeab" size="lg" className="counter__match-icon" />}
+      {isMatch && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />}
+      {showMessage && (
+        <span className="counter__match-message">
+          {count} {count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!
+        </span>
+      )}
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
 
       <CounterControlls event={event} sizeModifier={sizeModifier} />

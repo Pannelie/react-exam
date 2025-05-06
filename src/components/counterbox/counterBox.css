@@ -27,7 +27,7 @@
 .counter__match-icon {
   position: absolute;
   top: -10px;
-  right: -10px;
+  right: -15px;
   background-color: white;
   border-radius: 50%;
   padding: 0.2rem;
@@ -38,4 +38,10 @@
   color: var(--blue-color); /* Färg på själva ikonen */
   font-size: 1.8rem; /* Storlek på ikonen */
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); /* Skugga om du vill ha det */
+}
+
+.counter__match-message {
+  position: absolute;
+  top: -25px;
+  right: -25px;
 }
