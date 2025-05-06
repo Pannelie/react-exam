@@ -2,6 +2,8 @@ import CounterHeader from "../counterheader/CounterHeader";
 import CounterControlls from "../countercontrolls/CounterControlls";
 import useCounterStore from "../../stores/useCounterStore";
 import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 import "./counterBox.css";
 
@@ -18,13 +20,16 @@ function CounterBox({ event, header }) {
   const cartItem = cartItems.find((item) => item.id === event.id);
   const isMatch = cartItem && cartItem.count === count;
 
-  const boxClassName = ["counter__box", sizeModifier && `counter__box--${sizeModifier}`, isMatch && "counter__box--match"]
+  const boxClassName = ["counter__box", sizeModifier && `counter__box--${sizeModifier}`]
+    //, isMatch && "counter__box--match"
     .filter(Boolean)
     .join(" ");
 
   return (
     <div className={boxClassName}>
+      {isMatch && <FontAwesomeIcon icon={faCircleCheck} color="#37aeab" size="lg" className="counter__match-icon" />}
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
+
       <CounterControlls event={event} sizeModifier={sizeModifier} />
     </div>
   );

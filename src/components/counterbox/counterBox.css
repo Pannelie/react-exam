@@ -1,4 +1,5 @@
 .counter__box {
+  position: relative;
   display: grid;
   grid-template-rows: auto auto;
 
@@ -19,6 +20,22 @@
   margin-bottom: 1rem;
 }
 
-.counter__box--match {
+/* .counter__box--match {
   background-color: rgba(255, 176, 241, 0.3);
+} */
+
+.counter__match-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--blue-color); /* Färg på själva ikonen */
+  font-size: 1.8rem; /* Storlek på ikonen */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); /* Skugga om du vill ha det */
 }
