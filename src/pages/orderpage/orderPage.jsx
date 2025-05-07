@@ -9,11 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 function orderPage() {
   const navigate = useNavigate();
-  const cartItems = useCounterStore((state) => state.cartItems);
-  const totalPrice = useCounterStore((state) => state.totalPrice());
-  const completePurchase = useCounterStore((state) => state.completePurchase);
-  const { setTicketCount } = useCounterStore();
-
+  const { cartItems, increaseCartItem, decreaseCartItem, completePurchase, totalPrice } = useCounterStore((state) => state);
   return (
     <>
       <main className="order-page">
@@ -22,12 +18,20 @@ function orderPage() {
           {cartItems.length === 0 ? (
             <p className="message">Varukorgen är tom</p>
           ) : (
-            cartItems.map((event) => <CounterBox key={event.id} event={event} header={<EventHeader event={event} showMessage={false} />} />)
+            cartItems.map((event) => (
+              <CounterBox
+                key={event.id}
+                event={event}
+                header={<EventHeader event={event} showMessage={false} />}
+                onIncrease={() => increaseCartItem(event.id)}
+                onDecrease={() => decreaseCartItem(event.id)}
+              />
+            ))
           )}
         </section>
         <section className="order__summary">
           <p className="message">Totalt värde på order</p>
-          <p className="order__price">{totalPrice} sek</p>
+          <p className="order__price">{totalPrice()} sek</p>
         </section>
         <Button
           text="Lägg order"

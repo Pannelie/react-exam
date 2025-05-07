@@ -9,12 +9,12 @@ import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 import "./counterBox.css";
 
-function CounterBox({ event, header, showMessage, onCountChange }) {
+function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
   const location = useLocation();
-  const isOnSingleEventPage = location.pathname === `/events/${event.id}`;
-  const isOnOrdersPage = location.pathname === `/orders`;
+  const isSingleEventPage = location.pathname === `/events/${event.id}`;
+  const isOrdersPage = location.pathname === `/orders`;
 
-  const sizeModifier = isOnSingleEventPage ? "event-page" : isOnOrdersPage ? "order-page" : "";
+  const sizeModifier = isSingleEventPage ? "event-page" : isOrdersPage ? "order-page" : "";
 
   const { counts, cartItems } = useCounterStore();
   const count = counts[event.id] || 0;
@@ -28,7 +28,7 @@ function CounterBox({ event, header, showMessage, onCountChange }) {
     .join(" ");
 
   const handleAddToCart = () => {
-    if (isOnOrdersPage) {
+    if (isOrdersPage) {
       // Lägg till biljetterna direkt till purchased om vi är på ordersidan
       addTicketToCart(event, true);
     } else {
@@ -43,7 +43,14 @@ function CounterBox({ event, header, showMessage, onCountChange }) {
 
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
 
-      <CounterControlls event={event} sizeModifier={sizeModifier} initialCount={count} onCountChange={onCountChange} />
+      <CounterControlls
+        event={event}
+        sizeModifier={sizeModifier}
+        isOrderPage={isOrdersPage}
+        count={count}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+      />
       {showMessage && (
         <span className="counter__match-message">
           {count} {count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!

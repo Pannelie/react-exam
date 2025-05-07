@@ -5,19 +5,12 @@ import { generateTicketID } from "../utils/utils";
 const useCounterStore = create(
   persist(
     (set, get) => ({
-      counts: {}, // Håller koll på antalet biljetter för varje event
-      cartItems: [], // Håller koll på eventen i varukorgen
-      purchasedTickets: [],
-      usedSeats: {},
+      counts: {}, // Håller koll på antalet biljetter per event
+      cartItems: [], // Håller koll på varukorgen
+      purchasedTickets: [], // Köpta biljetter
+      usedSeats: {}, // Upptagna platser
 
-      // Uppdaterar count för ett event på SingleEventPage
-      setTicketCount: (id, quantity) => {
-        set((state) => ({
-          counts: { ...state.counts, [id]: quantity },
-        }));
-      },
-
-      // För OrderPage: Öka count direkt
+      // Öka antal på SingleEventPage
       increaseCount: (id) => {
         const current = get().counts[id] || 0;
         set((state) => ({
@@ -25,13 +18,26 @@ const useCounterStore = create(
         }));
       },
 
-      // För OrderPage: Lägg till event till cart direkt
-      addTicketToCart: (event, addToPurchased = false) => {
+      // Minska antal på SingleEventPage
+      decreaseCount: (id) => {
+        const current = get().counts[id] || 0;
+        if (current <= 1) {
+          const newCounts = { ...get().counts };
+          delete newCounts[id];
+          set({ counts: newCounts });
+        } else {
+          set((state) => ({
+            counts: { ...state.counts, [id]: current - 1 },
+          }));
+        }
+      },
+
+      // Lägg till biljetter i varukorgen
+      addTicketToCart: (event) => {
         const { id } = event;
         const count = get().counts[id] || 0;
         if (count === 0) return;
 
-        // Uppdaterar cart direkt (utan att bekräfta)
         const existingItem = get().cartItems.find((item) => item.id === id);
         const updatedCartItems = existingItem
           ? get().cartItems.map((item) => (item.id === id ? { ...item, count } : item))
@@ -39,63 +45,43 @@ const useCounterStore = create(
 
         set({
           cartItems: updatedCartItems,
-          counts: { ...get().counts, [id]: count },
+          counts: { ...get().counts, [id]: 0 }, // Nollställ count efter att ha lagt till i varukorgen
         });
-
-        // Lägg till till purchased om det är från bekräftelse
-        if (addToPurchased) {
-          const purchasedTicket = {
-            ...event,
-            ticketId: generateTicketID(),
-            seat: `${event.id}-seat-${count}`,
-            count,
-          };
-          set({
-            purchasedTickets: [...get().purchasedTickets, purchasedTicket],
-          });
-        }
       },
 
-      // Uppdatera antal för ett event i varukorgen
-      updateTicketInCart: (event, count) => {
-        const { id } = event;
-        const updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count } : item));
-
+      // Öka antal i varukorgen
+      increaseCartItem: (id) => {
+        const updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count: item.count + 1 } : item));
         set({
           cartItems: updatedCartItems,
-          counts: { ...get().counts, [id]: count },
         });
       },
 
-      // Rensa varukorgen
-      clearCart: () => set({ counts: {}, cartItems: [] }),
-
-      // Beräkna totalpris
-      totalPrice: () => {
-        const { cartItems, counts } = get();
-        return cartItems.reduce((sum, item) => {
-          const count = counts[item.id] || 0;
-          return sum + item.price * count;
-        }, 0);
+      // Minska antal i varukorgen
+      decreaseCartItem: (id) => {
+        const updatedCartItems = get()
+          .cartItems.map((item) => (item.id === id && item.count > 1 ? { ...item, count: item.count - 1 } : item))
+          .filter((item) => item.count > 0);
+        set({
+          cartItems: updatedCartItems,
+        });
       },
 
-      // Genomför köp
+      // Flytta varukorg till köpta biljetter
       completePurchase: () => {
-        const { cartItems, usedSeats } = get();
-        const newTickets = {};
-        const purchased = [];
+        const { cartItems, purchasedTickets, usedSeats } = get();
+        const newPurchased = [];
+        const newUsedSeats = { ...usedSeats };
 
         cartItems.forEach((item) => {
-          const section = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+          const section = String.fromCharCode(65 + Math.floor(Math.random() * 26)); // A-Z
           const existingSeats = usedSeats[item.id] || [];
-
           let startNumber;
           let maxAttempts = 1000;
 
           while (maxAttempts--) {
             const potentialStart = Math.floor(Math.random() * 100) + 1;
             const proposedSeats = Array.from({ length: item.count }, (_, i) => `${section}-${potentialStart + i}`);
-
             const hasConflict = proposedSeats.some((seat) => existingSeats.includes(seat));
             if (!hasConflict) {
               startNumber = potentialStart;
@@ -108,10 +94,10 @@ const useCounterStore = create(
             return;
           }
 
-          const newUsed = [...existingSeats];
+          const updatedUsedSeats = [...existingSeats];
           const tickets = Array.from({ length: item.count }, (_, i) => {
-            const seat = `section ${section} - seat ${startNumber + i}`;
-            newUsed.push(seat);
+            const seat = `${section}-${startNumber + i}`;
+            updatedUsedSeats.push(seat);
             return {
               ...item,
               ticketId: generateTicketID(),
@@ -120,16 +106,25 @@ const useCounterStore = create(
             };
           });
 
-          newTickets[item.id] = newUsed;
-          purchased.push(...tickets);
+          newUsedSeats[item.id] = updatedUsedSeats;
+          newPurchased.push(...tickets);
         });
 
-        set((state) => ({
-          purchasedTickets: [...state.purchasedTickets, ...purchased],
+        set({
+          purchasedTickets: [...purchasedTickets, ...newPurchased],
           cartItems: [],
           counts: {},
-          usedSeats: { ...state.usedSeats, ...newTickets },
-        }));
+          usedSeats: newUsedSeats,
+        });
+      },
+
+      // Rensa varukorg
+      clearCart: () => set({ cartItems: [], counts: {} }),
+
+      // Beräkna totalpris för varukorg
+      totalPrice: () => {
+        const { cartItems } = get();
+        return cartItems.reduce((sum, item) => sum + item.price * item.count, 0);
       },
     }),
     {
@@ -147,45 +142,54 @@ export default useCounterStore;
 // const useCounterStore = create(
 //   persist(
 //     (set, get) => ({
-//       counts: {}, // Håller koll på antalet biljetter för varje event
-//       cartItems: [], // Håller koll på eventen i varukorgen
-//       purchasedTickets: [],
-//       usedSeats: {},
+//       counts: {}, // Antal biljetter per event
+//       cartItems: [], // Event i varukorgen
+//       purchasedTickets: [], // Köpta biljetter
+//       usedSeats: {}, // Upptagna platser
 
+//       // Sätt antal manuellt
 //       setTicketCount: (id, quantity) => {
-//         const counts = get().counts;
-//         const updatedCounts = {
-//           ...counts,
-//           [id]: quantity, // Uppdatera antalet biljetter för ett event
-//         };
-
-//         set({
-//           counts: updatedCounts,
-//         });
+//         set((state) => ({
+//           counts: { ...state.counts, [id]: quantity },
+//         }));
 //       },
 
-//       // Lägg till event till varukorgen med den aktuella mängden från counts
+//       // Öka antal biljetter
+//       increaseCount: (id) => {
+//         const current = get().counts[id] || 0;
+//         set((state) => ({
+//           counts: { ...state.counts, [id]: current + 1 },
+//         }));
+//       },
+
+//       // Minska antal biljetter
+//       decreaseCount: (id) => {
+//         const current = get().counts[id] || 0;
+//         if (current <= 1) {
+//           const newCounts = { ...get().counts };
+//           delete newCounts[id];
+//           set({ counts: newCounts });
+//         } else {
+//           set((state) => ({
+//             counts: { ...state.counts, [id]: current - 1 },
+//           }));
+//         }
+//       },
+
+//       // Lägg till event i varukorg
 //       addTicketToCart: (event, addToPurchased = false) => {
 //         const { id } = event;
 //         const count = get().counts[id] || 0;
-
 //         if (count === 0) return;
 
-//         const cartItems = get().cartItems;
-//         const existingItem = cartItems.find((item) => item.id === id);
-
+//         const existingItem = get().cartItems.find((item) => item.id === id);
 //         const updatedCartItems = existingItem
-//           ? cartItems.map((item) => (item.id === id ? { ...item, count: count } : item))
-//           : [...cartItems, { ...event, count }];
-
-//         const newCounts = {
-//           ...get().counts,
-//           [id]: count,
-//         };
+//           ? get().cartItems.map((item) => (item.id === id ? { ...item, count } : item))
+//           : [...get().cartItems, { ...event, count }];
 
 //         set({
 //           cartItems: updatedCartItems,
-//           counts: newCounts,
+//           counts: { ...get().counts, [id]: count },
 //         });
 
 //         if (addToPurchased) {
@@ -199,69 +203,49 @@ export default useCounterStore;
 //             purchasedTickets: [...get().purchasedTickets, purchasedTicket],
 //           });
 //         }
-
-//         set({
-//           cartItems: updatedCartItems,
-//           counts: newCounts,
-//         });
-//       },
-//       updateTicketInCart: (event, count) => {
-//         const { id } = event;
-//         const cartItems = get().cartItems;
-//         const updatedCartItems = cartItems.map((item) => (item.id === id ? { ...item, count } : item));
-
-//         set({
-//           cartItems: updatedCartItems,
-//           counts: { ...get().counts, [id]: count },
-//         });
 //       },
 
-//       // Ta bort ett event från varukorgen när count är 0 eller mindre
-//       removeTicket: (eventId) => {
+//       // Öka antal i varukorg
+//       increaseCartItem: (id) => {
 //         const counts = get().counts;
-//         const cartItems = get().cartItems;
-//         const currentCount = counts[eventId] || 0;
+//         const newCount = (counts[id] || 0) + 1;
+
+//         const updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count: newCount } : item));
+
+//         set({
+//           counts: { ...counts, [id]: newCount },
+//           cartItems: updatedCartItems,
+//         });
+//       },
+
+//       // Minska antal i varukorg
+//       decreaseCartItem: (id) => {
+//         const counts = get().counts;
+//         const currentCount = counts[id] || 0;
 
 //         if (currentCount <= 1) {
 //           const newCounts = { ...counts };
-//           delete newCounts[eventId];
-
-//           // Ta bort från cartItems när count är 0
-//           const updatedCartItems = cartItems.filter((item) => item.id !== eventId);
-
-//           set({
-//             counts: newCounts,
-//             cartItems: updatedCartItems,
-//           });
+//           delete newCounts[id];
+//           const updatedCartItems = get().cartItems.filter((item) => item.id !== id);
+//           set({ counts: newCounts, cartItems: updatedCartItems });
 //         } else {
+//           const newCount = currentCount - 1;
+//           const updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count: newCount } : item));
 //           set({
-//             counts: {
-//               ...counts,
-//               [eventId]: currentCount - 1,
-//             },
+//             counts: { ...counts, [id]: newCount },
+//             cartItems: updatedCartItems,
 //           });
 //         }
 //       },
 
-//       // Rensa varukorgen
-//       clearCart: () => set({ counts: {}, cartItems: [] }),
-
-//       // Beräkna totalpris baserat på antalet och priset för varje item
-//       totalPrice: () => {
-//         const { cartItems, counts } = get();
-//         return cartItems.reduce((sum, item) => {
-//           const count = counts[item.id] || 0; // Använd count för att få antal biljetter
-//           return sum + item.price * count;
-//         }, 0);
-//       },
+//       // Flytta allt från cart till purchased
 //       completePurchase: () => {
-//         const { cartItems, usedSeats } = get();
-//         const newTickets = [];
-//         const purchased = [];
+//         const { cartItems, purchasedTickets, usedSeats } = get();
+//         const newPurchased = [];
+//         const newUsedSeats = { ...usedSeats };
 
-//         // const allTickets = cartItems.flatMap((item) => {
 //         cartItems.forEach((item) => {
-//           const section = String.fromCharCode(65 + Math.floor(Math.random() * 26)); //bokstäver mellan A-Z
+//           const section = String.fromCharCode(65 + Math.floor(Math.random() * 26));
 //           const existingSeats = usedSeats[item.id] || [];
 
 //           let startNumber;
@@ -270,22 +254,22 @@ export default useCounterStore;
 //           while (maxAttempts--) {
 //             const potentialStart = Math.floor(Math.random() * 100) + 1;
 //             const proposedSeats = Array.from({ length: item.count }, (_, i) => `${section}-${potentialStart + i}`);
-
 //             const hasConflict = proposedSeats.some((seat) => existingSeats.includes(seat));
 //             if (!hasConflict) {
 //               startNumber = potentialStart;
 //               break;
 //             }
 //           }
+
 //           if (startNumber === undefined) {
 //             console.error("Kunde inte hitta lediga platser.");
 //             return;
 //           }
-//           const newUsed = [...existingSeats];
 
+//           const updatedUsedSeats = [...existingSeats];
 //           const tickets = Array.from({ length: item.count }, (_, i) => {
 //             const seat = `section ${section} - seat ${startNumber + i}`;
-//             newUsed.push(seat);
+//             updatedUsedSeats.push(seat);
 //             return {
 //               ...item,
 //               ticketId: generateTicketID(),
@@ -294,23 +278,42 @@ export default useCounterStore;
 //             };
 //           });
 
-//           newTickets[item.id] = newUsed;
-//           purchased.push(...tickets);
+//           newUsedSeats[item.id] = updatedUsedSeats;
+//           newPurchased.push(...tickets);
 //         });
 
-//         set((state) => ({
-//           purchasedTickets: [...state.purchasedTickets, ...purchased],
+//         set({
+//           purchasedTickets: [...purchasedTickets, ...newPurchased],
 //           cartItems: [],
 //           counts: {},
-//           usedSeats: {
-//             ...state.usedSeats,
-//             ...newTickets,
-//           },
-//         }));
+//           usedSeats: newUsedSeats,
+//         });
+//       },
+
+//       // Uppdatera biljetter i varukorg
+//       updateTicketInCart: (event, count) => {
+//         const { id } = event;
+//         const updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count } : item));
+//         set({
+//           cartItems: updatedCartItems,
+//           counts: { ...get().counts, [id]: count },
+//         });
+//       },
+
+//       // Rensa varukorg
+//       clearCart: () => set({ counts: {}, cartItems: [] }),
+
+//       // Räkna ut totalpris
+//       totalPrice: () => {
+//         const { cartItems, counts } = get();
+//         return cartItems.reduce((sum, item) => {
+//           const count = counts[item.id] || 0;
+//           return sum + item.price * count;
+//         }, 0);
 //       },
 //     }),
 //     {
-//       name: "cart-store", // localStorage-nyckel
+//       name: "cart-store",
 //     }
 //   )
 // );

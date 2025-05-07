@@ -13,17 +13,16 @@ function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
 
-  const count = useCounterStore((state) => state.counts[id] || 1);
-  const setTicketCount = useCounterStore((state) => state.setTicketCount);
+  const increaseCount = useCounterStore((state) => state.increaseCount);
+  const decreaseCount = useCounterStore((state) => state.decreaseCount);
   const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
-  const [selectedCount, setSelectedCount] = useState(0);
+  const counts = useCounterStore((state) => state.counts);
+  const count = counts[id] || 0;
 
   const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = () => {
-    addTicketToCart(event); // Lägg till biljetterna i varukorgen
-    setTicketCount(event.id, selectedCount);
-    setShowMessage(true);
+    addTicketToCart(event);
   };
 
   useEffect(() => {
@@ -58,12 +57,13 @@ function SingleEventPage() {
               event={event}
               header={({ event, count }) => `${event.price * count} SEK`}
               showMessage={showMessage}
-              onCountChange={(_eventId, count) => setSelectedCount(count)}
+              onIncrease={() => increaseCount(id)}
+              onDecrease={() => decreaseCount(id)}
             />
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
-                console.log(`Valde ${selectedCount} biljett/-er till ${event.name}`);
+                console.log(`Valde ${count} biljett/-er till ${event.name}`);
                 handleAddToCart();
               }}
             />
