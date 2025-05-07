@@ -19,20 +19,22 @@ function SingleEventPage() {
   const counts = useCounterStore((state) => state.counts);
   const count = counts[id] || 0;
 
+  const cartItems = useCounterStore((state) => state.cartItems);
+  const cartItem = cartItems.find((item) => item.id === id);
+
+  const [hasAddedToCart, setHasAddedToCart] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = () => {
     addTicketToCart(event);
+    setShowMessage(true);
   };
 
   useEffect(() => {
-    if (showMessage) {
-      const timer = setTimeout(() => {
-        setShowMessage(false);
-      }, 3000);
-      return () => clearTimeout(timer);
+    if (cartItem?.count === 0) {
+      setShowMessage(false);
     }
-  }, [showMessage]);
+  }, [cartItem]);
 
   if (loading) return <p className="message">Laddar event...</p>;
   if (error) return <p className="message">Fel: {error}</p>;
@@ -63,7 +65,7 @@ function SingleEventPage() {
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
-                console.log(`Valde ${count} biljett/-er till ${event.name}`);
+                console.log(`Valde ${cartItem?.count || 0} biljett/-er till ${event.name}`);
                 handleAddToCart();
               }}
             />
