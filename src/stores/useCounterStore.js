@@ -94,7 +94,9 @@ const useCounterStore = create(
           while (maxAttempts--) {
             const potentialStart = Math.floor(Math.random() * 100) + 1;
             const proposedSeats = Array.from({ length: item.count }, (_, i) => `${section}-${potentialStart + i}`);
+
             const hasConflict = proposedSeats.some((seat) => existingSeats.includes(seat));
+
             if (!hasConflict) {
               startNumber = potentialStart;
               break;
@@ -108,13 +110,16 @@ const useCounterStore = create(
 
           const updatedUsedSeats = [...existingSeats];
           const tickets = Array.from({ length: item.count }, (_, i) => {
-            const seat = `${section}-${startNumber + i}`;
+            const seatNumber = startNumber + i;
+            const seat = `section ${section} - seat ${seatNumber}`;
             updatedUsedSeats.push(seat);
+
             return {
               ...item,
               ticketId: generateTicketID(),
-              section,
               seat,
+              section,
+              seatNumber,
             };
           });
 
