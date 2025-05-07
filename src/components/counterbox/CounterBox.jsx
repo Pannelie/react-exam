@@ -4,8 +4,8 @@ import { useLocation } from "react-router-dom";
 import CounterHeader from "../counterheader/CounterHeader";
 import CounterControlls from "../countercontrolls/CounterControlls";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 import "./counterBox.css";
 
@@ -20,7 +20,7 @@ function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
   const count = counts[event.id] || 0;
 
   const cartItem = cartItems.find((item) => item.id === event.id);
-  const isMatch = cartItem && cartItem.count === count;
+  // const isMatch = cartItem && cartItem.count === count;
 
   const boxClassName = ["counter__box", sizeModifier && `counter__box--${sizeModifier}`]
     //, isMatch && "counter__box--match"
@@ -39,7 +39,7 @@ function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
 
   return (
     <div className={boxClassName}>
-      {isMatch && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />}
+      {/* {isMatch && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />} */}
 
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
 

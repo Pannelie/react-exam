@@ -3,7 +3,7 @@ import "./orderPage.css";
 import Footer from "../../components/footer/Footer";
 import CounterBox from "../../components/counterbox/CounterBox";
 import useCounterStore from "../../stores/useCounterStore";
-import EventHeader from "../../components/button/eventheader/EventHeader";
+import EventHeader from "../../components/eventheader/EventHeader";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 
