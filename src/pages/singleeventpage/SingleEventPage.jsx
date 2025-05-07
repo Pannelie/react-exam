@@ -8,6 +8,7 @@ import CounterBox from "../../components/counterbox/CounterBox";
 
 import useCounterStore from "../../stores/useCounterStore";
 import "./singleEventPage.css";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 function SingleEventPage() {
   const { id } = useParams();
@@ -24,16 +25,23 @@ function SingleEventPage() {
 
   const [showMessage, setShowMessage] = useState(false);
 
+  useEffect(() => {
+    if (cartItem) {
+      setShowMessage(true);
+    } else {
+      setShowMessage(false);
+    }
+    const timer = setTimeout(() => {
+      setShowMessage(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [cartItems, event.id]);
+
   const handleAddToCart = () => {
     addTicketToCart(event);
     setShowMessage(true);
   };
-
-  useEffect(() => {
-    if (cartItem?.count === 0) {
-      setShowMessage(false);
-    }
-  }, [cartItem]);
 
   if (loading) return <p className="message">Laddar event...</p>;
   if (error) return <p className="message">Fel: {error}</p>;

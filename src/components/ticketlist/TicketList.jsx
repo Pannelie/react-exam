@@ -17,7 +17,7 @@ function TicketList() {
 
   return (
     <div className="ticket__swiper-wrapper">
-      {purchasedTickets.length === 0 ? (
+      {Object.keys(purchasedTickets).length === 0 ? (
         //-----------------------------------------ändra class----------------
         <p className="message">Du har inga biljetter ännu.</p>
       ) : (
