@@ -53,7 +53,13 @@ function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
       />
       {showMessage && (
         <span className="counter__match-message">
-          {cartItem.count} {cartItem.count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!
+          {cartItem ? (
+            <>
+              {cartItem.count} {cartItem.count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!
+            </>
+          ) : (
+            "Du tog bort dina biljetter från varukorgen"
+          )}
         </span>
       )}
     </div>

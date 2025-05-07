@@ -36,7 +36,11 @@ const useCounterStore = create(
       addTicketToCart: (event) => {
         const { id } = event;
         const count = get().counts[id] || 0;
-        if (count === 0) return;
+        if (count === 0) {
+          const updatedCartItems = get().cartItems.filter((item) => item.id !== id);
+          set({ cartItems: updatedCartItems });
+          return;
+        }
 
         const existingItem = get().cartItems.find((item) => item.id === id);
         let updatedCartItems;
