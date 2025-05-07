@@ -32,11 +32,13 @@ function TicketList() {
             }}
             className="ticket__swiper"
           >
-            {purchasedTickets.map((ticket) => (
-              <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
-                <TicketItem ticket={ticket} />
-              </SwiperSlide>
-            ))}
+            {Object.values(purchasedTickets)
+              .flat()
+              .map((ticket) => (
+                <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
+                  <TicketItem ticket={ticket} />
+                </SwiperSlide>
+              ))}
           </Swiper>
           <div className="ticket__swiper-buttons">
             <button className="swiper-button-prev"></button>

@@ -7,7 +7,7 @@ const useCounterStore = create(
     (set, get) => ({
       counts: {}, // Håller koll på antalet biljetter per event
       cartItems: [], // Håller koll på varukorgen
-      purchasedTickets: [], // Köpta biljetter
+      purchasedTickets: {}, // Köpta biljetter
       usedSeats: {}, // Upptagna platser
 
       // Öka antal på SingleEventPage
@@ -36,17 +36,27 @@ const useCounterStore = create(
       addTicketToCart: (event) => {
         const { id } = event;
         const count = get().counts[id] || 0;
-        if (count === 0) return;
+        if (count === 0) {
+          const updatedCartItems = get().cartItems.filter((item) => item.id !== id);
+          set({ cartItems: updatedCartItems });
+          return;
+        }
 
         const existingItem = get().cartItems.find((item) => item.id === id);
+        let updatedCartItems;
 
-        const updatedCartItems = existingItem
-          ? get().cartItems.map((item) => (item.id === id ? { ...item, count: item.count + count } : item))
-          : [...get().cartItems, { ...event, count }];
+        if (existingItem) {
+          // Uppdatera befintligt item med det nya count-värdet
+          updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count: count } : item));
+        } else {
+          // Lägg till nytt item
+          updatedCartItems = [...get().cartItems, { ...event, count }];
+        }
 
+        // Synka count med cart-värdet istället för att nollställa
         set({
           cartItems: updatedCartItems,
-          counts: { ...get().counts, [id]: 0 }, // Nollställ count efter att ha lagt till i varukorgen
+          counts: { ...get().counts, [id]: count },
         });
       },
 
@@ -82,7 +92,7 @@ const useCounterStore = create(
       // Flytta varukorg till köpta biljetter
       completePurchase: () => {
         const { cartItems, purchasedTickets, usedSeats } = get();
-        const newPurchased = [];
+        const newPurchased = { ...purchasedTickets };
         const newUsedSeats = { ...usedSeats };
 
         cartItems.forEach((item) => {
@@ -124,11 +134,16 @@ const useCounterStore = create(
           });
 
           newUsedSeats[item.id] = updatedUsedSeats;
-          newPurchased.push(...tickets);
+
+          const eventKey = item.name;
+          if (!newPurchased[eventKey]) {
+            newPurchased[eventKey] = [];
+          }
+          newPurchased[eventKey].push(...tickets);
         });
 
         set({
-          purchasedTickets: [...purchasedTickets, ...newPurchased],
+          purchasedTickets: newPurchased,
           cartItems: [],
           counts: {},
           usedSeats: newUsedSeats,
