@@ -27,13 +27,10 @@ function SingleEventPage() {
   const handleAddToCart = () => {
     addTicketToCart(event);
     setShowMessage(true);
-  };
-
-  useEffect(() => {
-    if (cartItem?.count === 0) {
+    setTimeout(() => {
       setShowMessage(false);
-    }
-  }, [cartItem]);
+    }, 3000);
+  };
 
   if (loading) return <p className="message">Laddar event...</p>;
   if (error) return <p className="message">Fel: {error}</p>;
