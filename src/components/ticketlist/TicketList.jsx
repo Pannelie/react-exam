@@ -4,11 +4,8 @@ import useCounterStore from "../../stores/useCounterStore";
 import TicketItem from "../ticketitem/TicketItem";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectCards } from "swiper/modules";
-// import { Pagination} from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-cards";
-// import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 function TicketList() {
@@ -17,15 +14,14 @@ function TicketList() {
 
   return (
     <div className="ticket__swiper-wrapper">
-      {purchasedTickets.length === 0 ? (
-        //-----------------------------------------ändra class----------------
+      {Object.keys(purchasedTickets).length === 0 ? (
         <p className="message">Du har inga biljetter ännu.</p>
       ) : (
         <>
           <Swiper
             effect="slide"
             grabCursor={true}
-            modules={[Navigation, EffectCards]}
+            modules={[Navigation]}
             navigation={{
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
