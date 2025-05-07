@@ -19,16 +19,3 @@ function Button({ text, onClick, to, type = "button" }) {
 }
 
 export default Button;
-
-// import React from "react";
-// import "./button.css";
-
-// function Button({ text, onClick }) {
-//   return (
-//     <button className="button button--bottom" onClick={onClick}>
-//       {text}
-//     </button>
-//   );
-// }
-
-// export default Button;

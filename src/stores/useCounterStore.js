@@ -39,14 +39,20 @@ const useCounterStore = create(
         if (count === 0) return;
 
         const existingItem = get().cartItems.find((item) => item.id === id);
+        let updatedCartItems;
 
-        const updatedCartItems = existingItem
-          ? get().cartItems.map((item) => (item.id === id ? { ...item, count: item.count + count } : item))
-          : [...get().cartItems, { ...event, count }];
+        if (existingItem) {
+          // Uppdatera befintligt item med det nya count-värdet
+          updatedCartItems = get().cartItems.map((item) => (item.id === id ? { ...item, count: count } : item));
+        } else {
+          // Lägg till nytt item
+          updatedCartItems = [...get().cartItems, { ...event, count }];
+        }
 
+        // Synka count med cart-värdet istället för att nollställa
         set({
           cartItems: updatedCartItems,
-          counts: { ...get().counts, [id]: 0 }, // Nollställ count efter att ha lagt till i varukorgen
+          counts: { ...get().counts, [id]: count },
         });
       },
 

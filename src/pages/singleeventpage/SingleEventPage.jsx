@@ -22,7 +22,6 @@ function SingleEventPage() {
   const cartItems = useCounterStore((state) => state.cartItems);
   const cartItem = cartItems.find((item) => item.id === id);
 
-  const [hasAddedToCart, setHasAddedToCart] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = () => {
@@ -63,7 +62,7 @@ function SingleEventPage() {
               onDecrease={() => decreaseCount(id)}
             />
             <Button
-              text="Lägg i varukorgen"
+              text={cartItem ? "Uppdatera varukorg" : "Lägg till i varukorgen"}
               onClick={() => {
                 console.log(`Valde ${cartItem?.count || 0} biljett/-er till ${event.name}`);
                 handleAddToCart();
