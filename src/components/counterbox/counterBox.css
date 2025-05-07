@@ -47,7 +47,7 @@
   left: 50%; /* Centrerar meddelandet horisontellt */
   transform: translateX(-50%); /* Finjustera centrerandet */
   font-size: 1rem; /* Justera textstorlek om det behövs */
-  color: var(--highlight-color); /* Eller en annan färg för meddelandet */
+  color: var(--main-font-color); /* Eller en annan färg för meddelandet */
   opacity: 1; /* Gör meddelandet synligt utan att använda animation */
   transition: opacity 0.3s ease-in-out; /* Om du vill ha en mjuk övergång när meddelandet dyker upp */
 }

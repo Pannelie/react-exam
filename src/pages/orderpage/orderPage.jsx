@@ -29,17 +29,21 @@ function orderPage() {
             ))
           )}
         </section>
-        <section className="order__summary">
-          <p className="message">Totalt värde på order</p>
-          <p className="order__price">{totalPrice()} sek</p>
-        </section>
-        <Button
-          text="Lägg order"
-          onClick={() => {
-            completePurchase();
-            navigate("/tickets");
-          }}
-        />
+        {cartItems.length > 0 && (
+          <>
+            <section className="order__summary">
+              <p className="message">Totalt värde på order</p>
+              <p className="order__price">{totalPrice()} sek</p>
+            </section>
+            <Button
+              text="Lägg order"
+              onClick={() => {
+                completePurchase();
+                navigate("/tickets");
+              }}
+            />
+          </>
+        )}
       </main>
       <Footer />
     </>

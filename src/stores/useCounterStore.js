@@ -39,8 +39,9 @@ const useCounterStore = create(
         if (count === 0) return;
 
         const existingItem = get().cartItems.find((item) => item.id === id);
+
         const updatedCartItems = existingItem
-          ? get().cartItems.map((item) => (item.id === id ? { ...item, count } : item))
+          ? get().cartItems.map((item) => (item.id === id ? { ...item, count: item.count + count } : item))
           : [...get().cartItems, { ...event, count }];
 
         set({
@@ -60,10 +61,21 @@ const useCounterStore = create(
       // Minska antal i varukorgen
       decreaseCartItem: (id) => {
         const updatedCartItems = get()
-          .cartItems.map((item) => (item.id === id && item.count > 1 ? { ...item, count: item.count - 1 } : item))
-          .filter((item) => item.count > 0);
+          .cartItems.map((item) => {
+            // Om item matchar id och count > 1, minska med 1
+            if (item.id === id && item.count > 1) {
+              return { ...item, count: item.count - 1 };
+            }
+            // Om count är 1, ta bort objektet genom att returnera null
+            if (item.id === id && item.count === 1) {
+              return null; // Markerar objektet för borttagning
+            }
+            return item; // Lämna oförändrat om det inte matchar id
+          })
+          .filter((item) => item !== null); // Filtrera bort alla null-värden (objekt med count 0)
+
         set({
-          cartItems: updatedCartItems,
+          cartItems: updatedCartItems, // Uppdatera cartItems med den filtrerade listan
         });
       },
 
