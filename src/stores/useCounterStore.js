@@ -134,11 +134,12 @@ const useCounterStore = create(
           });
 
           newUsedSeats[item.id] = updatedUsedSeats;
-          const key = item.title; // eller item.id
-          if (!newPurchased[key]) {
-            newPurchased[key] = [];
+
+          const eventKey = item.name;
+          if (!newPurchased[eventKey]) {
+            newPurchased[eventKey] = [];
           }
-          newPurchased[key].push(...tickets);
+          newPurchased[eventKey].push(...tickets);
         });
 
         set({
