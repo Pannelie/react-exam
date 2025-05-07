@@ -1,15 +1,37 @@
 .ticket__list-item {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: min-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
   width: 70%;
-  max-width: 300px;
-  height: 400px;
+  /* max-width: 300px; */
+  height: fit-content;
+  padding: 0.9rem 0;
+
   background: white;
   border-radius: 3px;
-  padding: 0.7rem 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+}
+
+.ticket__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ticket__section--title {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  padding: 0.2rem;
+}
+
+.ticket__time-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  border-top: 1px dashed rgba(0, 0, 0, 0.4);
 }
 
 .ticket__title {
@@ -27,9 +49,6 @@
   font-family: var(--font-family-fira-sans);
   font-size: 10px;
   font-weight: 700;
-}
-.ticket__category--margin {
-  margin: 0.5rem 0;
 }
 
 .ticket__category--padding-left {
@@ -51,18 +70,19 @@
   font-size: 18px;
   font-weight: 600;
   padding-left: 0.4rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 1.5rem; */
 }
 
-.ticket__time {
-  display: grid;
+.ticket__time-box {
+  flex: 1;
+  display: flex;
   flex-direction: column;
   gap: 0.4rem;
   padding: 0.5rem 0rem 0.5rem 0.4rem;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  /* border-bottom: 1px dashed rgba(0, 0, 0, 0.4); */
 }
 
-.ticket__time:nth-of-type(2) {
+.ticket__time-box:nth-of-type(2) {
   border-left: 1px dashed rgba(0, 0, 0, 0.4);
   border-right: 1px dashed rgba(0, 0, 0, 0.4);
 }
@@ -76,14 +96,14 @@
   font-weight: 400;
 }
 
-.ticket__stroke {
+/* .ticket__stroke {
   border: none;
   border-top: 1px dashed rgba(0, 0, 0, 0.4);
   grid-column: 1/-1;
   width: 100%;
-}
+} */
 
-.ticket__code {
+.ticket__barcode {
   grid-column: 1/-1;
   width: 100%;
   color: rgba(0, 0, 0, 0.4);
@@ -92,7 +112,6 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 3.6px;
-  margin-top: 2rem;
 }
 
 .ticket__barcode-label {

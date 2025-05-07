@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import useFetchEvents from "../../hooks/useFetchEvents";
 
 import Footer from "../../components/footer/Footer";
@@ -12,16 +12,32 @@ import "./singleEventPage.css";
 function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
-  //   const event = useEventStore((state) => state.getEventById(id)); //hämtar specifikt.
-  if (loading) return <p className="message">Laddar event...</p>;
-  if (error) return <p className="message">Fel: {error}</p>;
 
-  const count = useCounterStore((state) => state.counts[id] || 1);
+  const increaseCount = useCounterStore((state) => state.increaseCount);
+  const decreaseCount = useCounterStore((state) => state.decreaseCount);
   const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
+  const counts = useCounterStore((state) => state.counts);
+  const count = counts[id] || 0;
+
+  const cartItems = useCounterStore((state) => state.cartItems);
+  const cartItem = cartItems.find((item) => item.id === id);
+
+  const [hasAddedToCart, setHasAddedToCart] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = () => {
-    addTicketToCart(event); // Lägg till biljetterna i varukorgen
+    addTicketToCart(event);
+    setShowMessage(true);
   };
+
+  useEffect(() => {
+    if (cartItem?.count === 0) {
+      setShowMessage(false);
+    }
+  }, [cartItem]);
+
+  if (loading) return <p className="message">Laddar event...</p>;
+  if (error) return <p className="message">Fel: {error}</p>;
 
   return (
     <main className="single-event-page">
@@ -39,11 +55,17 @@ function SingleEventPage() {
               {event.when.date} kl {event.when.from} - {event.when.to}
             </p>
             <p className="event__paragraph-where">@ {event.where}</p>
-            <CounterBox event={event} header={({ event, count }) => `${event.price * count} SEK`} />
+            <CounterBox
+              event={event}
+              header={({ event, count }) => `${event.price * count} SEK`}
+              showMessage={showMessage}
+              onIncrease={() => increaseCount(id)}
+              onDecrease={() => decreaseCount(id)}
+            />
             <Button
               text="Lägg i varukorgen"
               onClick={() => {
-                console.log(`Valde ${count} biljett/-er till ${event.name}`);
+                console.log(`Valde ${cartItem?.count || 0} biljett/-er till ${event.name}`);
                 handleAddToCart();
               }}
             />

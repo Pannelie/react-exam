@@ -1,4 +1,5 @@
 .counter__box {
+  position: relative;
   display: grid;
   grid-template-rows: auto auto;
 
@@ -6,6 +7,7 @@
   text-align: center;
   border: 2px solid var(--highlight-color); /* Tjock yttre ram */
   border-radius: 3px;
+  position: relative;
 }
 
 .counter__box--event-page {
@@ -19,6 +21,33 @@
   margin-bottom: 1rem;
 }
 
-.counter__box--match {
+/* .counter__box--match {
   background-color: rgba(255, 176, 241, 0.3);
+} */
+
+.counter__match-icon {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--blue-color); /* Färg på själva ikonen */
+  font-size: 1.8rem; /* Storlek på ikonen */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); /* Skugga om du vill ha det */
+}
+.counter__match-message {
+  position: absolute;
+  width: 100%;
+  bottom: -40px; /* Justera avståndet från botten */
+  left: 50%; /* Centrerar meddelandet horisontellt */
+  transform: translateX(-50%); /* Finjustera centrerandet */
+  font-size: 1rem; /* Justera textstorlek om det behövs */
+  color: var(--main-font-color); /* Eller en annan färg för meddelandet */
+  opacity: 1; /* Gör meddelandet synligt utan att använda animation */
+  transition: opacity 0.3s ease-in-out; /* Om du vill ha en mjuk övergång när meddelandet dyker upp */
 }

@@ -6,6 +6,9 @@
   width: 100%;
 }
 
+.event__link:last-of-type {
+  padding-bottom: 0;
+}
 .event__list-item {
   display: grid;
   grid-template-columns: auto 1fr 2rem;
