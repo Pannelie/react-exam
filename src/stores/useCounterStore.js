@@ -7,7 +7,7 @@ const useCounterStore = create(
     (set, get) => ({
       counts: {}, // Håller koll på antalet biljetter per event
       cartItems: [], // Håller koll på varukorgen
-      purchasedTickets: [], // Köpta biljetter
+      purchasedTickets: {}, // Köpta biljetter
       usedSeats: {}, // Upptagna platser
 
       // Öka antal på SingleEventPage
@@ -88,7 +88,7 @@ const useCounterStore = create(
       // Flytta varukorg till köpta biljetter
       completePurchase: () => {
         const { cartItems, purchasedTickets, usedSeats } = get();
-        const newPurchased = [];
+        const newPurchased = { ...purchasedTickets };
         const newUsedSeats = { ...usedSeats };
 
         cartItems.forEach((item) => {
@@ -130,11 +130,15 @@ const useCounterStore = create(
           });
 
           newUsedSeats[item.id] = updatedUsedSeats;
-          newPurchased.push(...tickets);
+          const key = item.title; // eller item.id
+          if (!newPurchased[key]) {
+            newPurchased[key] = [];
+          }
+          newPurchased[key].push(...tickets);
         });
 
         set({
-          purchasedTickets: [...purchasedTickets, ...newPurchased],
+          purchasedTickets: newPurchased,
           cartItems: [],
           counts: {},
           usedSeats: newUsedSeats,

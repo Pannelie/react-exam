@@ -4,14 +4,13 @@ import { formatDate } from "../../utils/utils";
 import Barcode from "react-barcode";
 
 function TicketItem({ ticket }) {
-  console.log(`här är id`, ticket.ticketID);
+  console.log(`Välkommen till ${ticket.name} plats ${ticket.seat} den ${ticket.when.date}`);
   return (
     <li className="ticket__list-item">
       <section className="ticket__section ticket__section--title">
         <p className="ticket__category ticket__category--padding-left">WHAT</p>
         <h2 className="ticket__title">{ticket.name}</h2>
       </section>
-      {/* <hr className="ticket__stroke" /> */}
       <section className="ticket__section">
         <p className="ticket__category ticket__category--padding-left">WHERE</p>
         <p className="ticket__paragraph-where">{ticket.where}</p>

@@ -96,13 +96,6 @@
   font-weight: 400;
 }
 
-/* .ticket__stroke {
-  border: none;
-  border-top: 1px dashed rgba(0, 0, 0, 0.4);
-  grid-column: 1/-1;
-  width: 100%;
-} */
-
 .ticket__barcode {
   grid-column: 1/-1;
   width: 100%;
