@@ -12,13 +12,19 @@ function NavItems() {
   return (
     <>
       <li className="nav__list-item">
-        <Link to="/" className={`nav__link ${location.pathname === "/" ? "active" : ""}`} onClick={() => console.log(`Home page`)}>
+        <Link
+          to="/"
+          aria-label="Go to home page"
+          className={`nav__link ${location.pathname === "/" ? "active" : ""}`}
+          onClick={() => console.log(`Home page`)}
+        >
           <FontAwesomeIcon icon={faHouse} />
         </Link>
       </li>
       <li className="nav__list-item">
         <Link
           to="/events"
+          aria-label="Go to events page"
           className={`nav__link ${location.pathname === "/events" ? "active" : ""}`}
           onClick={() => console.log(`Events page`)}
         >
@@ -28,6 +34,7 @@ function NavItems() {
       <li className="nav__list-item">
         <Link
           to="/tickets"
+          aria-label="Go to tickets page"
           className={`nav__link ${location.pathname === "/tickets" ? "active" : ""}`}
           onClick={() => console.log(`tickets page`)}
         >
