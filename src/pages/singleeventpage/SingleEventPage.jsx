@@ -32,6 +32,14 @@ function SingleEventPage() {
       setShowMessage(false);
     }, 3000);
   };
+  const ariaLabelText =
+    count === 0
+      ? "Välj antal biljetter först"
+      : cartItem && cartItem.count === count
+      ? `Du har just nu ${cartItem.count} biljett${cartItem.count !== 1 ? "er" : ""} till ${event.name} i varukorgen`
+      : `Du har just nu ${cartItem.count} biljett${cartItem.count !== 1 ? "er" : ""} till ${
+          event.name
+        }. Klicka för att ändra till ${count} biljett${count !== 1 ? "er" : ""}`;
 
   return (
     <main className="single-event-page">
@@ -55,11 +63,7 @@ function SingleEventPage() {
             />
             <Button
               text={cartItem ? "Uppdatera varukorg" : "Lägg till i varukorgen"}
-              aria-label={
-                count > 0
-                  ? `Lägg till ${count} biljett${count !== 1 ? "er" : ""} till ${event.name} i varukorgen`
-                  : "Välj antal biljetter först"
-              }
+              aria-label={ariaLabelText}
               disabled={count === 0}
               onClick={() => {
                 console.log(`Valde ${count} biljett/-er till ${event.name}`);
