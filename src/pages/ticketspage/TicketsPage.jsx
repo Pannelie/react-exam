@@ -6,8 +6,7 @@ import TicketList from "../../components/ticketlist/TicketList";
 function TicketsPage() {
   return (
     <>
-      <main className="page">
-        <h1 className="headingOne">Tickets</h1>
+      <main className="page page--tickets" aria-label="My ticket page">
         <section className="tickets__section">
           <TicketList />
         </section>

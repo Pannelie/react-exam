@@ -26,16 +26,13 @@
   /* skapa en gradient bg */
 }
 
-body {
-  background-color: var(--main-bg-color);
-}
-
 .page {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 90vh;
   padding: 2rem 2rem 1.5rem;
+  background-color: var(--main-bg-color);
 }
 
 .button {
@@ -91,5 +88,8 @@ body {
   font-size: 1.4rem;
   font-style: italic;
   text-align: center;
+  margin-top: 1rem;
+}
+.message--margin-auto {
   margin: auto;
 }
