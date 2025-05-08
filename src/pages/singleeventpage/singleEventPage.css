@@ -17,23 +17,3 @@
   margin-top: 1rem;
   position: relative;
 }
-
-.event__paragraph-when {
-  color: var(--blue-color);
-  text-align: center;
-  font-family: var(--font-family-fira-sans);
-  font-size: 19px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.event__paragraph-where {
-  color: var(--font-white-opacity);
-  text-align: center;
-  font-family: var(--font-family-fira-sans);
-  font-size: 16px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: normal;
-}

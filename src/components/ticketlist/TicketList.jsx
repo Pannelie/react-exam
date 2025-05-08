@@ -37,8 +37,8 @@ function TicketList() {
               ))}
           </Swiper>
           <div className="ticket__swiper-buttons">
-            <button className="swiper-button-prev"></button>
-            <button className="swiper-button-next"></button>
+            <button className="swiper-button-prev" aria-label="previous ticket"></button>
+            <button className="swiper-button-next" aria-label="next ticket"></button>
           </div>
         </>
       )}

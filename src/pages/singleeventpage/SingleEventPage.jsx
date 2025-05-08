@@ -8,6 +8,7 @@ import CounterBox from "../../components/counterbox/CounterBox";
 
 import useCounterStore from "../../stores/useCounterStore";
 import "./singleEventPage.css";
+import SingleEvent from "../../components/singleevent/SingleEvent";
 
 function SingleEventPage() {
   const { id } = useParams();
@@ -32,13 +33,10 @@ function SingleEventPage() {
     }, 3000);
   };
 
-  if (loading) return <p className="message">Laddar event...</p>;
-  if (error) return <p className="message">Fel: {error}</p>;
-
   return (
     <main className="single-event-page">
       <h1 className="headingOne">Event</h1>
-      <p className="subtitle">You are about to score some tickets to</p>
+      <h2 className="subtitle">You are about to score some tickets to</h2>
       <section className="event__info">
         {loading ? (
           <p className="message">Laddar event...</p>
@@ -46,11 +44,8 @@ function SingleEventPage() {
           <p className="message">Fel: {error}</p>
         ) : event ? (
           <>
-            <h2 className="headingTwo">{event.name}</h2>
-            <p className="event__paragraph-when">
-              {event.when.date} kl {event.when.from} - {event.when.to}
-            </p>
-            <p className="event__paragraph-where">@ {event.where}</p>
+            <SingleEvent event={event} />
+
             <CounterBox
               event={event}
               header={({ event, count }) => `${event.price * count} SEK`}
@@ -60,6 +55,12 @@ function SingleEventPage() {
             />
             <Button
               text={cartItem ? "Uppdatera varukorg" : "Lägg till i varukorgen"}
+              aria-label={
+                count > 0
+                  ? `Lägg till ${count} biljett${count !== 1 ? "er" : ""} till ${event.name} i varukorgen`
+                  : "Välj antal biljetter först"
+              }
+              disabled={count === 0}
               onClick={() => {
                 console.log(`Valde ${count} biljett/-er till ${event.name}`);
                 handleAddToCart();

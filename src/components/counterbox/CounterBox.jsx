@@ -28,7 +28,9 @@ function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
 
   return (
     <div className={boxClassName}>
-      {isMatch && isSingleEventPage && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />}
+      {isMatch && isSingleEventPage && (
+        <FontAwesomeIcon icon={faCircleCheck} aria-label="This count is matching what´s in your cart" className="counter__match-icon" />
+      )}
 
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
 

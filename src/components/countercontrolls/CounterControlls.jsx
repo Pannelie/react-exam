@@ -32,11 +32,13 @@ function CounterControlls({ event, sizeModifier, isOrderPage = false, onIncrease
 
   return (
     <div className="counter__controlls">
-      <div className={`counter__controll counter__controll--${sizeModifier}`} onClick={handleDecrease}>
+      <div className={`counter__controll counter__controll--${sizeModifier}`} aria-label="decrease tickets" onClick={handleDecrease}>
         <FontAwesomeIcon icon={faCircleMinus} />
       </div>
-      <div className="counter__number">{displayCount}</div>
-      <div className={`counter__controll counter__controll--${sizeModifier}`} onClick={handleIncrease}>
+      <div className="counter__number" aria-label="chosen tickets">
+        {displayCount}
+      </div>
+      <div className={`counter__controll counter__controll--${sizeModifier}`} aria-label="increase tickets" onClick={handleIncrease}>
         <FontAwesomeIcon icon={faCirclePlus} />
       </div>
     </div>
