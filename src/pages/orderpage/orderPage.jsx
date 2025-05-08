@@ -44,7 +44,8 @@ function orderPage() {
                 navigate("/tickets");
               }}
             />
-            <ClearButton />
+            {/* Rensa cart om jag hade fått välja extra feature, */}
+            {/* <ClearButton />  */}
           </>
         )}
       </main>

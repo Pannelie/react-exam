@@ -1,20 +1,11 @@
 .main-btn {
-  /* border-radius: 3px; */
   background: #37aeab;
-  /* border: none; */
-  /* padding: 1rem; */
+  padding: 1rem;
   width: 100%;
   margin-top: auto;
-
   color: var(--main-font-color);
-  /* text-align: center; */
-  /* font-family: var(--font-family-fira-sans); */
   font-size: 22px;
   font-weight: 600;
-  /* text-decoration: none; */
-
-  /* transition: background-color 0.3s ease-in-out;
-  cursor: pointer; */
 
   &:hover {
     background-color: var(--dark-blue);

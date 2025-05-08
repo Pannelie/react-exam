@@ -58,7 +58,7 @@ function SingleEventPage() {
               onDecrease={() => decreaseCount(id)}
             />
             <Button
-              text={cartItem ? "Uppdatera varukorg" : "Lägg till i varukorgen"}
+              text="Lägg till i varukorgen"
               aria-label={ariaLabelText}
               className="main-btn"
               onClick={() => {
