@@ -13,7 +13,7 @@ function orderPage() {
   const { cartItems, increaseCartItem, decreaseCartItem, completePurchase, totalPrice } = useCounterStore((state) => state);
   return (
     <>
-      <main className="order-page">
+      <main className="page">
         <h1 className="headingOne">Orders</h1>
         <section className="order__section">
           {cartItems.length === 0 ? (

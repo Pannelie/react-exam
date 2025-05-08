@@ -17,7 +17,7 @@ function EventsPage() {
 
   return (
     <>
-      <main className="event-page">
+      <main className="page">
         <h1 className="headingOne">Events</h1>
         <SearchBar query={query} setQuery={setQuery} />
 

@@ -38,7 +38,7 @@ function SingleEventPage() {
         }`;
 
   return (
-    <main className="single-event-page">
+    <main className="page">
       <h1 className="headingOne">Event</h1>
       <h2 className="subtitle">You are about to score some tickets to</h2>
       <section className="event__info">
