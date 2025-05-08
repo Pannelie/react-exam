@@ -28,7 +28,9 @@ function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
 
   return (
     <div className={boxClassName}>
-      {isMatch && isSingleEventPage && <FontAwesomeIcon icon={faCircleCheck} className="counter__match-icon" />}
+      {isMatch && isSingleEventPage && (
+        <FontAwesomeIcon icon={faCircleCheck} aria-label="This count is matching what´s in your cart" className="counter__match-icon" />
+      )}
 
       <CounterHeader header={header} event={event} count={count} sizeModifier={sizeModifier} />
 
@@ -41,14 +43,10 @@ function CounterBox({ event, header, showMessage, onIncrease, onDecrease }) {
         onDecrease={onDecrease}
       />
       {showMessage && (
-        <span className="counter__match-message">
-          {cartItem ? (
-            <>
-              {cartItem.count} {cartItem.count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!
-            </>
-          ) : (
-            "Du tog bort dina biljetter från varukorgen"
-          )}
+        <span className="counter__match-message show">
+          {cartItem && cartItem.count > 0
+            ? `${cartItem.count} ${cartItem.count === 1 ? "biljett tillagd" : "biljetter tillagda"} i varukorgen!`
+            : "Du har nu 0 biljetter i varukorgen"}
         </span>
       )}
     </div>

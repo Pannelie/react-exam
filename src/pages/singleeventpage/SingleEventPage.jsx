@@ -5,6 +5,7 @@ import useFetchEvents from "../../hooks/useFetchEvents";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import CounterBox from "../../components/counterbox/CounterBox";
+import SingleEvent from "../../components/singleevent/SingleEvent";
 
 import useCounterStore from "../../stores/useCounterStore";
 import "./singleEventPage.css";
@@ -13,35 +14,33 @@ function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
 
-  const increaseCount = useCounterStore((state) => state.increaseCount);
-  const decreaseCount = useCounterStore((state) => state.decreaseCount);
-  const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
-  const counts = useCounterStore((state) => state.counts);
+  const { increaseCount, decreaseCount, addTicketToCart, counts, cartItems } = useCounterStore();
   const count = counts[id] || 0;
-
-  const cartItems = useCounterStore((state) => state.cartItems);
   const cartItem = cartItems.find((item) => item.id === id);
+  const cartCount = cartItem?.count ?? 0;
 
   const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = () => {
     addTicketToCart(event);
     setShowMessage(true);
-  };
-
-  useEffect(() => {
-    if (cartItem?.count === 0) {
+    setTimeout(() => {
       setShowMessage(false);
-    }
-  }, [cartItem]);
-
-  if (loading) return <p className="message">Laddar event...</p>;
-  if (error) return <p className="message">Fel: {error}</p>;
+    }, 3000);
+  };
+  const ariaLabelText =
+    count === 0
+      ? "Välj antal biljetter"
+      : cartCount === count
+      ? `Du har just nu ${cartCount} biljett${cartCount !== 1 ? "er" : ""} till ${event.name} i varukorgen`
+      : `Du har just nu ${cartCount} biljett${cartCount !== 1 ? "er" : ""} till ${event.name}. Klicka för att ändra till ${count} biljett${
+          count !== 1 ? "er" : ""
+        }`;
 
   return (
-    <main className="single-event-page">
+    <main className="page">
       <h1 className="headingOne">Event</h1>
-      <p className="subtitle">You are about to score some tickets to</p>
+      <h2 className="subtitle">You are about to score some tickets to</h2>
       <section className="event__info">
         {loading ? (
           <p className="message">Laddar event...</p>
@@ -49,11 +48,8 @@ function SingleEventPage() {
           <p className="message">Fel: {error}</p>
         ) : event ? (
           <>
-            <h2 className="headingTwo">{event.name}</h2>
-            <p className="event__paragraph-when">
-              {event.when.date} kl {event.when.from} - {event.when.to}
-            </p>
-            <p className="event__paragraph-where">@ {event.where}</p>
+            <SingleEvent event={event} />
+
             <CounterBox
               event={event}
               header={({ event, count }) => `${event.price * count} SEK`}
@@ -62,7 +58,9 @@ function SingleEventPage() {
               onDecrease={() => decreaseCount(id)}
             />
             <Button
-              text={cartItem ? "Uppdatera varukorg" : "Lägg till i varukorgen"}
+              text="Lägg till i varukorgen"
+              aria-label={ariaLabelText}
+              className="main-btn"
               onClick={() => {
                 console.log(`Valde ${count} biljett/-er till ${event.name}`);
                 handleAddToCart();

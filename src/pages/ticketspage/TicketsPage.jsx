@@ -6,7 +6,7 @@ import TicketList from "../../components/ticketlist/TicketList";
 function TicketsPage() {
   return (
     <>
-      <main className="tickets-page">
+      <main className="page">
         <h1 className="headingOne">Tickets</h1>
         <section className="tickets__section">
           <TicketList />

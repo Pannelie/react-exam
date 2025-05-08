@@ -6,7 +6,7 @@ import Footer from "../../components/footer/Footer";
 function HomePage() {
   return (
     <>
-      <main className="home-page">
+      <main className="page page--home">
         <Logo />
         <h1 className="headingOne headingOne--padding">Where It´s @</h1>
         <p className="subtitle">Ticketing made easy</p>

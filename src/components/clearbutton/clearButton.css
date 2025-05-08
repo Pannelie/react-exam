@@ -1,0 +1,10 @@
+.clear-button {
+  background-color: grey;
+  width: fit-content;
+  margin-top: 0.5rem;
+  padding: 0.6rem 0.8rem;
+
+  &:hover {
+    background-color: rgb(88, 88, 88);
+  }
+}

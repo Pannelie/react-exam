@@ -1,0 +1,17 @@
+.event__paragraph-when {
+  color: var(--blue-color);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0.3rem;
+}
+
+.event__paragraph-where {
+  color: var(--font-white-opacity);
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+}
