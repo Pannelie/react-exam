@@ -6,7 +6,7 @@ function ClearButton() {
   const clearCart = useCounterStore((state) => state.clearCart);
   return (
     <button
-      className="clear-button"
+      className="button clear-button"
       onClick={() => {
         clearCart();
       }}

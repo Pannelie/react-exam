@@ -1,15 +1,9 @@
 .clear-button {
-  background-color: darkgrey;
-  color: var(--main-font-color);
+  background-color: grey;
   width: 50%;
   margin-top: 0.5rem;
-  padding: 0.4rem;
-  border: none;
-
-  transition: background-color 0.3s ease-in-out;
-  cursor: pointer;
 
   &:hover {
-    background-color: grey;
+    background-color: rgb(88, 88, 88);
   }
 }

@@ -36,6 +36,7 @@ body {
   border-radius: 3px;
   text-decoration: none;
   font-family: var(--font-family-fira-sans);
+  color: var(--main-font-color);
   text-align: center;
 
   transition: background-color 0.3s ease-in-out;
