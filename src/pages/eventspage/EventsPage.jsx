@@ -21,14 +21,14 @@ function EventsPage() {
         <h1 className="headingOne">Events</h1>
         <SearchBar query={query} setQuery={setQuery} />
 
-        {loading && <p className="message">Laddar events...</p>}
-        {error && <p className="message">Något gick fel: {error}</p>}
+        {loading && <p className="message message--margin-auto">Laddar events...</p>}
+        {error && <p className="message message--margin-auto">Något gick fel: {error}</p>}
 
         {query.trim() ? (
           results.length > 0 ? (
             <SearchList results={results} />
           ) : (
-            <p className="message">Inga träffar</p>
+            <p className="message message--margin-auto">Inga träffar</p>
           )
         ) : (
           <EventList events={events} />

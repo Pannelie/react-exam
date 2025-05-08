@@ -91,5 +91,8 @@ body {
   font-size: 1.4rem;
   font-style: italic;
   text-align: center;
+  margin-top: 1rem;
+}
+.message--margin-auto {
   margin: auto;
 }

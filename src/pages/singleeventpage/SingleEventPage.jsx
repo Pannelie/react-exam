@@ -57,9 +57,9 @@ function SingleEventPage() {
       <h2 className="subtitle">You are about to score some tickets to</h2>
       <section className="event__info">
         {loading ? (
-          <p className="message">Laddar event...</p>
+          <p className="message message--margin-auto">Laddar event...</p>
         ) : error ? (
-          <p className="message">Fel: {error}</p>
+          <p className="message message--margin-auto">Fel: {error}</p>
         ) : event ? (
           <>
             <SingleEvent event={event} />
@@ -82,7 +82,7 @@ function SingleEventPage() {
             />
           </>
         ) : (
-          <p className="message">Eventet hittades inte.</p>
+          <p className="message message--margin-auto">Eventet hittades inte.</p>
         )}
       </section>
       <Footer />

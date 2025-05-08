@@ -17,7 +17,7 @@ function orderPage() {
         <h1 className="headingOne">Orders</h1>
         <section className="order__section">
           {cartItems.length === 0 ? (
-            <p className="message">Varukorgen är tom</p>
+            <p className="message message--margin-auto">Varukorgen är tom</p>
           ) : (
             cartItems.map((event) => (
               <CounterBox
@@ -33,7 +33,7 @@ function orderPage() {
         {cartItems.length > 0 && (
           <>
             <section className="order__summary">
-              <p className="message">Totalt värde på order</p>
+              <p className="message message--margin-auto">Totalt värde på order</p>
               <p className="order__price">{totalPrice()} sek</p>
             </section>
             <Button
