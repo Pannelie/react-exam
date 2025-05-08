@@ -30,6 +30,18 @@ body {
   background-color: var(--main-bg-color);
 }
 
+.button {
+  border: none;
+  padding: 1rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-family: var(--font-family-fira-sans);
+  text-align: center;
+
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
 .headingOne {
   color: var(--highlight-color);
   font-family: var(--font-family-sansita);

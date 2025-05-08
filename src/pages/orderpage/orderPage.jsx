@@ -6,6 +6,7 @@ import useCounterStore from "../../stores/useCounterStore";
 import EventHeader from "../../components/eventheader/EventHeader";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import ClearButton from "../../components/clearbutton/ClearButton";
 
 function orderPage() {
   const navigate = useNavigate();
@@ -37,11 +38,13 @@ function orderPage() {
             </section>
             <Button
               text="Lägg order"
+              className="main-btn"
               onClick={() => {
                 completePurchase();
                 navigate("/tickets");
               }}
             />
+            <ClearButton />
           </>
         )}
       </main>

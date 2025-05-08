@@ -5,23 +5,19 @@ import useFetchEvents from "../../hooks/useFetchEvents";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import CounterBox from "../../components/counterbox/CounterBox";
+import SingleEvent from "../../components/singleevent/SingleEvent";
 
 import useCounterStore from "../../stores/useCounterStore";
 import "./singleEventPage.css";
-import SingleEvent from "../../components/singleevent/SingleEvent";
 
 function SingleEventPage() {
   const { id } = useParams();
   const { event, loading, error } = useFetchEvents(id); //hämtar alla. För att säkerställa att jag inte tappar bort mig om sidan uppdateras
 
-  const increaseCount = useCounterStore((state) => state.increaseCount);
-  const decreaseCount = useCounterStore((state) => state.decreaseCount);
-  const addTicketToCart = useCounterStore((state) => state.addTicketToCart);
-  const counts = useCounterStore((state) => state.counts);
+  const { increaseCount, decreaseCount, addTicketToCart, counts, cartItems } = useCounterStore();
   const count = counts[id] || 0;
-
-  const cartItems = useCounterStore((state) => state.cartItems);
   const cartItem = cartItems.find((item) => item.id === id);
+  const cartCount = cartItem?.count ?? 0;
 
   const [showMessage, setShowMessage] = useState(false);
 
@@ -34,12 +30,12 @@ function SingleEventPage() {
   };
   const ariaLabelText =
     count === 0
-      ? "Välj antal biljetter först"
-      : cartItem && cartItem.count === count
-      ? `Du har just nu ${cartItem.count} biljett${cartItem.count !== 1 ? "er" : ""} till ${event.name} i varukorgen`
-      : `Du har just nu ${cartItem.count} biljett${cartItem.count !== 1 ? "er" : ""} till ${
-          event.name
-        }. Klicka för att ändra till ${count} biljett${count !== 1 ? "er" : ""}`;
+      ? "Välj antal biljetter"
+      : cartCount === count
+      ? `Du har just nu ${cartCount} biljett${cartCount !== 1 ? "er" : ""} till ${event.name} i varukorgen`
+      : `Du har just nu ${cartCount} biljett${cartCount !== 1 ? "er" : ""} till ${event.name}. Klicka för att ändra till ${count} biljett${
+          count !== 1 ? "er" : ""
+        }`;
 
   return (
     <main className="single-event-page">
@@ -64,7 +60,7 @@ function SingleEventPage() {
             <Button
               text={cartItem ? "Uppdatera varukorg" : "Lägg till i varukorgen"}
               aria-label={ariaLabelText}
-              disabled={count === 0}
+              className="main-btn"
               onClick={() => {
                 console.log(`Valde ${count} biljett/-er till ${event.name}`);
                 handleAddToCart();

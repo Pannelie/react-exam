@@ -34,7 +34,7 @@ function EventsPage() {
           <EventList events={events} />
         )}
 
-        <Button text="Din varukorg" to="/orders" />
+        <Button text="Din varukorg" className="main-btn" to="/orders" />
       </main>
       <Footer />
     </>
