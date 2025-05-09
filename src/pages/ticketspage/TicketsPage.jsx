@@ -1,7 +1,8 @@
 import React from "react";
-import "./ticketsPage.css";
 import Footer from "../../components/footer/Footer";
 import TicketList from "../../components/ticketlist/TicketList";
+
+import "./ticketsPage.css";
 
 function TicketsPage() {
   return (

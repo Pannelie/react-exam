@@ -1,7 +1,3 @@
-import { useState } from "react";
-import useFetchEvents from "../../hooks/useFetchEvents";
-import useSearchEvents from "../../hooks/useSearchEvents";
-import SearchList from "../searchlist/SearchList";
 import "./searchBar.css";
 
 function SearchBar({ query, setQuery }) {

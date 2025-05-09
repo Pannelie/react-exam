@@ -47,7 +47,7 @@
 }
 
 .date-format .month {
-  display: block; /* Detta skapar radbrytning */
+  display: block;
 }
 
 .event__title {

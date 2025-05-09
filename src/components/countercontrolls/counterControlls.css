@@ -40,6 +40,6 @@
   align-items: center;
   font-size: 1.8rem;
 
-  border-left: 1px solid var(--highlight-color); /* Smal linje mellan rutorna */
-  border-right: 1px solid var(--highlight-color); /* Smal linje mellan rutorna */
+  border-left: 1px solid var(--highlight-color);
+  border-right: 1px solid var(--highlight-color);
 }

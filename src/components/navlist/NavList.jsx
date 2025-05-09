@@ -1,6 +1,6 @@
 import React from "react";
-import "./navList.css";
 import NavItems from "../navitems/NavItems";
+import "./navList.css";
 
 function NavList() {
   return (

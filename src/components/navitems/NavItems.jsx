@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./navItems.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTicket } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarWeek } from "@fortawesome/free-solid-svg-icons";
+import "./navItems.css";
 
 function NavItems() {
   const location = useLocation();

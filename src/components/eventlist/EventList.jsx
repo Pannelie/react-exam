@@ -1,9 +1,6 @@
-import "./eventList.css";
-import useFetchEvents from "../../hooks/useFetchEvents";
 import EventItem from "../eventitem/EventItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
+import "./eventList.css";
 
 function EventList({ events }) {
   const [isScrolling, setIsScrolling] = useState(false);

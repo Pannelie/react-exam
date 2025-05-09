@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import HomePage from "./pages/homepage/HomePage";
 import EventsPage from "./pages/eventspage/EventsPage";
 import SingleEventPage from "./pages/singleeventpage/SingleEventPage";
 import OrderPage from "./pages/orderpage/orderPage";
-import ErrorPage from "./pages/errorpage/ErrorPage";
 import TicketsPage from "./pages/ticketspage/TicketsPage";
+import ErrorPage from "./pages/errorpage/ErrorPage";
 
 function App() {
   return (
