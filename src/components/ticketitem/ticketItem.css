@@ -99,20 +99,17 @@
 .ticket__barcode {
   grid-column: 1/-1;
   width: 100%;
-  color: rgba(0, 0, 0, 0.4);
   text-align: center;
   font-family: var(--font-family-fira-sans);
-  font-size: 12px;
   font-weight: 700;
   letter-spacing: 3.6px;
 }
+.ticket__barcode rect {
+  fill: rgba(0, 0, 0, 0.8);
+}
 
-.ticket__barcode-label {
-  grid-column: 1/-1;
-  color: rgba(0, 0, 0, 0.4);
-  text-align: center;
+.ticket__barcode text {
   font-family: var(--font-family-fira-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 3.6px;
+  fill: rgba(0, 0, 0, 0.4); /* Sätt till valfri färg */
+  font-size: 12px !important;
 }

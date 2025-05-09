@@ -5,6 +5,7 @@ import Barcode from "react-barcode";
 
 function TicketItem({ ticket }) {
   console.log(`Välkommen till ${ticket.name} plats ${ticket.seat} den ${ticket.when.date}`);
+  const barCodeId = `#${ticket.ticketId}` || "Ogiltig biljett";
   return (
     <li className="ticket__list-item">
       <section className="ticket__section ticket__section--title">
@@ -34,8 +35,7 @@ function TicketItem({ ticket }) {
         <p className="ticket__seat">{ticket.seat}</p>
       </section>
       <section className="ticket__section">
-        <Barcode value={ticket.ticketId} width={2} height={50} displayValue={false} className="ticket__barcode" />
-        <p className="ticket__barcode-label">#{ticket.ticketId || "Kunde inte läsa in barcode."}</p>
+        <Barcode value={barCodeId} width={2} height={50} displayValue={true} className="ticket__barcode" />
       </section>
     </li>
   );

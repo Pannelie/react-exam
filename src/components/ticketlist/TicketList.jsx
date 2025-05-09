@@ -22,6 +22,7 @@ function TicketList() {
             effect="slide"
             grabCursor={true}
             modules={[Navigation]}
+            loop={true}
             navigation={{
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
@@ -30,11 +31,13 @@ function TicketList() {
           >
             {Object.values(purchasedTickets)
               .flat()
-              .map((ticket) => (
-                <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
-                  <TicketItem ticket={ticket} />
-                </SwiperSlide>
-              ))}
+              .map((ticket) => {
+                return (
+                  <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
+                    <TicketItem ticket={ticket} />
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
           <div className="ticket__swiper-buttons">
             <button className="swiper-button-prev" aria-label="previous ticket"></button>
