@@ -1,7 +1,5 @@
 # VG uppgift
 
-Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom i klassen och som du läser på om och implementerar i din applikation. Utöver detta så beskriver du i din README.md-fil, hur dessa hookar/bibliotek fungerar, samt varför du tycker att de passar just din applikation. För VG måste du även ha en god struktur på din applikation, med god uppdelning i Pages och Komponenter. Utöver det så måste ni inte dela upp koden i en massa egna custom hooks och dylikt, även om det såklart är tillåtet om man vill det.
-
 **Allmän lärdom**
   Jag har läst mig till att majoriteten, nästintill alla externa bibliotek, har egna css filer. Vilket ibland kan ställa till saker när man ska justera utseendet till sitt egna projekt. Många gånger undrade jag varför jag inte fick flex, font-size eller color att fungera. Men när jag inspekterade med dev-tools kunde jag komma fram till att en annan class då alltid var högre i hierarkin. För att komma förbi den tröskeln blev lösningen vid de tillfällena att använda !important för att prioritera min egen styling. Om jag är väldigt specifik i min CSS selektor så går det att lösa även på detta sätt, nog en bättre lösning på längre sikt.
 
