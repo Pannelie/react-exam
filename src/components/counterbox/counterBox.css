@@ -36,18 +36,18 @@
   align-items: center;
   justify-content: center;
 
-  color: var(--blue-color); /* Färg på själva ikonen */
-  font-size: 1.8rem; /* Storlek på ikonen */
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1); /* Skugga om du vill ha det */
+  color: var(--blue-color);
+  font-size: 1.8rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 .counter__match-message {
   position: absolute;
   width: 100%;
-  bottom: -40px; /* Justera avståndet från botten */
-  left: 50%; /* Centrerar meddelandet horisontellt */
-  transform: translateX(-50%); /* Finjustera centrerandet */
-  font-size: 1rem; /* Justera textstorlek om det behövs */
-  color: var(--main-font-color); /* Eller en annan färg för meddelandet */
-  opacity: 1; /* Gör meddelandet synligt utan att använda animation */
-  transition: opacity 0.3s ease-in-out; /* Om du vill ha en mjuk övergång när meddelandet dyker upp */
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: var(--main-font-color);
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }

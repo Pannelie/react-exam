@@ -1,12 +1,15 @@
 import React from "react";
-import "./orderPage.css";
+import { useNavigate } from "react-router-dom";
+
 import Footer from "../../components/footer/Footer";
 import CounterBox from "../../components/counterbox/CounterBox";
 import useCounterStore from "../../stores/useCounterStore";
 import EventHeader from "../../components/eventheader/EventHeader";
 import Button from "../../components/button/Button";
-import { useNavigate } from "react-router-dom";
+
 import ClearButton from "../../components/clearbutton/ClearButton";
+
+import "./orderPage.css";
 
 function orderPage() {
   const navigate = useNavigate();

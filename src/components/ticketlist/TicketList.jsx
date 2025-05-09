@@ -1,12 +1,13 @@
 import React from "react";
-import "./ticketList.css";
 import useCounterStore from "../../stores/useCounterStore";
 import TicketItem from "../ticketitem/TicketItem";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation";
+import "./ticketList.css";
 
 function TicketList() {
   const purchasedTickets = useCounterStore((state) => state.purchasedTickets);

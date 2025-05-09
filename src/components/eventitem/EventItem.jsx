@@ -1,7 +1,7 @@
 import React from "react";
-import "./eventItem.css";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../utils/utils";
+import "./eventItem.css";
 
 function EventItem({ id, name, price, where, when }) {
   const { date, from, to } = when;

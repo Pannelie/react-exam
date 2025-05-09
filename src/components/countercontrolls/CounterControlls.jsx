@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-import "./counterControlls.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleMinus, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import useCounterStore from "../../stores/useCounterStore";
+import "./counterControlls.css";
 
 function CounterControlls({ event, sizeModifier, isOrderPage = false, onIncrease, onDecrease }) {
   const { counts, cartItems, increaseCartItem, decreaseCartItem, increaseCount, decreaseCount } = useCounterStore();

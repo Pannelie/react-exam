@@ -20,10 +20,6 @@
 
   --heading-one: 2rem;
   --heading-two: 2.1rem;
-
-  /* skapa en RGBA färg för grå effekt på färdiga tickets */
-  /* där ökas opacityn med 3% per ny section inuti */
-  /* skapa en gradient bg */
 }
 
 .page {

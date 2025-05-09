@@ -9,7 +9,6 @@ import SingleEvent from "../../components/singleevent/SingleEvent";
 
 import useCounterStore from "../../stores/useCounterStore";
 import "./singleEventPage.css";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 
 function SingleEventPage() {
   const { id } = useParams();

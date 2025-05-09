@@ -1,7 +1,7 @@
 import React from "react";
-import "./ticketItem.css";
 import { formatDate } from "../../utils/utils";
 import Barcode from "react-barcode";
+import "./ticketItem.css";
 
 function TicketItem({ ticket }) {
   console.log(`Välkommen till ${ticket.name} plats ${ticket.seat} den ${ticket.when.date}`);

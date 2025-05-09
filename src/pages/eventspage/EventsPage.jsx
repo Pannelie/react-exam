@@ -1,14 +1,15 @@
 import { useState } from "react";
-import "./eventsPage.css";
 
 import Footer from "../../components/footer/Footer";
 import EventList from "../../components/eventlist/EventList";
 import SearchBar from "../../components/searchbar/SearchBar";
 import SearchList from "../../components/searchlist/SearchList";
+import Button from "../../components/button/Button";
 
 import useSearchEvents from "../../hooks/useSearchEvents";
 import useFetchEvents from "../../hooks/useFetchEvents";
-import Button from "../../components/button/Button";
+
+import "./eventsPage.css";
 
 function EventsPage() {
   const [query, setQuery] = useState(``);
