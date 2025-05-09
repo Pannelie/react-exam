@@ -2,11 +2,12 @@
 
 Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom i klassen och som du läser på om och implementerar i din applikation. Utöver detta så beskriver du i din README.md-fil, hur dessa hookar/bibliotek fungerar, samt varför du tycker att de passar just din applikation. För VG måste du även ha en god struktur på din applikation, med god uppdelning i Pages och Komponenter. Utöver det så måste ni inte dela upp koden i en massa egna custom hooks och dylikt, även om det såklart är tillåtet om man vill det.
 
-- **Allmän lärdom**
+**Allmän lärdom**
   Jag har läst mig till att majoriteten, nästintill alla externa bibliotek, har egna css filer. Vilket ibland kan ställa till saker när man ska justera utseendet till sitt egna projekt. Många gånger undrade jag varför jag inte fick flex, font-size eller color att fungera. Men när jag inspekterade med dev-tools kunde jag komma fram till att en annan class då alltid var högre i hierarkin. För att komma förbi den tröskeln blev lösningen vid de tillfällena att använda !important för att prioritera min egen styling. Om jag är väldigt specifik i min CSS selektor så går det att lösa även på detta sätt, nog en bättre lösning på längre sikt.
 
+
 - **Lottie React**
-  På min error page ville jag ha en animation för att förtydliga för användaren att något gått fel (kompletterat med text). Lottie React var för min del då ett bra alternativ då det erbjuder animeringar i JSON format. Eftersom det är just JSON så är filstorleken mycket mindre jämfört med video eller GIF samt att de är vektorbaserade vilket för att kvaliten inte förloras när man ökar eller minskar skärmstorlek. De blir med andra ord inte pixliga.
+  På min error page ville jag ha en animation för att förtydliga för användaren att något gått fel (kompletterat med text). Lottie React var för min del då ett bra alternativ då det erbjuder animeringar i JSON format. Eftersom det är just JSON så är filstorleken mycket mindre jämfört med video eller GIF samt att de är vektorbaserade vilket för att kvaliten inte förloras när man ökar eller minskar skärmstorlek. De blir med andra ord inte pixliga. Jag valde endast att ha Lottie på min error page, men jag hade även kunnat komplettera min app med att ha animationer vid t.ex. sidladdningar eller när min söklista inte genererade resultat.
 
   **Det går även att skicka med olika props såsom:**
     - animationData: JSON data som definierar Lottie animationen, den är obligatorisk.
@@ -14,7 +15,6 @@ Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom 
     - loop: animationen upprepas om och om igen, loopas.
     - speed: styr hastigheten. 1 är normal hastighet, ju högre siffra desto snabbare spelas animationen.
 
-Jag valde endast att ha Lottie på min error page, men jag hade även kunnat komplettera min app med att ha animationer vid t.ex. sidladdningar eller när min söklista inte genererade resultat.
 
 - **Swiper**
   Jag fick användning för Swiper för att visuellt visa upp köpta biljetter. Den gjorde det visuellt snyggt för användaren att tydligt se aktuell biljett samt enkelt både swipa och klicka sig fram till nästa biljett. Swiper är huvudkomponenten för min karusell och swiperslide som jag också importerade är de enskilda slides som mina tickets ligger unuti. Till dessa finns också css filer, en för swiper i stort och en för min navigation modul. Utan dessa css filer blir det väldigt svårt att få till funktionaliteten, styling och mina knappar i navigation kommer inte heller fungera som de ska. Viktigt att inte glömma det.
@@ -28,6 +28,7 @@ Jag valde endast att ha Lottie på min error page, men jag hade även kunnat kom
   - grabCursor: Om den är true så förvandlas muspekaren till en hand när det går att dra swipern.
   - speed={300}: Standardvärdet är 300ms vilket innebär att jag inte behöver skriva ut speed om jag nu inte vill ha en annan hastighet. Ju högre siffra desto snabbare byts min slide till nästa.
 
+
 - **Fontawesome**
   Jag fick användning för fontAwesomes bibliotek när jag behövde ikoner till min app. Jag villa ha det för en visuellt tydlig navigering där en icon representerade var jag befann mig. t.ex. ett hus till homepage och en biljett för att se mina köpte biljetter på ticketpage. Jag fick även användning för ikoner när jag ska boka biljetter med - och + icon, samt bekräftelse checkmark på event page när count överensstämmer med vad som finns i min cart. Just för att göra det extra tydligt för användaren vad som sker. För att kunna använda fontawesome behöver man först installera grundpaketet @fortawesome/react-fontawesome som är en komponent just för att kunna rendera ikoner. Sedan kompletterar man med t.ex. @fortawesome/free-solid-svg-icons beroende på vad det är för typ av ikoner man vill använda- jag ville ha gratis solid ikoner. Det som är bra med detta bibliotek är att de är vektorbaserade, vilket gör att de håller sin snygga form med bra skärpa oavsett skärmstorlek.
 
@@ -38,6 +39,7 @@ Jag valde endast att ha Lottie på min error page, men jag hade även kunnat kom
   - spin: gör att ikonen roterar
   - pulse: gör att ikonen får en pulserande effekt
   - flip: Vänder den antingen horisontellt eller vertikalt . T.ex. flip="horizontal"
+
 
 - **React-barcode**
   Detta är ett extern bibliotek för att generera fram streckkoder med SVG. Den baserar sitt utseende på det value du skickar med. Är det unikt så kommer även det visuella utseendet vara unikt. Detta passade väldigt bra in i detta projekt eftersom jag behövde streckkod som komplement till mina olika biljetter, och jag ville ha ett riktigt syfte och funktion med streckkoden, inte bara ett hårdkodad element eller bild.
