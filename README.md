@@ -1,76 +1,51 @@
-# Indivuduell Examination - Where It's @
+# VG uppgift
 
-Dags att rocka koden! Din mission är att bygga frontenden till Where it’s @ – en app där lokala musikevent får stå i rampljuset.
-Med React som ditt instrument ska du komponera en upplevelse som får användarna att klicka vidare till nästa spelning med ett leende.
-Komponenter, props och state – tänk modulärt, tänk snyggt, tänk “det här skulle jag själv vilja använda”.
-Du bygger alltså inte bara ett gränssnitt – du bygger pulsen i stadens musikscen.
+**Allmän lärdom**
+  Jag har läst mig till att majoriteten, nästintill alla externa bibliotek, har egna css filer. Vilket ibland kan ställa till saker när man ska justera utseendet till sitt egna projekt. Många gånger undrade jag varför jag inte fick flex, font-size eller color att fungera. Men när jag inspekterade med dev-tools kunde jag komma fram till att en annan class då alltid var högre i hierarkin. För att komma förbi den tröskeln blev lösningen vid de tillfällena att använda !important för att prioritera min egen styling. Om jag är väldigt specifik i min CSS selektor så går det att lösa även på detta sätt, nog en bättre lösning på längre sikt.
 
-## Uppdrag
 
-Ditt uppdrag är att koda ihop en frontend till biljettjänsten _Where its @_. Den ska se ut enligt nedan mockup. Du har också tillgång till [Figma-länk](https://www.figma.com/file/vcgWPPy2q44oZZ2eORL1wB/Where-its-light?node-id=0%3A1) för exportering av assets, färger, kika fonter etc.
+- **Lottie React**
+  På min error page ville jag ha en animation för att förtydliga för användaren att något gått fel (kompletterat med text). Lottie React var för min del då ett bra alternativ då det erbjuder animeringar i JSON format. Eftersom det är just JSON så är filstorleken mycket mindre jämfört med video eller GIF samt att de är vektorbaserade vilket för att kvaliten inte förloras när man ökar eller minskar skärmstorlek. De blir med andra ord inte pixliga. Jag valde endast att ha Lottie på min error page, men jag hade även kunnat komplettera min app med att ha animationer vid t.ex. sidladdningar eller när min söklista inte genererade resultat.
 
-![screen](./screen.png)
+  **Det går även att skicka med olika props såsom:**
+    - animationData: JSON data som definierar Lottie animationen, den är obligatorisk.
+    - autoplay: gör att animationen startar automatiskt när den laddas.
+    - loop: animationen upprepas om och om igen, loopas.
+    - speed: styr hastigheten. 1 är normal hastighet, ju högre siffra desto snabbare spelas animationen.
 
-## Tekniska krav för godkänt
 
-Du skall i denna uppgift för att få godkänt visa att du behärskar följande tekniker och delar inom React:
+- **Swiper**
+  Jag fick användning för Swiper för att visuellt visa upp köpta biljetter. Den gjorde det visuellt snyggt för användaren att tydligt se aktuell biljett samt enkelt både swipa och klicka sig fram till nästa biljett. Swiper är huvudkomponenten för min karusell och swiperslide som jag också importerade är de enskilda slides som mina tickets ligger unuti. Till dessa finns också css filer, en för swiper i stort och en för min navigation modul. Utan dessa css filer blir det väldigt svårt att få till funktionaliteten, styling och mina knappar i navigation kommer inte heller fungera som de ska. Viktigt att inte glömma det.
 
-- Pages & Components
-- useState & useEffect
-- Props
-- API-hantering
-- Routing mellan Pages
-- Avancerad statehantering med Zustand
+  **Vanliga props:**
 
-## Krav för väl godkänt
+  - slidesPerView: Standardvärd är 1, en man väljer här hur många slides som ska visas samtidigt. Det går med både heltal och decimalform såsom 1.5
+  - spacebetween: Standarvärde är 0 pixlar. Den bestämmer avståndet till nästa slide. Om jag hade haft slidesPerView={2} så hade mina slides visats kant i kant med värdet 0 på spaceBetween.
+  - loop: Den loopar tillbaka till start efter att sista slide har visats.
+  - Navigation: Gör att man kan lägga till navigeringspilar för att byta slide. Man kan koppla en specifik knapp och ge css styling genom att skriva prevEl: ".swiper-button-prev" och nextEl: ".swiper-button-next". Det är en inbyggd inställning för navigation.
+  - grabCursor: Om den är true så förvandlas muspekaren till en hand när det går att dra swipern.
+  - speed={300}: Standardvärdet är 300ms vilket innebär att jag inte behöver skriva ut speed om jag nu inte vill ha en annan hastighet. Ju högre siffra desto snabbare byts min slide till nästa.
 
-Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom i klassen och som du läser på om och implementerar i din applikation. Utöver detta så beskriver du i din _README.md_-fil, hur dessa hookar/bibliotek fungerar, samt varför du tycker att de passar just din applikation. För VG måste du även ha en god struktur på din applikation, med god uppdelning i Pages och Komponenter. Utöver det så måste ni inte dela upp koden i en massa egna custom hooks och dylikt, även om det såklart är tillåtet om man vill det.
 
-### Tips på externa Bibliotek
+- **Fontawesome**
+  Jag fick användning för fontAwesomes bibliotek när jag behövde ikoner till min app. Jag villa ha det för en visuellt tydlig navigering där en icon representerade var jag befann mig. t.ex. ett hus till homepage och en biljett för att se mina köpte biljetter på ticketpage. Jag fick även användning för ikoner när jag ska boka biljetter med - och + icon, samt bekräftelse checkmark på event page när count överensstämmer med vad som finns i min cart. Just för att göra det extra tydligt för användaren vad som sker. För att kunna använda fontawesome behöver man först installera grundpaketet @fortawesome/react-fontawesome som är en komponent just för att kunna rendera ikoner. Sedan kompletterar man med t.ex. @fortawesome/free-solid-svg-icons beroende på vad det är för typ av ikoner man vill använda- jag ville ha gratis solid ikoner. Det som är bra med detta bibliotek är att de är vektorbaserade, vilket gör att de håller sin snygga form med bra skärpa oavsett skärmstorlek.
 
-- Material UI
-- Chakra UI
-- Swiper
-- Fontawesome
-- Icons8
-- Framer Motion
-- Redux (kan användas istället för Zutand)
-- TanStack React Query
-- react-confetti
-- UUID
+  **Exempel på props för fontawesome:**
+  - Icon: Obligatoriskt, definierar vilken ikon som ska användas.
+  - Size: Som namnet, bestämmer storlek. Kan benämnas som i t.ex. xs (extrasmall), 2x(2gånger så stor) eller 10px.
+  - Color: Bestämma färg, om man inte vill blanda in CSS.
+  - spin: gör att ikonen roterar
+  - pulse: gör att ikonen får en pulserande effekt
+  - flip: Vänder den antingen horisontellt eller vertikalt . T.ex. flip="horizontal"
 
-React-router-dom, axios osv som vi gått igenom under lektioner räknas inte. Om ni väljer lite "tyngre" bibliotek (alltså inte ikonbibliotek) så kan ni höra av er till mig för då kanske 2 st räcker. 
 
-## Övriga krav
+- **React-barcode**
+  Detta är ett extern bibliotek för att generera fram streckkoder med SVG. Den baserar sitt utseende på det value du skickar med. Är det unikt så kommer även det visuella utseendet vara unikt. Detta passade väldigt bra in i detta projekt eftersom jag behövde streckkod som komplement till mina olika biljetter, och jag ville ha ett riktigt syfte och funktion med streckkoden, inte bara ett hårdkodad element eller bild.
+  Det gäller att ha koll på vilket värde jag skickar in. Jag hade en fallgrop där jag skickade in ticket.id i första hand, vilket resulterade i att mina streckkoder skiljde sig åt mellan de olika eventen, men inte mellan biljetterna inuti samma event eftersom de då hade samma value. Istället valde jag då att skicka in mitt ticket.ticketId som jag genererat fram bestående av olika siffror och stora bokstäver. Det innebär alltså att alla värden blir unika, och så även deras streckkoder.
 
-- Er app måste inte vara pixel-perfekt mot skissen, men ni måste ha en enhetlig, responsiv design
-- Appen skall se bra ut på alla skärmstorlekar mellan 375px - 500px
-- Tillgänglighetskontroll/anpassning skall göras innan inlämning
-- Sidan får aldrig krascha
-- När en beställing gjorts skall en biljett skapas där ni genererar fram ett biljettID på 5 tecken (endast STORA BOKSTÄVER och siffror tillåtna), en Sektion och en sittplats. Vid köp av flera biljetter till ett och samma evenemang skall Sektionen vara samma på alla biljetter för det eventet, och sittplatserna skall vara bredvid varandra.
-
-## Övrig info
-
-Figma-skissen ger inte en fullständig överblick över hur projektet bör byggas. [Se tillhörande introduktionsfilm](https://funet.sharepoint.com/:v:/s/FrontendutvecklareYH-Fe24Distans/Eb0ibwDmzD5Cigvm9insGJwBGZGubnWDvoVs1fJJZ8-J4w?e=bfj7lD&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D) där det förklaras vilka tolkningar ni kan få lov att göra. (Laddas upp efter genomgången med distansklassen).
-
-## Resurser
-
-- Figma-skissen [hittar ni här](https://www.figma.com/file/vcgWPPy2q44oZZ2eORL1wB/Where-its-light?node-id=0%3A1)
-
-- Ett av typsnitten som används i skissen, Sansita One, [hittar ni här](https://www.1001fonts.com/sansita-one-font.html)
-
-- Som vanligt har ni tillgång till datan i mitt API genom nedanstående anrop:
-
-```
-GET https://santosnr6.github.io/Data/events.json
-```
-
-## Halvtidsuppföljning
-
-Nästa fredag den 2/5 kör vi halvtidsuppföljning igen. Jag och Jacob kommer samla er i mindre grupper om 4-5 studerande, där ni får visa upp vad ni hunnit med så långt, vad ni har störst problem med, insikter ni slagits av etc. Dessa möten kommer vara ca 20-25 minuter långa, så se till att komma väl förberedda där ni redan på förhand skrivit upp era eventuella funderingar. Detta gör vi för er skull, så vi kan säkerställa att ni får kontinuerlig feedback, inte bygger fel och inte halkar efter.
-
-Ni bokar in er [via denna länk](https://docs.google.com/spreadsheets/d/1RDqNrn4iVknkT4vJwDWULNPqm8e2bsgHynRPu6JIk4k/edit?usp=sharing) där ni även hittar länk till korrekt Teams-rum.
-
-## Inlämning
-
-Inlämning sker som vanligt i form av att en länk till ditt gitrepo laddas up på Azomo, senast kl 23:59 den 9/5.
+  **Exempel på props:**
+  - Value: (obligatoriskt) Det string värde jag skickat med, som hjälper med generera unik barcode.
+  - format: bestämmer vilken typ av streckkod som ska genereras, t.ex. "CODE128" (som är standard och stödjer både bokstäver och siffror), "EAN13", "UPC" etc.
+  - background -kan välja färg eller t.ex. transparent
+  - height och width: bestämmer höjd och bredd
+  - displayValue={true}: Visar upp det stringvärde jag skickat med. Det gör att man även kan komma åt det text-element som används inom den SVG:n. För att styla detta i sin tur kan man inte bara styla direkt på min barcode via dess className, utan man måste rikta in sig specifikt på text-elementet. T.ex. .ticket_barcode text. Och även om det är en text så behövs "fill" istället för "color" eftersom den fortfarande är del av en SVG-fil.

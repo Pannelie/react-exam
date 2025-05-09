@@ -1,0 +1,96 @@
+.event__link {
+  text-decoration: none;
+  color: var(--main-font-color);
+  list-style: none;
+  padding-bottom: 2rem;
+  width: 100%;
+}
+
+.event__link:last-of-type {
+  padding-bottom: 0;
+}
+.event__list-item {
+  display: grid;
+  grid-template-columns: auto 1fr 2rem;
+  grid-template-rows: 1fr;
+  width: 100%;
+}
+
+.event__date-box {
+  display: flex;
+  place-items: center;
+
+  grid-column: 1 / 2;
+
+  border-radius: 3px;
+  padding: 0.7rem;
+  margin-right: 2rem;
+
+  border: 1px var(--main-font-color) solid;
+  text-align: center;
+  width: 3.4rem;
+  aspect-ratio: 1;
+  overflow: hidden;
+
+  font-family: var(--font-family-fira-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.event__info-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+
+  border-bottom: 1px rgba(255, 255, 255, 0.3) solid;
+}
+
+.date-format .month {
+  display: block;
+}
+
+.event__title {
+  color: #fff;
+  text-shadow: var(--font-shadow);
+  font-family: var(--font-family-fira-sans);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  grid-column: 1 / 3;
+}
+
+.event__where {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Fira Sans";
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  grid-column: 1 / 3;
+}
+
+.event__when {
+  color: #d0d0d0;
+  font-family: "Fira Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.event__price {
+  color: var(--blue-color);
+  align-self: flex-end;
+  justify-self: flex-end;
+
+  color: #37aeab;
+  text-align: right;
+  font-family: "Fira Sans";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

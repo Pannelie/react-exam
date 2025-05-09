@@ -1,0 +1,17 @@
+.main-btn {
+  background: #37aeab;
+  padding: 1rem;
+  width: 100%;
+  margin-top: auto;
+  color: var(--main-font-color);
+  font-size: 22px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: var(--dark-blue);
+  }
+}
+
+.button--bottom {
+  margin-top: auto;
+}

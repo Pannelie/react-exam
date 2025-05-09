@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-bg-color: #231f42;
+  --main-font-color: #ffffff;
+  --highlight-color: #f56b9a;
+  --dark-pink: #89324f;
+  --blue-color: #37aeab;
+  --dark-blue: #298a86;
+
+  --font-white-opacity: rgba(255, 255, 255, 0.7);
+  --font-shadow: 1px 1px 0px #f56b9a;
+
+  --font-family-sansita: "Sansita One", sans-serif;
+  --font-family-fira-sans: "Fira Sans", sans-serif;
+
+  --heading-one: 2rem;
+  --heading-two: 2.1rem;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  padding: 2rem 2rem 1.5rem;
+  background-color: var(--main-bg-color);
+}
+
+.button {
+  border: none;
+  border-radius: 3px;
+  text-decoration: none;
+  font-family: var(--font-family-fira-sans);
+  color: var(--main-font-color);
+  text-align: center;
+
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.headingOne {
+  color: var(--highlight-color);
+  font-family: var(--font-family-sansita);
+  font-size: var(--heading-one);
+  font-weight: 400;
+
+  text-align: center;
+}
+
+.headingOne--padding {
+  padding-top: 2rem;
+}
+
+.headingTwo {
+  color: var(--highlight-color);
+  font-family: var(--font-family-sansita);
+  font-size: var(--heading-two);
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--main-font-color);
+  font-family: var(--font-family-fira-sans);
+  font-style: italic;
+  font-size: 1.37rem;
+  font-weight: 300;
+
+  margin: 1.5rem 0 1.6rem;
+  text-align: center;
+}
+
+.paragraph {
+  color: var(--main-font-color);
+}
+
+.message {
+  color: var(--main-font-color);
+  font-family: var(--font-family-fira-sans);
+  font-size: 1.4rem;
+  font-style: italic;
+  text-align: center;
+  margin-top: 1rem;
+}
+.message--margin-auto {
+  margin: auto;
+}

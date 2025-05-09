@@ -1,0 +1,115 @@
+.ticket__list-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
+  width: 70%;
+  /* max-width: 300px; */
+  height: fit-content;
+  padding: 0.9rem 0;
+
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.ticket__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ticket__section--title {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  padding: 0.2rem;
+}
+
+.ticket__time-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+  border-top: 1px dashed rgba(0, 0, 0, 0.4);
+}
+
+.ticket__title {
+  grid-column: 1 /-1;
+  color: var(--highlight-color);
+  font-family: var(--font-family-sansita);
+  font-size: 26px;
+  font-weight: 400;
+  padding: 0 0.4rem;
+}
+
+.ticket__category {
+  grid-column: 1 /-1;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: var(--font-family-fira-sans);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ticket__category--padding-left {
+  padding-left: 0.4rem;
+}
+
+.ticket__paragraph-when {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: var(--font-family-fira-sans);
+  font-size: 18px;
+  font-weight: 500;
+  /* padding-left: 0.4rem; */
+}
+
+.ticket__paragraph-where {
+  grid-column: 1 /-1;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: var(--font-family-fira-sans);
+  font-size: 18px;
+  font-weight: 600;
+  padding-left: 0.4rem;
+  /* margin-bottom: 1.5rem; */
+}
+
+.ticket__time-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0rem 0.5rem 0.4rem;
+  /* border-bottom: 1px dashed rgba(0, 0, 0, 0.4); */
+}
+
+.ticket__time-box:nth-of-type(2) {
+  border-left: 1px dashed rgba(0, 0, 0, 0.4);
+  border-right: 1px dashed rgba(0, 0, 0, 0.4);
+}
+
+.ticket__seat {
+  grid-column: 1/-1;
+  padding-left: 0.4rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: var(--font-family-fira-sans);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.ticket__barcode {
+  grid-column: 1/-1;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-family-fira-sans);
+  font-weight: 700;
+  letter-spacing: 3.6px;
+}
+.ticket__barcode rect {
+  fill: rgba(0, 0, 0, 0.8);
+}
+
+.ticket__barcode text {
+  font-family: var(--font-family-fira-sans);
+  fill: rgba(0, 0, 0, 0.4); /* Sätt till valfri färg */
+  font-size: 12px !important;
+}

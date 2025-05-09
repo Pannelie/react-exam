@@ -1,0 +1,58 @@
+.ticket__swiper-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/*Min swiper komponent*/
+.ticket__swiper {
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  z-index: 1;
+}
+
+/*Varje slide*/
+.ticket__swiper-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+.ticket__swiper-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5rem;
+  transform: translateY(-50%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: var(--highlight-color) !important;
+  border: none;
+  font-size: 1rem !important;
+  cursor: pointer;
+  pointer-events: all; /* Återaktivera klick bara på knapparna */
+  z-index: 101;
+}
+.swiper-button-prev {
+  position: absolute;
+  left: 0px !important;
+}
+
+.swiper-button-next {
+  position: absolute;
+  right: 0px !important;
+}
+
+.swiper-slide-shadow,
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  display: none !important;
+}

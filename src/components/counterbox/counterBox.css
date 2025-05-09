@@ -1,0 +1,53 @@
+.counter__box {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+
+  color: var(--main-font-color);
+  text-align: center;
+  border: 2px solid var(--highlight-color); /* Tjock yttre ram */
+  border-radius: 3px;
+  position: relative;
+}
+
+.counter__box--event-page {
+  width: 80%;
+  margin-top: 2rem;
+}
+
+.counter__box--order-page {
+  width: 100%;
+
+  margin-bottom: 1rem;
+}
+
+/* .counter__box--match {
+  background-color: rgba(255, 176, 241, 0.3);
+} */
+
+.counter__match-icon {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--blue-color);
+  font-size: 1.8rem;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+.counter__match-message {
+  position: absolute;
+  width: 100%;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: var(--main-font-color);
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}

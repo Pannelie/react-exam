@@ -1,0 +1,23 @@
+.nav__list-item {
+  color: var(--main-font-color);
+  font-family: var(--font-family-sansita);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.nav__link {
+  color: var(--dark-pink);
+  text-decoration: none;
+  padding: 1.3rem 1.8rem;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--main-font-color);
+  }
+  &.active {
+    color: var(--main-font-color);
+    svg {
+      color: var(--main-font-color);
+    }
+  }
+}

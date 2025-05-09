@@ -1,0 +1,17 @@
+.counter__header {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid var(--highlight-color);
+  width: 100%;
+
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.counter__header--event-page {
+  padding: 1.2rem;
+}
+
+.counter__header--order-page {
+  padding: 0.3rem 0.6rem;
+}
