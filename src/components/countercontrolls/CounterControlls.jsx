@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./counterControlls.css";
-import { FontAwesomeIcon } from "@awesome/react-fontawesome";
-import { faCircleMinus, faCirclePlus } from "@awesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleMinus, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 import useCounterStore from "../../stores/useCounterStore";
 
