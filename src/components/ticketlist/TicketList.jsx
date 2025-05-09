@@ -2,7 +2,6 @@ import React from "react";
 import "./ticketList.css";
 import useCounterStore from "../../stores/useCounterStore";
 import TicketItem from "../ticketitem/TicketItem";
-import { generateTicketID } from "../../utils/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -23,6 +22,7 @@ function TicketList() {
             effect="slide"
             grabCursor={true}
             modules={[Navigation]}
+            loop={true}
             navigation={{
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
