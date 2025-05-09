@@ -10,10 +10,10 @@ Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom 
 
 **Det går även att skicka med olika props såsom:**
 
-- animationData: JSON data som definierar Lottie animationen, den är obligatorisk.
-- autoplay: gör att animationen startar automatiskt när den laddas.
-- loop: animationen upprepas om och om igen, loopas.
-- speed: styr hastigheten. 1 är normal hastighet, ju högre siffra desto snabbare spelas animationen.
+  - animationData: JSON data som definierar Lottie animationen, den är obligatorisk.
+  - autoplay: gör att animationen startar automatiskt när den laddas.
+  - loop: animationen upprepas om och om igen, loopas.
+  - speed: styr hastigheten. 1 är normal hastighet, ju högre siffra desto snabbare spelas animationen.
 
 Jag valde endast att ha Lottie på min error page, men jag hade även kunnat komplettera min app med att ha animationer vid t.ex. sidladdningar eller när min söklista inte genererade resultat.
 
