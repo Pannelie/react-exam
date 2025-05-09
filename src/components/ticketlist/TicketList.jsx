@@ -2,6 +2,7 @@ import React from "react";
 import "./ticketList.css";
 import useCounterStore from "../../stores/useCounterStore";
 import TicketItem from "../ticketitem/TicketItem";
+import { generateTicketID } from "../../utils/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -30,11 +31,13 @@ function TicketList() {
           >
             {Object.values(purchasedTickets)
               .flat()
-              .map((ticket) => (
-                <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
-                  <TicketItem ticket={ticket} />
-                </SwiperSlide>
-              ))}
+              .map((ticket) => {
+                return (
+                  <SwiperSlide key={ticket.ticketId} className="ticket__swiper-slide">
+                    <TicketItem ticket={ticket} />
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
           <div className="ticket__swiper-buttons">
             <button className="swiper-button-prev" aria-label="previous ticket"></button>
