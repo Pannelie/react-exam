@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useFetchEvents from "../../hooks/useFetchEvents";
 
 import Footer from "../../components/footer/Footer";
@@ -21,22 +21,10 @@ function SingleEventPage() {
 
   const [showMessage, setShowMessage] = useState(false);
 
-  useEffect(() => {
-    if (cartItem) {
-      setShowMessage(true);
-    } else {
-      setShowMessage(false);
-    }
-    const timer = setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [cartItems, event.id]);
-
   const handleAddToCart = () => {
     addTicketToCart(event);
     setShowMessage(true);
+
     setTimeout(() => {
       setShowMessage(false);
     }, 3000);
