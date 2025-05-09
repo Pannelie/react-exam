@@ -8,12 +8,11 @@ Du skall välja ut ytterligare 3 st externa bibliotek, som vi inte gått igenom 
 - **Lottie React**
   På min error page ville jag ha en animation för att förtydliga för användaren att något gått fel (kompletterat med text). Lottie React var för min del då ett bra alternativ då det erbjuder animeringar i JSON format. Eftersom det är just JSON så är filstorleken mycket mindre jämfört med video eller GIF samt att de är vektorbaserade vilket för att kvaliten inte förloras när man ökar eller minskar skärmstorlek. De blir med andra ord inte pixliga.
 
-**Det går även att skicka med olika props såsom:**
-
-  - animationData: JSON data som definierar Lottie animationen, den är obligatorisk.
-  - autoplay: gör att animationen startar automatiskt när den laddas.
-  - loop: animationen upprepas om och om igen, loopas.
-  - speed: styr hastigheten. 1 är normal hastighet, ju högre siffra desto snabbare spelas animationen.
+  **Det går även att skicka med olika props såsom:**
+    - animationData: JSON data som definierar Lottie animationen, den är obligatorisk.
+    - autoplay: gör att animationen startar automatiskt när den laddas.
+    - loop: animationen upprepas om och om igen, loopas.
+    - speed: styr hastigheten. 1 är normal hastighet, ju högre siffra desto snabbare spelas animationen.
 
 Jag valde endast att ha Lottie på min error page, men jag hade även kunnat komplettera min app med att ha animationer vid t.ex. sidladdningar eller när min söklista inte genererade resultat.
 
@@ -30,30 +29,23 @@ Jag valde endast att ha Lottie på min error page, men jag hade även kunnat kom
   - speed={300}: Standardvärdet är 300ms vilket innebär att jag inte behöver skriva ut speed om jag nu inte vill ha en annan hastighet. Ju högre siffra desto snabbare byts min slide till nästa.
 
 - **Fontawesome**
-  Jag fick användning för fontAwesomes bibliotek när jag behövde ikoner till min app. Jag villa ha det för en visuellt tydlig navigering där en icon representerade var jag befann mig. t.ex. ett hus till homepage och en biljett för att se mina köpte biljetter på ticketpage. Jag fick även användning för ikoner när jag ska boka biljetter med - och + icon, samt bekräftelse checkmark på event page när count överensstämmer med vad som finns i min cart. Just för att göra det extra tydligt för användaren vad som sker.
+  Jag fick användning för fontAwesomes bibliotek när jag behövde ikoner till min app. Jag villa ha det för en visuellt tydlig navigering där en icon representerade var jag befann mig. t.ex. ett hus till homepage och en biljett för att se mina köpte biljetter på ticketpage. Jag fick även användning för ikoner när jag ska boka biljetter med - och + icon, samt bekräftelse checkmark på event page när count överensstämmer med vad som finns i min cart. Just för att göra det extra tydligt för användaren vad som sker. För att kunna använda fontawesome behöver man först installera grundpaketet @fortawesome/react-fontawesome som är en komponent just för att kunna rendera ikoner. Sedan kompletterar man med t.ex. @fortawesome/free-solid-svg-icons beroende på vad det är för typ av ikoner man vill använda- jag ville ha gratis solid ikoner. Det som är bra med detta bibliotek är att de är vektorbaserade, vilket gör att de håller sin snygga form med bra skärpa oavsett skärmstorlek.
 
-  För att kunna använda fontawesome behöver man först installera grundpaketet @fortawesome/react-fontawesome som är en komponent just för att kunna rendera ikoner. Sedan kompletterar man med t.ex. @fortawesome/free-solid-svg-icons beroende på vad det är för typ av ikoner man vill använda- jag ville ha gratis solid ikoner.
-
-Det som är bra med detta bibliotek är att de är vektorbaserade, vilket gör att de håller sin snygga form med bra skärpa oavsett skärmstorlek.
-
-**Exempel på props för fontawesome:**
-
-- Icon: Obligatoriskt, definierar vilken ikon som ska användas.
-- Size: Som namnet, bestämmer storlek. Kan benämnas som i t.ex. xs (extrasmall), 2x(2gånger så stor) eller 10px.
-- Color: Bestämma färg, om man inte vill blanda in CSS.
-- spin: gör att ikonen roterar
-- pulse: gör att ikonen får en pulserande effekt
-- flip: Vänder den antingen horisontellt eller vertikalt . T.ex. flip="horizontal"
+  **Exempel på props för fontawesome:**
+  - Icon: Obligatoriskt, definierar vilken ikon som ska användas.
+  - Size: Som namnet, bestämmer storlek. Kan benämnas som i t.ex. xs (extrasmall), 2x(2gånger så stor) eller 10px.
+  - Color: Bestämma färg, om man inte vill blanda in CSS.
+  - spin: gör att ikonen roterar
+  - pulse: gör att ikonen får en pulserande effekt
+  - flip: Vänder den antingen horisontellt eller vertikalt . T.ex. flip="horizontal"
 
 - **React-barcode**
   Detta är ett extern bibliotek för att generera fram streckkoder med SVG. Den baserar sitt utseende på det value du skickar med. Är det unikt så kommer även det visuella utseendet vara unikt. Detta passade väldigt bra in i detta projekt eftersom jag behövde streckkod som komplement till mina olika biljetter, och jag ville ha ett riktigt syfte och funktion med streckkoden, inte bara ett hårdkodad element eller bild.
-
   Det gäller att ha koll på vilket värde jag skickar in. Jag hade en fallgrop där jag skickade in ticket.id i första hand, vilket resulterade i att mina streckkoder skiljde sig åt mellan de olika eventen, men inte mellan biljetterna inuti samma event eftersom de då hade samma value. Istället valde jag då att skicka in mitt ticket.ticketId som jag genererat fram bestående av olika siffror och stora bokstäver. Det innebär alltså att alla värden blir unika, och så även deras streckkoder.
 
   **Exempel på props:**
-
-- Value: (obligatoriskt) Det string värde jag skickat med, som hjälper med generera unik barcode.
-- format: bestämmer vilken typ av streckkod som ska genereras, t.ex. "CODE128" (som är standard och stödjer både bokstäver och siffror), "EAN13", "UPC" etc.
-- background -kan välja färg eller t.ex. transparent
-- height och width: bestämmer höjd och bredd
-- displayValue={true}: Visar upp det stringvärde jag skickat med. Det gör att man även kan komma åt det text-element som används inom den SVG:n. För att styla detta i sin tur kan man inte bara styla direkt på min barcode via dess className, utan man måste rikta in sig specifikt på text-elementet. T.ex. .ticket_barcode text. Och även om det är en text så behövs "fill" istället för "color" eftersom den fortfarande är del av en SVG-fil.
+  - Value: (obligatoriskt) Det string värde jag skickat med, som hjälper med generera unik barcode.
+  - format: bestämmer vilken typ av streckkod som ska genereras, t.ex. "CODE128" (som är standard och stödjer både bokstäver och siffror), "EAN13", "UPC" etc.
+  - background -kan välja färg eller t.ex. transparent
+  - height och width: bestämmer höjd och bredd
+  - displayValue={true}: Visar upp det stringvärde jag skickat med. Det gör att man även kan komma åt det text-element som används inom den SVG:n. För att styla detta i sin tur kan man inte bara styla direkt på min barcode via dess className, utan man måste rikta in sig specifikt på text-elementet. T.ex. .ticket_barcode text. Och även om det är en text så behövs "fill" istället för "color" eftersom den fortfarande är del av en SVG-fil.
