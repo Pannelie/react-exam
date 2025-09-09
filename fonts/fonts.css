@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Sansita One";
+  src: url("/fonts/SansitaOne.woff2") format("woff2"), url("/fonts/SansitaOne.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/fonts/FiraSans.woff2") format("woff2"), url("/fonts/FiraSans.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
